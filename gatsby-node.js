@@ -1,7 +1,22 @@
-/**
- * Implement Gatsby's Node APIs in this file.
- *
- * See: https://www.gatsbyjs.com/docs/node-apis/
- */
+// const { createFilePath } = require("gatsby-source-filesystem")
+// const path = require("path")
 
-// You can delete this file if you're not using it
+
+// ______________________________________________________
+//
+// exports.onCreateNode = ({ node, actions, getNode }) => {
+//   const { createNodeField } = actions
+
+//   // md file only
+//   if (node.internal.type === `md`) {
+//     const value = createFilePath({ node, getNode })
+
+//     createNodeField({
+//       node,
+//       name: "slug",
+//       value: `/blog${value}`,
+//     })
+//   }
+// }
+// ______________________________________________________
+//
