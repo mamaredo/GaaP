@@ -686,10 +686,20 @@ type SitePluginPluginOptions = {
   readonly crossOrigin: Maybe<Scalars['String']>;
   readonly include_favicon: Maybe<Scalars['Boolean']>;
   readonly cacheDigest: Maybe<Scalars['String']>;
-  readonly pathCheck: Maybe<Scalars['Boolean']>;
-  readonly allExtensions: Maybe<Scalars['Boolean']>;
   readonly isTSX: Maybe<Scalars['Boolean']>;
   readonly jsxPragma: Maybe<Scalars['String']>;
+  readonly allExtensions: Maybe<Scalars['Boolean']>;
+  readonly emitSchema: Maybe<SitePluginPluginOptionsEmitSchema>;
+  readonly emitPluginDocuments: Maybe<SitePluginPluginOptionsEmitPluginDocuments>;
+  readonly pathCheck: Maybe<Scalars['Boolean']>;
+};
+
+type SitePluginPluginOptionsEmitSchema = {
+  readonly src___generated___gatsby_introspection_json: Maybe<Scalars['Boolean']>;
+};
+
+type SitePluginPluginOptionsEmitPluginDocuments = {
+  readonly src___generated___gatsby_plugin_documents_graphql: Maybe<Scalars['Boolean']>;
 };
 
 type SitePluginPackageJson = {
@@ -2033,10 +2043,20 @@ type SitePluginPluginOptionsFilterInput = {
   readonly crossOrigin: Maybe<StringQueryOperatorInput>;
   readonly include_favicon: Maybe<BooleanQueryOperatorInput>;
   readonly cacheDigest: Maybe<StringQueryOperatorInput>;
-  readonly pathCheck: Maybe<BooleanQueryOperatorInput>;
-  readonly allExtensions: Maybe<BooleanQueryOperatorInput>;
   readonly isTSX: Maybe<BooleanQueryOperatorInput>;
   readonly jsxPragma: Maybe<StringQueryOperatorInput>;
+  readonly allExtensions: Maybe<BooleanQueryOperatorInput>;
+  readonly emitSchema: Maybe<SitePluginPluginOptionsEmitSchemaFilterInput>;
+  readonly emitPluginDocuments: Maybe<SitePluginPluginOptionsEmitPluginDocumentsFilterInput>;
+  readonly pathCheck: Maybe<BooleanQueryOperatorInput>;
+};
+
+type SitePluginPluginOptionsEmitSchemaFilterInput = {
+  readonly src___generated___gatsby_introspection_json: Maybe<BooleanQueryOperatorInput>;
+};
+
+type SitePluginPluginOptionsEmitPluginDocumentsFilterInput = {
+  readonly src___generated___gatsby_plugin_documents_graphql: Maybe<BooleanQueryOperatorInput>;
 };
 
 type SitePluginPackageJsonFilterInput = {
@@ -2257,10 +2277,12 @@ type SitePageFieldsEnum =
   | 'pluginCreator.pluginOptions.crossOrigin'
   | 'pluginCreator.pluginOptions.include_favicon'
   | 'pluginCreator.pluginOptions.cacheDigest'
-  | 'pluginCreator.pluginOptions.pathCheck'
-  | 'pluginCreator.pluginOptions.allExtensions'
   | 'pluginCreator.pluginOptions.isTSX'
   | 'pluginCreator.pluginOptions.jsxPragma'
+  | 'pluginCreator.pluginOptions.allExtensions'
+  | 'pluginCreator.pluginOptions.emitSchema.src___generated___gatsby_introspection_json'
+  | 'pluginCreator.pluginOptions.emitPluginDocuments.src___generated___gatsby_plugin_documents_graphql'
+  | 'pluginCreator.pluginOptions.pathCheck'
   | 'pluginCreator.nodeAPIs'
   | 'pluginCreator.browserAPIs'
   | 'pluginCreator.ssrAPIs'
@@ -2895,10 +2917,12 @@ type SitePluginFieldsEnum =
   | 'pluginOptions.crossOrigin'
   | 'pluginOptions.include_favicon'
   | 'pluginOptions.cacheDigest'
-  | 'pluginOptions.pathCheck'
-  | 'pluginOptions.allExtensions'
   | 'pluginOptions.isTSX'
   | 'pluginOptions.jsxPragma'
+  | 'pluginOptions.allExtensions'
+  | 'pluginOptions.emitSchema.src___generated___gatsby_introspection_json'
+  | 'pluginOptions.emitPluginDocuments.src___generated___gatsby_plugin_documents_graphql'
+  | 'pluginOptions.pathCheck'
   | 'nodeAPIs'
   | 'browserAPIs'
   | 'ssrAPIs'
@@ -2933,15 +2957,20 @@ type SitePluginSortInput = {
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
+type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
+
 type homemamaredoDGaaPsrcpagesusingTypescriptTsx2907560070QueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type homemamaredoDGaaPsrcpagesusingTypescriptTsx2907560070Query = { readonly site: Maybe<Pick<Site, 'buildTime'>> };
 
-type SiteTitleQueryQueryVariables = Exact<{ [key: string]: never; }>;
+type Unnamed_1_QueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type SiteTitleQueryQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title'>> }> };
+type Unnamed_1_Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title' | 'description'>> }> };
 
 type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
@@ -2968,10 +2997,5 @@ type GatsbyImageSharpFluid_withWebp_tracedSVGFragment = Pick<ImageSharpFluid, 't
 type GatsbyImageSharpFluid_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
 
 type GatsbyImageSharpFluid_withWebp_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
-
-type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
 
 }
