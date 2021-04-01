@@ -2,7 +2,11 @@ import * as React from "react"
 import Layout from "../components/layout"
 import BlogCards from "../containers/blog_cards"
 import ProfileCard from "../containers/profile_card"
+import BlogTags from "../containers/blog_tags"
 
+
+// ______________________________________________________
+//
 const Index: React.FC = () => {
   return (
     <Layout>
@@ -12,7 +16,7 @@ const Index: React.FC = () => {
           this is index.tsx
           {/* container component */}
         </header>
-        <article className="px-1 pt-5 bg-background">
+        <article className="px-1 py-5 bg-background">
           <div
             className="
               2xl:max-w-2xl
@@ -32,7 +36,6 @@ const Index: React.FC = () => {
               className="
                 md:col-span-8
                 col-span-4
-                bg-gray-400
                 grid
                 md:grid-cols-8
                 grid-cols-4
@@ -46,10 +49,13 @@ const Index: React.FC = () => {
               <BlogCards />
             </div>
 
-            <div className="col-span-4 bg-gray-400">
-              {/* container component */}
+            <div className="col-span-4">
               <ProfileCard />
-              {/* container component */}
+
+              <div className="w-full border-t border-black opacity-37 my-3"></div>
+
+              <div className="mb-2 text-xl font-bold opacity-70">タグ一覧</div>
+              <BlogTags />
             </div>
           </div>
         </article>
@@ -57,5 +63,6 @@ const Index: React.FC = () => {
     </Layout>
   )
 }
-
+// ______________________________________________________
+//
 export default Index
