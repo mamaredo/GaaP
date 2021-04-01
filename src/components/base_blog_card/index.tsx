@@ -19,11 +19,13 @@ const BaseBlogCard: React.FC<BaseBlogCardProps> = ({ style, frontmatter }) => {
   const cardStyle = style?.join(" ")
 
   return (
-    <div className="col-span-4 min-h-card">
-      <div className={`shadow bg-white w-full ${cardStyle}`}>
+    <div className="col-span-4">
+      <div className={`min-h-card shadow bg-white w-full ${cardStyle}`}>
+        {/* imageを入れる */}
+        <div className="w-full min-h-image bg-pink-200"></div>
         {/* imageを入れる */}
         <div className="p-2 flex flex-col">
-          <div className="flex justify-between items-center mb-">
+          <div className="flex justify-between items-center">
             <h2 className="text-xl">{frontmatter?.title}</h2>
             <p className="2xl:text-sm text-xs">{frontmatter?.date}</p>
           </div>
