@@ -12,10 +12,14 @@ const Index: React.FC = () => {
           this is index.tsx
           {/* container component */}
         </header>
-        <article className="px-1 bg-background">
+        <article className="px-1 pt-5 bg-background">
           <div
             className="
-              container
+              2xl:max-w-2xl
+              xl:max-w-xl
+              md:max-w-md
+              max-w-sm
+              mx-auto
               grid
               xl:grid-cols-12
               md:grid-cols-8
@@ -37,9 +41,12 @@ const Index: React.FC = () => {
               "
             >
               <BlogCards />
+              <BlogCards />
+              <BlogCards />
+              <BlogCards />
             </div>
 
-            <div className="col-span-4 bg-gray-400 min-h-348">
+            <div className="col-span-4 bg-gray-400">
               {/* container component */}
               <ProfileCard />
               {/* container component */}
