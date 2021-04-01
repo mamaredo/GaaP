@@ -8,10 +8,17 @@ module.exports = {
       },
     },
     minHeight: {
-      'card': '348px'
+      'card': '348px',
+      'image': '243px'
     },
     maxHeight: {
       'card': '348px'
+    },
+    maxWidth: {
+      '2xl': '1280px',
+      'xl': '1024px',
+      'md': '720px',
+      'sm': '352px'
     },
     container: {
       center: true
