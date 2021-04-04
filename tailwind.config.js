@@ -4,7 +4,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'background': '#E9E9E9',
+        'primary': '#60CAAD',
+        'background': '#FAFAFA',
         'tag-bg': '#FAFAFA',
         'twitter': '#1DA1F2',
         'git-hub': '#24292E',
@@ -12,6 +13,17 @@ module.exports = {
       },
       opacity: {
         '37': '0.37',
+      },
+      spacing: {
+        '1': '8px',
+        '2': '16px',
+        '3': '24px',
+        '4': '32px',
+        '5': '40px',
+        '6': '48px',
+        '7': '56px',
+        'icon': '12px',
+        'button-icon': '24px'
       },
     },
     minHeight: {
@@ -26,21 +38,11 @@ module.exports = {
       '2xl': '1280px',
       'xl': '1024px',
       'md': '720px',
-      'sm': '352px'
+      'sm': '352px',
+      'max': '100%'
     },
     container: {
       center: true
-    },
-    spacing: {
-      '1': '8px',
-      '2': '16px',
-      '3': '24px',
-      '4': '32px',
-      '5': '40px',
-      '6': '48px',
-      '7': '56px',
-      'icon': '12px',
-      'button-icon': '24px'
     },
   },
   variants: {
