@@ -5,9 +5,12 @@ import BaseBlogTemplate from "../../components/base_blog_templates"
 //
 export type BlogTemplateProps = {
   pageContext: {
-    title: string
-    date: string
-    tag: string
+    post: {
+      title: string
+      tag: string[]
+      date: string
+    }
+    body: string
   }
 }
 // ______________________________________________________
@@ -16,7 +19,7 @@ export type BlogTemplateProps = {
 //
 const BlogTemplate: React.FC<BlogTemplateProps> = ({ pageContext }) => {
   /* logic */
-  return <BaseBlogTemplate frontmatter={pageContext} />
+  return <BaseBlogTemplate post={pageContext.post} body={pageContext.body} />
 }
 // ______________________________________________________
 //
