@@ -3,18 +3,18 @@ import SEO from './seo'
 
 import Footer from './footer'
 
-type Props = {
-  children: React.ReactElement
-}
-
-const Layout: React.FC<Props> = ({children}) => (
+// ______________________________________________________
+//
+const Layout: React.FC = ({children}) => (
   <>
     <SEO />
-    <main className="w-screen h-full">
+    <main className="max-w-max h-full">
       {children}
     </main>
     <Footer />
   </>
 )
+// ______________________________________________________
+//
 
 export default Layout
