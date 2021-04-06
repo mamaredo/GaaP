@@ -9,7 +9,12 @@ export type BlogTemplateProps = {
       title: string
       tag: string[]
       date: string
-    }
+    },
+    // heroImage
+    image: {
+      fulid: string
+      alt: string
+    },
     body: string
   }
 }
