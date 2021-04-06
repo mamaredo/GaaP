@@ -12,10 +12,16 @@ exports.createPages = async ({ graphql, actions }) => {
             slug
             title
             tags
-            updatedAt
+            updatedAt(formatString: "YYYY-MM-DD")
             body {
               childMarkdownRemark {
                 html
+              }
+            }
+            heroImage {
+              title
+              fluid(maxWidth: 1200) {
+                ...GatsbyContentfulFluid
               }
             }
           }
@@ -33,6 +39,10 @@ exports.createPages = async ({ graphql, actions }) => {
           title: node.title,
           tag: node.tags,
           date: node.updatedAt,
+        },
+        image: {
+          fulid: node.heroImage.fulid,
+          alt: node.heroImage.title
         },
         body: node.body.childMarkdownRemark.html
       }

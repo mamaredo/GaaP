@@ -64,7 +64,7 @@ module.exports = {
       options: {
         spaceId: process.env.SPACE_ID,
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-        host: `preview.contentful.com`
+        // host: `preview.contentful.com`
       }
     }
     // this (optional) plugin enables Progressive Web App + Offline functionality
