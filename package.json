@@ -25,6 +25,7 @@
   "devDependencies": {
     "@types/react-helmet": "^6.1.0",
     "autoprefixer": "^10.2.5",
+    "gatsby-image": "^3.2.0",
     "gatsby-source-contentful": "^5.2.0",
     "gatsby-transformer-remark": "^3.2.0",
     "postcss": "^8.2.9",
