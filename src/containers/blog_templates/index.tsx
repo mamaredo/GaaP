@@ -1,4 +1,5 @@
 import * as React from "react"
+import { FluidObject } from "gatsby-image"
 import BaseBlogTemplate from "../../components/base_blog_templates"
 
 // ______________________________________________________
@@ -12,7 +13,7 @@ export type BlogTemplateProps = {
     },
     // heroImage
     image: {
-      fulid: string
+      fluid: FluidObject
       alt: string
     },
     body: string
@@ -24,7 +25,13 @@ export type BlogTemplateProps = {
 //
 const BlogTemplate: React.FC<BlogTemplateProps> = ({ pageContext }) => {
   /* logic */
-  return <BaseBlogTemplate post={pageContext.post} body={pageContext.body} />
+  return (
+    <BaseBlogTemplate
+      post={pageContext.post}
+      image={pageContext.image}
+      body={pageContext.body} 
+    />
+  )
 }
 // ______________________________________________________
 //
