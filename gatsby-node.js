@@ -21,7 +21,11 @@ exports.createPages = async ({ graphql, actions }) => {
             heroImage {
               title
               fluid(maxWidth: 1200) {
-                ...GatsbyContentfulFluid
+                base64
+                aspectRatio
+                src
+                srcSet
+                sizes
               }
             }
           }
@@ -29,8 +33,8 @@ exports.createPages = async ({ graphql, actions }) => {
       }
     }
   `)
-  
-  data.allContentfulBlogPost.edges.forEach(({node}) => {
+
+  data.allContentfulBlogPost.edges.forEach(({ node }) => {
     createPage({
       path: `/post/${node.slug}`,
       component: blogTemplate,
@@ -41,7 +45,7 @@ exports.createPages = async ({ graphql, actions }) => {
           date: node.updatedAt,
         },
         image: {
-          fulid: node.heroImage.fulid,
+          fluid: node.heroImage.fluid,
           alt: node.heroImage.title
         },
         body: node.body.childMarkdownRemark.html
