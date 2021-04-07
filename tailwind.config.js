@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       colors: {
         'primary': '#60CAAD',
+        'secondary': '#333333',
         'background': '#FAFAFA',
         'tag-bg': '#FAFAFA',
         'twitter': '#1DA1F2',
