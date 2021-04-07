@@ -6,6 +6,10 @@
   @apply text-3xl;
 }
 
+.contentfull h2,
+.contentfull h3 {
+  @apply font-bold
+}
 .contentfull p,
 .contentfull li {
   @apply text-xl;
