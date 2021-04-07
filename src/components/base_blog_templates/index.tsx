@@ -9,22 +9,21 @@ import Layout from "../layout"
 
 // ______________________________________________________
 //
-type BaseBlogTemplateProps = {
+export type BaseBlogTemplateProps = {
   post: BlogTemplateProps["pageContext"]["post"]
   body: BlogTemplateProps["pageContext"]["body"]
+  image: BlogTemplateProps["pageContext"]["image"]
 }
-export type BlogHeadProps = { post: BaseBlogTemplateProps["post"] }
 // ______________________________________________________
 //
-const BaseBlogTemplate: React.FC<BaseBlogTemplateProps> = ({ post, body }) => {
+const BaseBlogTemplate: React.FC<BaseBlogTemplateProps> = ({ post, body, image }) => {
   const { title, date, tag } = post
   return (
     <Layout>
       <BaseNavigation />
-      <div className="px-1 w-full bg-background">
+      <div className="px-1 pt-32 w-full bg-background">
         <div 
           className="
-            pt-32
             2xl:max-w-2xl
             xl:max-w-xl
             md:max-w-md
@@ -40,7 +39,7 @@ const BaseBlogTemplate: React.FC<BaseBlogTemplateProps> = ({ post, body }) => {
         >
 
           <div className="xl:col-span-10 md:col-span-8 col-span-4 w-full">
-            <BlogHead title={title} date={date} />
+            <BlogHead title={title} date={date} image={image} />
             <div className="contentfull xl:mt-5 mt-4" dangerouslySetInnerHTML={{ __html: body }} />
           </div>
 
