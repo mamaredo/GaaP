@@ -304,6 +304,7 @@ type SitePage = Node & {
 
 type SitePageContext = {
   readonly post: Maybe<SitePageContextPost>;
+  readonly image: Maybe<SitePageContextImage>;
   readonly body: Maybe<Scalars['String']>;
 };
 
@@ -311,6 +312,19 @@ type SitePageContextPost = {
   readonly title: Maybe<Scalars['String']>;
   readonly tag: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
   readonly date: Maybe<Scalars['Date']>;
+};
+
+type SitePageContextImage = {
+  readonly fluid: Maybe<SitePageContextImageFluid>;
+  readonly alt: Maybe<Scalars['String']>;
+};
+
+type SitePageContextImageFluid = {
+  readonly base64: Maybe<Scalars['String']>;
+  readonly aspectRatio: Maybe<Scalars['Float']>;
+  readonly src: Maybe<Scalars['String']>;
+  readonly srcSet: Maybe<Scalars['String']>;
+  readonly sizes: Maybe<Scalars['String']>;
 };
 
 type ImageFormat =
@@ -2654,6 +2668,7 @@ type SiteSortInput = {
 
 type SitePageContextFilterInput = {
   readonly post: Maybe<SitePageContextPostFilterInput>;
+  readonly image: Maybe<SitePageContextImageFilterInput>;
   readonly body: Maybe<StringQueryOperatorInput>;
 };
 
@@ -2661,6 +2676,19 @@ type SitePageContextPostFilterInput = {
   readonly title: Maybe<StringQueryOperatorInput>;
   readonly tag: Maybe<StringQueryOperatorInput>;
   readonly date: Maybe<DateQueryOperatorInput>;
+};
+
+type SitePageContextImageFilterInput = {
+  readonly fluid: Maybe<SitePageContextImageFluidFilterInput>;
+  readonly alt: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePageContextImageFluidFilterInput = {
+  readonly base64: Maybe<StringQueryOperatorInput>;
+  readonly aspectRatio: Maybe<FloatQueryOperatorInput>;
+  readonly src: Maybe<StringQueryOperatorInput>;
+  readonly srcSet: Maybe<StringQueryOperatorInput>;
+  readonly sizes: Maybe<StringQueryOperatorInput>;
 };
 
 type SitePluginFilterInput = {
@@ -2885,6 +2913,12 @@ type SitePageFieldsEnum =
   | 'context.post.title'
   | 'context.post.tag'
   | 'context.post.date'
+  | 'context.image.fluid.base64'
+  | 'context.image.fluid.aspectRatio'
+  | 'context.image.fluid.src'
+  | 'context.image.fluid.srcSet'
+  | 'context.image.fluid.sizes'
+  | 'context.image.alt'
   | 'context.body'
   | 'pluginCreator.id'
   | 'pluginCreator.parent.id'
@@ -6555,15 +6589,15 @@ type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
 
+type homemamaredoDGaaPsrcpagesusingTypescriptTsx2907560070QueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type homemamaredoDGaaPsrcpagesusingTypescriptTsx2907560070Query = { readonly site: Maybe<Pick<Site, 'buildTime'>> };
+
 type Unnamed_1_QueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type Unnamed_1_Query = { readonly site: Maybe<Pick<Site, 'buildTime'>> };
-
-type Unnamed_2_QueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type Unnamed_2_Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title' | 'description'>> }> };
+type Unnamed_1_Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title' | 'description'>> }> };
 
 type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
