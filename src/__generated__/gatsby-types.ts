@@ -291,15 +291,15 @@ type SitePage = Node & {
   readonly internalComponentName: Scalars['String'];
   readonly componentChunkName: Scalars['String'];
   readonly matchPath: Maybe<Scalars['String']>;
+  readonly isCreatedByStatefulCreatePages: Maybe<Scalars['Boolean']>;
+  readonly pluginCreator: Maybe<SitePlugin>;
+  readonly pluginCreatorId: Maybe<Scalars['String']>;
+  readonly componentPath: Maybe<Scalars['String']>;
   readonly id: Scalars['ID'];
   readonly parent: Maybe<Node>;
   readonly children: ReadonlyArray<Node>;
   readonly internal: Internal;
-  readonly isCreatedByStatefulCreatePages: Maybe<Scalars['Boolean']>;
   readonly context: Maybe<SitePageContext>;
-  readonly pluginCreator: Maybe<SitePlugin>;
-  readonly pluginCreatorId: Maybe<Scalars['String']>;
-  readonly componentPath: Maybe<Scalars['String']>;
 };
 
 type SitePageContext = {
@@ -607,7 +607,6 @@ type MarkdownRemark = Node & {
   readonly frontmatter: Maybe<MarkdownRemarkFrontmatter>;
   readonly excerpt: Maybe<Scalars['String']>;
   readonly rawMarkdownBody: Maybe<Scalars['String']>;
-  readonly fileAbsolutePath: Maybe<Scalars['String']>;
   readonly html: Maybe<Scalars['String']>;
   readonly htmlAst: Maybe<Scalars['JSON']>;
   readonly excerptAst: Maybe<Scalars['JSON']>;
@@ -648,17 +647,6 @@ type MarkdownRemark_tableOfContentsArgs = {
 
 type MarkdownRemarkFrontmatter = {
   readonly title: Maybe<Scalars['String']>;
-  readonly slug: Maybe<Scalars['String']>;
-  readonly date: Maybe<Scalars['Date']>;
-  readonly tag: Maybe<Scalars['String']>;
-};
-
-
-type MarkdownRemarkFrontmatter_dateArgs = {
-  formatString: Maybe<Scalars['String']>;
-  fromNow: Maybe<Scalars['Boolean']>;
-  difference: Maybe<Scalars['String']>;
-  locale: Maybe<Scalars['String']>;
 };
 
 type ContentfulEntry = {
@@ -1333,15 +1321,15 @@ type Query_sitePageArgs = {
   internalComponentName: Maybe<StringQueryOperatorInput>;
   componentChunkName: Maybe<StringQueryOperatorInput>;
   matchPath: Maybe<StringQueryOperatorInput>;
+  isCreatedByStatefulCreatePages: Maybe<BooleanQueryOperatorInput>;
+  pluginCreator: Maybe<SitePluginFilterInput>;
+  pluginCreatorId: Maybe<StringQueryOperatorInput>;
+  componentPath: Maybe<StringQueryOperatorInput>;
   id: Maybe<StringQueryOperatorInput>;
   parent: Maybe<NodeFilterInput>;
   children: Maybe<NodeFilterListInput>;
   internal: Maybe<InternalFilterInput>;
-  isCreatedByStatefulCreatePages: Maybe<BooleanQueryOperatorInput>;
   context: Maybe<SitePageContextFilterInput>;
-  pluginCreator: Maybe<SitePluginFilterInput>;
-  pluginCreatorId: Maybe<StringQueryOperatorInput>;
-  componentPath: Maybe<StringQueryOperatorInput>;
 };
 
 
@@ -1379,7 +1367,6 @@ type Query_markdownRemarkArgs = {
   frontmatter: Maybe<MarkdownRemarkFrontmatterFilterInput>;
   excerpt: Maybe<StringQueryOperatorInput>;
   rawMarkdownBody: Maybe<StringQueryOperatorInput>;
-  fileAbsolutePath: Maybe<StringQueryOperatorInput>;
   html: Maybe<StringQueryOperatorInput>;
   htmlAst: Maybe<JSONQueryOperatorInput>;
   excerptAst: Maybe<JSONQueryOperatorInput>;
@@ -1794,7 +1781,6 @@ type MarkdownRemarkFilterInput = {
   readonly frontmatter: Maybe<MarkdownRemarkFrontmatterFilterInput>;
   readonly excerpt: Maybe<StringQueryOperatorInput>;
   readonly rawMarkdownBody: Maybe<StringQueryOperatorInput>;
-  readonly fileAbsolutePath: Maybe<StringQueryOperatorInput>;
   readonly html: Maybe<StringQueryOperatorInput>;
   readonly htmlAst: Maybe<JSONQueryOperatorInput>;
   readonly excerptAst: Maybe<JSONQueryOperatorInput>;
@@ -1809,9 +1795,6 @@ type MarkdownRemarkFilterInput = {
 
 type MarkdownRemarkFrontmatterFilterInput = {
   readonly title: Maybe<StringQueryOperatorInput>;
-  readonly slug: Maybe<StringQueryOperatorInput>;
-  readonly date: Maybe<DateQueryOperatorInput>;
-  readonly tag: Maybe<StringQueryOperatorInput>;
 };
 
 type MarkdownHeadingFilterListInput = {
@@ -2046,12 +2029,8 @@ type FileFieldsEnum =
   | 'childrenMarkdownRemark'
   | 'childrenMarkdownRemark.id'
   | 'childrenMarkdownRemark.frontmatter.title'
-  | 'childrenMarkdownRemark.frontmatter.slug'
-  | 'childrenMarkdownRemark.frontmatter.date'
-  | 'childrenMarkdownRemark.frontmatter.tag'
   | 'childrenMarkdownRemark.excerpt'
   | 'childrenMarkdownRemark.rawMarkdownBody'
-  | 'childrenMarkdownRemark.fileAbsolutePath'
   | 'childrenMarkdownRemark.html'
   | 'childrenMarkdownRemark.htmlAst'
   | 'childrenMarkdownRemark.excerptAst'
@@ -2103,12 +2082,8 @@ type FileFieldsEnum =
   | 'childrenMarkdownRemark.internal.type'
   | 'childMarkdownRemark.id'
   | 'childMarkdownRemark.frontmatter.title'
-  | 'childMarkdownRemark.frontmatter.slug'
-  | 'childMarkdownRemark.frontmatter.date'
-  | 'childMarkdownRemark.frontmatter.tag'
   | 'childMarkdownRemark.excerpt'
   | 'childMarkdownRemark.rawMarkdownBody'
-  | 'childMarkdownRemark.fileAbsolutePath'
   | 'childMarkdownRemark.html'
   | 'childMarkdownRemark.htmlAst'
   | 'childMarkdownRemark.excerptAst'
@@ -2666,31 +2641,6 @@ type SiteSortInput = {
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
-type SitePageContextFilterInput = {
-  readonly post: Maybe<SitePageContextPostFilterInput>;
-  readonly image: Maybe<SitePageContextImageFilterInput>;
-  readonly body: Maybe<StringQueryOperatorInput>;
-};
-
-type SitePageContextPostFilterInput = {
-  readonly title: Maybe<StringQueryOperatorInput>;
-  readonly tag: Maybe<StringQueryOperatorInput>;
-  readonly date: Maybe<DateQueryOperatorInput>;
-};
-
-type SitePageContextImageFilterInput = {
-  readonly fluid: Maybe<SitePageContextImageFluidFilterInput>;
-  readonly alt: Maybe<StringQueryOperatorInput>;
-};
-
-type SitePageContextImageFluidFilterInput = {
-  readonly base64: Maybe<StringQueryOperatorInput>;
-  readonly aspectRatio: Maybe<FloatQueryOperatorInput>;
-  readonly src: Maybe<StringQueryOperatorInput>;
-  readonly srcSet: Maybe<StringQueryOperatorInput>;
-  readonly sizes: Maybe<StringQueryOperatorInput>;
-};
-
 type SitePluginFilterInput = {
   readonly id: Maybe<StringQueryOperatorInput>;
   readonly parent: Maybe<NodeFilterInput>;
@@ -2790,6 +2740,31 @@ type SitePluginPackageJsonPeerDependenciesFilterInput = {
   readonly version: Maybe<StringQueryOperatorInput>;
 };
 
+type SitePageContextFilterInput = {
+  readonly post: Maybe<SitePageContextPostFilterInput>;
+  readonly image: Maybe<SitePageContextImageFilterInput>;
+  readonly body: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePageContextPostFilterInput = {
+  readonly title: Maybe<StringQueryOperatorInput>;
+  readonly tag: Maybe<StringQueryOperatorInput>;
+  readonly date: Maybe<DateQueryOperatorInput>;
+};
+
+type SitePageContextImageFilterInput = {
+  readonly fluid: Maybe<SitePageContextImageFluidFilterInput>;
+  readonly alt: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePageContextImageFluidFilterInput = {
+  readonly base64: Maybe<StringQueryOperatorInput>;
+  readonly aspectRatio: Maybe<FloatQueryOperatorInput>;
+  readonly src: Maybe<StringQueryOperatorInput>;
+  readonly srcSet: Maybe<StringQueryOperatorInput>;
+  readonly sizes: Maybe<StringQueryOperatorInput>;
+};
+
 type SitePageConnection = {
   readonly totalCount: Scalars['Int'];
   readonly edges: ReadonlyArray<SitePageEdge>;
@@ -2823,103 +2798,7 @@ type SitePageFieldsEnum =
   | 'internalComponentName'
   | 'componentChunkName'
   | 'matchPath'
-  | 'id'
-  | 'parent.id'
-  | 'parent.parent.id'
-  | 'parent.parent.parent.id'
-  | 'parent.parent.parent.children'
-  | 'parent.parent.children'
-  | 'parent.parent.children.id'
-  | 'parent.parent.children.children'
-  | 'parent.parent.internal.content'
-  | 'parent.parent.internal.contentDigest'
-  | 'parent.parent.internal.description'
-  | 'parent.parent.internal.fieldOwners'
-  | 'parent.parent.internal.ignoreType'
-  | 'parent.parent.internal.mediaType'
-  | 'parent.parent.internal.owner'
-  | 'parent.parent.internal.type'
-  | 'parent.children'
-  | 'parent.children.id'
-  | 'parent.children.parent.id'
-  | 'parent.children.parent.children'
-  | 'parent.children.children'
-  | 'parent.children.children.id'
-  | 'parent.children.children.children'
-  | 'parent.children.internal.content'
-  | 'parent.children.internal.contentDigest'
-  | 'parent.children.internal.description'
-  | 'parent.children.internal.fieldOwners'
-  | 'parent.children.internal.ignoreType'
-  | 'parent.children.internal.mediaType'
-  | 'parent.children.internal.owner'
-  | 'parent.children.internal.type'
-  | 'parent.internal.content'
-  | 'parent.internal.contentDigest'
-  | 'parent.internal.description'
-  | 'parent.internal.fieldOwners'
-  | 'parent.internal.ignoreType'
-  | 'parent.internal.mediaType'
-  | 'parent.internal.owner'
-  | 'parent.internal.type'
-  | 'children'
-  | 'children.id'
-  | 'children.parent.id'
-  | 'children.parent.parent.id'
-  | 'children.parent.parent.children'
-  | 'children.parent.children'
-  | 'children.parent.children.id'
-  | 'children.parent.children.children'
-  | 'children.parent.internal.content'
-  | 'children.parent.internal.contentDigest'
-  | 'children.parent.internal.description'
-  | 'children.parent.internal.fieldOwners'
-  | 'children.parent.internal.ignoreType'
-  | 'children.parent.internal.mediaType'
-  | 'children.parent.internal.owner'
-  | 'children.parent.internal.type'
-  | 'children.children'
-  | 'children.children.id'
-  | 'children.children.parent.id'
-  | 'children.children.parent.children'
-  | 'children.children.children'
-  | 'children.children.children.id'
-  | 'children.children.children.children'
-  | 'children.children.internal.content'
-  | 'children.children.internal.contentDigest'
-  | 'children.children.internal.description'
-  | 'children.children.internal.fieldOwners'
-  | 'children.children.internal.ignoreType'
-  | 'children.children.internal.mediaType'
-  | 'children.children.internal.owner'
-  | 'children.children.internal.type'
-  | 'children.internal.content'
-  | 'children.internal.contentDigest'
-  | 'children.internal.description'
-  | 'children.internal.fieldOwners'
-  | 'children.internal.ignoreType'
-  | 'children.internal.mediaType'
-  | 'children.internal.owner'
-  | 'children.internal.type'
-  | 'internal.content'
-  | 'internal.contentDigest'
-  | 'internal.description'
-  | 'internal.fieldOwners'
-  | 'internal.ignoreType'
-  | 'internal.mediaType'
-  | 'internal.owner'
-  | 'internal.type'
   | 'isCreatedByStatefulCreatePages'
-  | 'context.post.title'
-  | 'context.post.tag'
-  | 'context.post.date'
-  | 'context.image.fluid.base64'
-  | 'context.image.fluid.aspectRatio'
-  | 'context.image.fluid.src'
-  | 'context.image.fluid.srcSet'
-  | 'context.image.fluid.sizes'
-  | 'context.image.alt'
-  | 'context.body'
   | 'pluginCreator.id'
   | 'pluginCreator.parent.id'
   | 'pluginCreator.parent.parent.id'
@@ -3014,7 +2893,103 @@ type SitePageFieldsEnum =
   | 'pluginCreator.packageJson.peerDependencies.version'
   | 'pluginCreator.packageJson.keywords'
   | 'pluginCreatorId'
-  | 'componentPath';
+  | 'componentPath'
+  | 'id'
+  | 'parent.id'
+  | 'parent.parent.id'
+  | 'parent.parent.parent.id'
+  | 'parent.parent.parent.children'
+  | 'parent.parent.children'
+  | 'parent.parent.children.id'
+  | 'parent.parent.children.children'
+  | 'parent.parent.internal.content'
+  | 'parent.parent.internal.contentDigest'
+  | 'parent.parent.internal.description'
+  | 'parent.parent.internal.fieldOwners'
+  | 'parent.parent.internal.ignoreType'
+  | 'parent.parent.internal.mediaType'
+  | 'parent.parent.internal.owner'
+  | 'parent.parent.internal.type'
+  | 'parent.children'
+  | 'parent.children.id'
+  | 'parent.children.parent.id'
+  | 'parent.children.parent.children'
+  | 'parent.children.children'
+  | 'parent.children.children.id'
+  | 'parent.children.children.children'
+  | 'parent.children.internal.content'
+  | 'parent.children.internal.contentDigest'
+  | 'parent.children.internal.description'
+  | 'parent.children.internal.fieldOwners'
+  | 'parent.children.internal.ignoreType'
+  | 'parent.children.internal.mediaType'
+  | 'parent.children.internal.owner'
+  | 'parent.children.internal.type'
+  | 'parent.internal.content'
+  | 'parent.internal.contentDigest'
+  | 'parent.internal.description'
+  | 'parent.internal.fieldOwners'
+  | 'parent.internal.ignoreType'
+  | 'parent.internal.mediaType'
+  | 'parent.internal.owner'
+  | 'parent.internal.type'
+  | 'children'
+  | 'children.id'
+  | 'children.parent.id'
+  | 'children.parent.parent.id'
+  | 'children.parent.parent.children'
+  | 'children.parent.children'
+  | 'children.parent.children.id'
+  | 'children.parent.children.children'
+  | 'children.parent.internal.content'
+  | 'children.parent.internal.contentDigest'
+  | 'children.parent.internal.description'
+  | 'children.parent.internal.fieldOwners'
+  | 'children.parent.internal.ignoreType'
+  | 'children.parent.internal.mediaType'
+  | 'children.parent.internal.owner'
+  | 'children.parent.internal.type'
+  | 'children.children'
+  | 'children.children.id'
+  | 'children.children.parent.id'
+  | 'children.children.parent.children'
+  | 'children.children.children'
+  | 'children.children.children.id'
+  | 'children.children.children.children'
+  | 'children.children.internal.content'
+  | 'children.children.internal.contentDigest'
+  | 'children.children.internal.description'
+  | 'children.children.internal.fieldOwners'
+  | 'children.children.internal.ignoreType'
+  | 'children.children.internal.mediaType'
+  | 'children.children.internal.owner'
+  | 'children.children.internal.type'
+  | 'children.internal.content'
+  | 'children.internal.contentDigest'
+  | 'children.internal.description'
+  | 'children.internal.fieldOwners'
+  | 'children.internal.ignoreType'
+  | 'children.internal.mediaType'
+  | 'children.internal.owner'
+  | 'children.internal.type'
+  | 'internal.content'
+  | 'internal.contentDigest'
+  | 'internal.description'
+  | 'internal.fieldOwners'
+  | 'internal.ignoreType'
+  | 'internal.mediaType'
+  | 'internal.owner'
+  | 'internal.type'
+  | 'context.post.title'
+  | 'context.post.tag'
+  | 'context.post.date'
+  | 'context.image.fluid.base64'
+  | 'context.image.fluid.aspectRatio'
+  | 'context.image.fluid.src'
+  | 'context.image.fluid.srcSet'
+  | 'context.image.fluid.sizes'
+  | 'context.image.alt'
+  | 'context.body';
 
 type SitePageGroupConnection = {
   readonly totalCount: Scalars['Int'];
@@ -3031,15 +3006,15 @@ type SitePageFilterInput = {
   readonly internalComponentName: Maybe<StringQueryOperatorInput>;
   readonly componentChunkName: Maybe<StringQueryOperatorInput>;
   readonly matchPath: Maybe<StringQueryOperatorInput>;
+  readonly isCreatedByStatefulCreatePages: Maybe<BooleanQueryOperatorInput>;
+  readonly pluginCreator: Maybe<SitePluginFilterInput>;
+  readonly pluginCreatorId: Maybe<StringQueryOperatorInput>;
+  readonly componentPath: Maybe<StringQueryOperatorInput>;
   readonly id: Maybe<StringQueryOperatorInput>;
   readonly parent: Maybe<NodeFilterInput>;
   readonly children: Maybe<NodeFilterListInput>;
   readonly internal: Maybe<InternalFilterInput>;
-  readonly isCreatedByStatefulCreatePages: Maybe<BooleanQueryOperatorInput>;
   readonly context: Maybe<SitePageContextFilterInput>;
-  readonly pluginCreator: Maybe<SitePluginFilterInput>;
-  readonly pluginCreatorId: Maybe<StringQueryOperatorInput>;
-  readonly componentPath: Maybe<StringQueryOperatorInput>;
 };
 
 type SitePageSortInput = {
@@ -3238,12 +3213,8 @@ type MarkdownRemarkEdge = {
 type MarkdownRemarkFieldsEnum =
   | 'id'
   | 'frontmatter.title'
-  | 'frontmatter.slug'
-  | 'frontmatter.date'
-  | 'frontmatter.tag'
   | 'excerpt'
   | 'rawMarkdownBody'
-  | 'fileAbsolutePath'
   | 'html'
   | 'htmlAst'
   | 'excerptAst'
@@ -4041,12 +4012,8 @@ type ContentfulBlogPostFieldsEnum =
   | 'description.childrenMarkdownRemark'
   | 'description.childrenMarkdownRemark.id'
   | 'description.childrenMarkdownRemark.frontmatter.title'
-  | 'description.childrenMarkdownRemark.frontmatter.slug'
-  | 'description.childrenMarkdownRemark.frontmatter.date'
-  | 'description.childrenMarkdownRemark.frontmatter.tag'
   | 'description.childrenMarkdownRemark.excerpt'
   | 'description.childrenMarkdownRemark.rawMarkdownBody'
-  | 'description.childrenMarkdownRemark.fileAbsolutePath'
   | 'description.childrenMarkdownRemark.html'
   | 'description.childrenMarkdownRemark.htmlAst'
   | 'description.childrenMarkdownRemark.excerptAst'
@@ -4074,12 +4041,8 @@ type ContentfulBlogPostFieldsEnum =
   | 'description.childrenMarkdownRemark.internal.type'
   | 'description.childMarkdownRemark.id'
   | 'description.childMarkdownRemark.frontmatter.title'
-  | 'description.childMarkdownRemark.frontmatter.slug'
-  | 'description.childMarkdownRemark.frontmatter.date'
-  | 'description.childMarkdownRemark.frontmatter.tag'
   | 'description.childMarkdownRemark.excerpt'
   | 'description.childMarkdownRemark.rawMarkdownBody'
-  | 'description.childMarkdownRemark.fileAbsolutePath'
   | 'description.childMarkdownRemark.html'
   | 'description.childMarkdownRemark.htmlAst'
   | 'description.childMarkdownRemark.excerptAst'
@@ -4148,12 +4111,8 @@ type ContentfulBlogPostFieldsEnum =
   | 'body.childrenMarkdownRemark'
   | 'body.childrenMarkdownRemark.id'
   | 'body.childrenMarkdownRemark.frontmatter.title'
-  | 'body.childrenMarkdownRemark.frontmatter.slug'
-  | 'body.childrenMarkdownRemark.frontmatter.date'
-  | 'body.childrenMarkdownRemark.frontmatter.tag'
   | 'body.childrenMarkdownRemark.excerpt'
   | 'body.childrenMarkdownRemark.rawMarkdownBody'
-  | 'body.childrenMarkdownRemark.fileAbsolutePath'
   | 'body.childrenMarkdownRemark.html'
   | 'body.childrenMarkdownRemark.htmlAst'
   | 'body.childrenMarkdownRemark.excerptAst'
@@ -4181,12 +4140,8 @@ type ContentfulBlogPostFieldsEnum =
   | 'body.childrenMarkdownRemark.internal.type'
   | 'body.childMarkdownRemark.id'
   | 'body.childMarkdownRemark.frontmatter.title'
-  | 'body.childMarkdownRemark.frontmatter.slug'
-  | 'body.childMarkdownRemark.frontmatter.date'
-  | 'body.childMarkdownRemark.frontmatter.tag'
   | 'body.childMarkdownRemark.excerpt'
   | 'body.childMarkdownRemark.rawMarkdownBody'
-  | 'body.childMarkdownRemark.fileAbsolutePath'
   | 'body.childMarkdownRemark.html'
   | 'body.childMarkdownRemark.htmlAst'
   | 'body.childMarkdownRemark.excerptAst'
@@ -4264,12 +4219,8 @@ type ContentfulBlogPostFieldsEnum =
   | 'childrenContentfulBlogPostBodyTextNode.childrenMarkdownRemark'
   | 'childrenContentfulBlogPostBodyTextNode.childrenMarkdownRemark.id'
   | 'childrenContentfulBlogPostBodyTextNode.childrenMarkdownRemark.frontmatter.title'
-  | 'childrenContentfulBlogPostBodyTextNode.childrenMarkdownRemark.frontmatter.slug'
-  | 'childrenContentfulBlogPostBodyTextNode.childrenMarkdownRemark.frontmatter.date'
-  | 'childrenContentfulBlogPostBodyTextNode.childrenMarkdownRemark.frontmatter.tag'
   | 'childrenContentfulBlogPostBodyTextNode.childrenMarkdownRemark.excerpt'
   | 'childrenContentfulBlogPostBodyTextNode.childrenMarkdownRemark.rawMarkdownBody'
-  | 'childrenContentfulBlogPostBodyTextNode.childrenMarkdownRemark.fileAbsolutePath'
   | 'childrenContentfulBlogPostBodyTextNode.childrenMarkdownRemark.html'
   | 'childrenContentfulBlogPostBodyTextNode.childrenMarkdownRemark.htmlAst'
   | 'childrenContentfulBlogPostBodyTextNode.childrenMarkdownRemark.excerptAst'
@@ -4297,12 +4248,8 @@ type ContentfulBlogPostFieldsEnum =
   | 'childrenContentfulBlogPostBodyTextNode.childrenMarkdownRemark.internal.type'
   | 'childrenContentfulBlogPostBodyTextNode.childMarkdownRemark.id'
   | 'childrenContentfulBlogPostBodyTextNode.childMarkdownRemark.frontmatter.title'
-  | 'childrenContentfulBlogPostBodyTextNode.childMarkdownRemark.frontmatter.slug'
-  | 'childrenContentfulBlogPostBodyTextNode.childMarkdownRemark.frontmatter.date'
-  | 'childrenContentfulBlogPostBodyTextNode.childMarkdownRemark.frontmatter.tag'
   | 'childrenContentfulBlogPostBodyTextNode.childMarkdownRemark.excerpt'
   | 'childrenContentfulBlogPostBodyTextNode.childMarkdownRemark.rawMarkdownBody'
-  | 'childrenContentfulBlogPostBodyTextNode.childMarkdownRemark.fileAbsolutePath'
   | 'childrenContentfulBlogPostBodyTextNode.childMarkdownRemark.html'
   | 'childrenContentfulBlogPostBodyTextNode.childMarkdownRemark.htmlAst'
   | 'childrenContentfulBlogPostBodyTextNode.childMarkdownRemark.excerptAst'
@@ -4371,12 +4318,8 @@ type ContentfulBlogPostFieldsEnum =
   | 'childContentfulBlogPostBodyTextNode.childrenMarkdownRemark'
   | 'childContentfulBlogPostBodyTextNode.childrenMarkdownRemark.id'
   | 'childContentfulBlogPostBodyTextNode.childrenMarkdownRemark.frontmatter.title'
-  | 'childContentfulBlogPostBodyTextNode.childrenMarkdownRemark.frontmatter.slug'
-  | 'childContentfulBlogPostBodyTextNode.childrenMarkdownRemark.frontmatter.date'
-  | 'childContentfulBlogPostBodyTextNode.childrenMarkdownRemark.frontmatter.tag'
   | 'childContentfulBlogPostBodyTextNode.childrenMarkdownRemark.excerpt'
   | 'childContentfulBlogPostBodyTextNode.childrenMarkdownRemark.rawMarkdownBody'
-  | 'childContentfulBlogPostBodyTextNode.childrenMarkdownRemark.fileAbsolutePath'
   | 'childContentfulBlogPostBodyTextNode.childrenMarkdownRemark.html'
   | 'childContentfulBlogPostBodyTextNode.childrenMarkdownRemark.htmlAst'
   | 'childContentfulBlogPostBodyTextNode.childrenMarkdownRemark.excerptAst'
@@ -4404,12 +4347,8 @@ type ContentfulBlogPostFieldsEnum =
   | 'childContentfulBlogPostBodyTextNode.childrenMarkdownRemark.internal.type'
   | 'childContentfulBlogPostBodyTextNode.childMarkdownRemark.id'
   | 'childContentfulBlogPostBodyTextNode.childMarkdownRemark.frontmatter.title'
-  | 'childContentfulBlogPostBodyTextNode.childMarkdownRemark.frontmatter.slug'
-  | 'childContentfulBlogPostBodyTextNode.childMarkdownRemark.frontmatter.date'
-  | 'childContentfulBlogPostBodyTextNode.childMarkdownRemark.frontmatter.tag'
   | 'childContentfulBlogPostBodyTextNode.childMarkdownRemark.excerpt'
   | 'childContentfulBlogPostBodyTextNode.childMarkdownRemark.rawMarkdownBody'
-  | 'childContentfulBlogPostBodyTextNode.childMarkdownRemark.fileAbsolutePath'
   | 'childContentfulBlogPostBodyTextNode.childMarkdownRemark.html'
   | 'childContentfulBlogPostBodyTextNode.childMarkdownRemark.htmlAst'
   | 'childContentfulBlogPostBodyTextNode.childMarkdownRemark.excerptAst'
@@ -4479,12 +4418,8 @@ type ContentfulBlogPostFieldsEnum =
   | 'childrenContentfulBlogPostDescriptionTextNode.childrenMarkdownRemark'
   | 'childrenContentfulBlogPostDescriptionTextNode.childrenMarkdownRemark.id'
   | 'childrenContentfulBlogPostDescriptionTextNode.childrenMarkdownRemark.frontmatter.title'
-  | 'childrenContentfulBlogPostDescriptionTextNode.childrenMarkdownRemark.frontmatter.slug'
-  | 'childrenContentfulBlogPostDescriptionTextNode.childrenMarkdownRemark.frontmatter.date'
-  | 'childrenContentfulBlogPostDescriptionTextNode.childrenMarkdownRemark.frontmatter.tag'
   | 'childrenContentfulBlogPostDescriptionTextNode.childrenMarkdownRemark.excerpt'
   | 'childrenContentfulBlogPostDescriptionTextNode.childrenMarkdownRemark.rawMarkdownBody'
-  | 'childrenContentfulBlogPostDescriptionTextNode.childrenMarkdownRemark.fileAbsolutePath'
   | 'childrenContentfulBlogPostDescriptionTextNode.childrenMarkdownRemark.html'
   | 'childrenContentfulBlogPostDescriptionTextNode.childrenMarkdownRemark.htmlAst'
   | 'childrenContentfulBlogPostDescriptionTextNode.childrenMarkdownRemark.excerptAst'
@@ -4512,12 +4447,8 @@ type ContentfulBlogPostFieldsEnum =
   | 'childrenContentfulBlogPostDescriptionTextNode.childrenMarkdownRemark.internal.type'
   | 'childrenContentfulBlogPostDescriptionTextNode.childMarkdownRemark.id'
   | 'childrenContentfulBlogPostDescriptionTextNode.childMarkdownRemark.frontmatter.title'
-  | 'childrenContentfulBlogPostDescriptionTextNode.childMarkdownRemark.frontmatter.slug'
-  | 'childrenContentfulBlogPostDescriptionTextNode.childMarkdownRemark.frontmatter.date'
-  | 'childrenContentfulBlogPostDescriptionTextNode.childMarkdownRemark.frontmatter.tag'
   | 'childrenContentfulBlogPostDescriptionTextNode.childMarkdownRemark.excerpt'
   | 'childrenContentfulBlogPostDescriptionTextNode.childMarkdownRemark.rawMarkdownBody'
-  | 'childrenContentfulBlogPostDescriptionTextNode.childMarkdownRemark.fileAbsolutePath'
   | 'childrenContentfulBlogPostDescriptionTextNode.childMarkdownRemark.html'
   | 'childrenContentfulBlogPostDescriptionTextNode.childMarkdownRemark.htmlAst'
   | 'childrenContentfulBlogPostDescriptionTextNode.childMarkdownRemark.excerptAst'
@@ -4586,12 +4517,8 @@ type ContentfulBlogPostFieldsEnum =
   | 'childContentfulBlogPostDescriptionTextNode.childrenMarkdownRemark'
   | 'childContentfulBlogPostDescriptionTextNode.childrenMarkdownRemark.id'
   | 'childContentfulBlogPostDescriptionTextNode.childrenMarkdownRemark.frontmatter.title'
-  | 'childContentfulBlogPostDescriptionTextNode.childrenMarkdownRemark.frontmatter.slug'
-  | 'childContentfulBlogPostDescriptionTextNode.childrenMarkdownRemark.frontmatter.date'
-  | 'childContentfulBlogPostDescriptionTextNode.childrenMarkdownRemark.frontmatter.tag'
   | 'childContentfulBlogPostDescriptionTextNode.childrenMarkdownRemark.excerpt'
   | 'childContentfulBlogPostDescriptionTextNode.childrenMarkdownRemark.rawMarkdownBody'
-  | 'childContentfulBlogPostDescriptionTextNode.childrenMarkdownRemark.fileAbsolutePath'
   | 'childContentfulBlogPostDescriptionTextNode.childrenMarkdownRemark.html'
   | 'childContentfulBlogPostDescriptionTextNode.childrenMarkdownRemark.htmlAst'
   | 'childContentfulBlogPostDescriptionTextNode.childrenMarkdownRemark.excerptAst'
@@ -4619,12 +4546,8 @@ type ContentfulBlogPostFieldsEnum =
   | 'childContentfulBlogPostDescriptionTextNode.childrenMarkdownRemark.internal.type'
   | 'childContentfulBlogPostDescriptionTextNode.childMarkdownRemark.id'
   | 'childContentfulBlogPostDescriptionTextNode.childMarkdownRemark.frontmatter.title'
-  | 'childContentfulBlogPostDescriptionTextNode.childMarkdownRemark.frontmatter.slug'
-  | 'childContentfulBlogPostDescriptionTextNode.childMarkdownRemark.frontmatter.date'
-  | 'childContentfulBlogPostDescriptionTextNode.childMarkdownRemark.frontmatter.tag'
   | 'childContentfulBlogPostDescriptionTextNode.childMarkdownRemark.excerpt'
   | 'childContentfulBlogPostDescriptionTextNode.childMarkdownRemark.rawMarkdownBody'
-  | 'childContentfulBlogPostDescriptionTextNode.childMarkdownRemark.fileAbsolutePath'
   | 'childContentfulBlogPostDescriptionTextNode.childMarkdownRemark.html'
   | 'childContentfulBlogPostDescriptionTextNode.childMarkdownRemark.htmlAst'
   | 'childContentfulBlogPostDescriptionTextNode.childMarkdownRemark.excerptAst'
@@ -4989,12 +4912,8 @@ type ContentfulCodeBlockFieldsEnum =
   | 'programCode.childrenMarkdownRemark'
   | 'programCode.childrenMarkdownRemark.id'
   | 'programCode.childrenMarkdownRemark.frontmatter.title'
-  | 'programCode.childrenMarkdownRemark.frontmatter.slug'
-  | 'programCode.childrenMarkdownRemark.frontmatter.date'
-  | 'programCode.childrenMarkdownRemark.frontmatter.tag'
   | 'programCode.childrenMarkdownRemark.excerpt'
   | 'programCode.childrenMarkdownRemark.rawMarkdownBody'
-  | 'programCode.childrenMarkdownRemark.fileAbsolutePath'
   | 'programCode.childrenMarkdownRemark.html'
   | 'programCode.childrenMarkdownRemark.htmlAst'
   | 'programCode.childrenMarkdownRemark.excerptAst'
@@ -5022,12 +4941,8 @@ type ContentfulCodeBlockFieldsEnum =
   | 'programCode.childrenMarkdownRemark.internal.type'
   | 'programCode.childMarkdownRemark.id'
   | 'programCode.childMarkdownRemark.frontmatter.title'
-  | 'programCode.childMarkdownRemark.frontmatter.slug'
-  | 'programCode.childMarkdownRemark.frontmatter.date'
-  | 'programCode.childMarkdownRemark.frontmatter.tag'
   | 'programCode.childMarkdownRemark.excerpt'
   | 'programCode.childMarkdownRemark.rawMarkdownBody'
-  | 'programCode.childMarkdownRemark.fileAbsolutePath'
   | 'programCode.childMarkdownRemark.html'
   | 'programCode.childMarkdownRemark.htmlAst'
   | 'programCode.childMarkdownRemark.excerptAst'
@@ -5105,12 +5020,8 @@ type ContentfulCodeBlockFieldsEnum =
   | 'childrenContentfulCodeBlockProgramCodeTextNode.childrenMarkdownRemark'
   | 'childrenContentfulCodeBlockProgramCodeTextNode.childrenMarkdownRemark.id'
   | 'childrenContentfulCodeBlockProgramCodeTextNode.childrenMarkdownRemark.frontmatter.title'
-  | 'childrenContentfulCodeBlockProgramCodeTextNode.childrenMarkdownRemark.frontmatter.slug'
-  | 'childrenContentfulCodeBlockProgramCodeTextNode.childrenMarkdownRemark.frontmatter.date'
-  | 'childrenContentfulCodeBlockProgramCodeTextNode.childrenMarkdownRemark.frontmatter.tag'
   | 'childrenContentfulCodeBlockProgramCodeTextNode.childrenMarkdownRemark.excerpt'
   | 'childrenContentfulCodeBlockProgramCodeTextNode.childrenMarkdownRemark.rawMarkdownBody'
-  | 'childrenContentfulCodeBlockProgramCodeTextNode.childrenMarkdownRemark.fileAbsolutePath'
   | 'childrenContentfulCodeBlockProgramCodeTextNode.childrenMarkdownRemark.html'
   | 'childrenContentfulCodeBlockProgramCodeTextNode.childrenMarkdownRemark.htmlAst'
   | 'childrenContentfulCodeBlockProgramCodeTextNode.childrenMarkdownRemark.excerptAst'
@@ -5138,12 +5049,8 @@ type ContentfulCodeBlockFieldsEnum =
   | 'childrenContentfulCodeBlockProgramCodeTextNode.childrenMarkdownRemark.internal.type'
   | 'childrenContentfulCodeBlockProgramCodeTextNode.childMarkdownRemark.id'
   | 'childrenContentfulCodeBlockProgramCodeTextNode.childMarkdownRemark.frontmatter.title'
-  | 'childrenContentfulCodeBlockProgramCodeTextNode.childMarkdownRemark.frontmatter.slug'
-  | 'childrenContentfulCodeBlockProgramCodeTextNode.childMarkdownRemark.frontmatter.date'
-  | 'childrenContentfulCodeBlockProgramCodeTextNode.childMarkdownRemark.frontmatter.tag'
   | 'childrenContentfulCodeBlockProgramCodeTextNode.childMarkdownRemark.excerpt'
   | 'childrenContentfulCodeBlockProgramCodeTextNode.childMarkdownRemark.rawMarkdownBody'
-  | 'childrenContentfulCodeBlockProgramCodeTextNode.childMarkdownRemark.fileAbsolutePath'
   | 'childrenContentfulCodeBlockProgramCodeTextNode.childMarkdownRemark.html'
   | 'childrenContentfulCodeBlockProgramCodeTextNode.childMarkdownRemark.htmlAst'
   | 'childrenContentfulCodeBlockProgramCodeTextNode.childMarkdownRemark.excerptAst'
@@ -5212,12 +5119,8 @@ type ContentfulCodeBlockFieldsEnum =
   | 'childContentfulCodeBlockProgramCodeTextNode.childrenMarkdownRemark'
   | 'childContentfulCodeBlockProgramCodeTextNode.childrenMarkdownRemark.id'
   | 'childContentfulCodeBlockProgramCodeTextNode.childrenMarkdownRemark.frontmatter.title'
-  | 'childContentfulCodeBlockProgramCodeTextNode.childrenMarkdownRemark.frontmatter.slug'
-  | 'childContentfulCodeBlockProgramCodeTextNode.childrenMarkdownRemark.frontmatter.date'
-  | 'childContentfulCodeBlockProgramCodeTextNode.childrenMarkdownRemark.frontmatter.tag'
   | 'childContentfulCodeBlockProgramCodeTextNode.childrenMarkdownRemark.excerpt'
   | 'childContentfulCodeBlockProgramCodeTextNode.childrenMarkdownRemark.rawMarkdownBody'
-  | 'childContentfulCodeBlockProgramCodeTextNode.childrenMarkdownRemark.fileAbsolutePath'
   | 'childContentfulCodeBlockProgramCodeTextNode.childrenMarkdownRemark.html'
   | 'childContentfulCodeBlockProgramCodeTextNode.childrenMarkdownRemark.htmlAst'
   | 'childContentfulCodeBlockProgramCodeTextNode.childrenMarkdownRemark.excerptAst'
@@ -5245,12 +5148,8 @@ type ContentfulCodeBlockFieldsEnum =
   | 'childContentfulCodeBlockProgramCodeTextNode.childrenMarkdownRemark.internal.type'
   | 'childContentfulCodeBlockProgramCodeTextNode.childMarkdownRemark.id'
   | 'childContentfulCodeBlockProgramCodeTextNode.childMarkdownRemark.frontmatter.title'
-  | 'childContentfulCodeBlockProgramCodeTextNode.childMarkdownRemark.frontmatter.slug'
-  | 'childContentfulCodeBlockProgramCodeTextNode.childMarkdownRemark.frontmatter.date'
-  | 'childContentfulCodeBlockProgramCodeTextNode.childMarkdownRemark.frontmatter.tag'
   | 'childContentfulCodeBlockProgramCodeTextNode.childMarkdownRemark.excerpt'
   | 'childContentfulCodeBlockProgramCodeTextNode.childMarkdownRemark.rawMarkdownBody'
-  | 'childContentfulCodeBlockProgramCodeTextNode.childMarkdownRemark.fileAbsolutePath'
   | 'childContentfulCodeBlockProgramCodeTextNode.childMarkdownRemark.html'
   | 'childContentfulCodeBlockProgramCodeTextNode.childMarkdownRemark.htmlAst'
   | 'childContentfulCodeBlockProgramCodeTextNode.childMarkdownRemark.excerptAst'
@@ -5495,12 +5394,8 @@ type contentfulCodeBlockProgramCodeTextNodeFieldsEnum =
   | 'childrenMarkdownRemark'
   | 'childrenMarkdownRemark.id'
   | 'childrenMarkdownRemark.frontmatter.title'
-  | 'childrenMarkdownRemark.frontmatter.slug'
-  | 'childrenMarkdownRemark.frontmatter.date'
-  | 'childrenMarkdownRemark.frontmatter.tag'
   | 'childrenMarkdownRemark.excerpt'
   | 'childrenMarkdownRemark.rawMarkdownBody'
-  | 'childrenMarkdownRemark.fileAbsolutePath'
   | 'childrenMarkdownRemark.html'
   | 'childrenMarkdownRemark.htmlAst'
   | 'childrenMarkdownRemark.excerptAst'
@@ -5552,12 +5447,8 @@ type contentfulCodeBlockProgramCodeTextNodeFieldsEnum =
   | 'childrenMarkdownRemark.internal.type'
   | 'childMarkdownRemark.id'
   | 'childMarkdownRemark.frontmatter.title'
-  | 'childMarkdownRemark.frontmatter.slug'
-  | 'childMarkdownRemark.frontmatter.date'
-  | 'childMarkdownRemark.frontmatter.tag'
   | 'childMarkdownRemark.excerpt'
   | 'childMarkdownRemark.rawMarkdownBody'
-  | 'childMarkdownRemark.fileAbsolutePath'
   | 'childMarkdownRemark.html'
   | 'childMarkdownRemark.htmlAst'
   | 'childMarkdownRemark.excerptAst'
@@ -5741,12 +5632,8 @@ type contentfulBlogPostBodyTextNodeFieldsEnum =
   | 'childrenMarkdownRemark'
   | 'childrenMarkdownRemark.id'
   | 'childrenMarkdownRemark.frontmatter.title'
-  | 'childrenMarkdownRemark.frontmatter.slug'
-  | 'childrenMarkdownRemark.frontmatter.date'
-  | 'childrenMarkdownRemark.frontmatter.tag'
   | 'childrenMarkdownRemark.excerpt'
   | 'childrenMarkdownRemark.rawMarkdownBody'
-  | 'childrenMarkdownRemark.fileAbsolutePath'
   | 'childrenMarkdownRemark.html'
   | 'childrenMarkdownRemark.htmlAst'
   | 'childrenMarkdownRemark.excerptAst'
@@ -5798,12 +5685,8 @@ type contentfulBlogPostBodyTextNodeFieldsEnum =
   | 'childrenMarkdownRemark.internal.type'
   | 'childMarkdownRemark.id'
   | 'childMarkdownRemark.frontmatter.title'
-  | 'childMarkdownRemark.frontmatter.slug'
-  | 'childMarkdownRemark.frontmatter.date'
-  | 'childMarkdownRemark.frontmatter.tag'
   | 'childMarkdownRemark.excerpt'
   | 'childMarkdownRemark.rawMarkdownBody'
-  | 'childMarkdownRemark.fileAbsolutePath'
   | 'childMarkdownRemark.html'
   | 'childMarkdownRemark.htmlAst'
   | 'childMarkdownRemark.excerptAst'
@@ -5987,12 +5870,8 @@ type contentfulBlogPostDescriptionTextNodeFieldsEnum =
   | 'childrenMarkdownRemark'
   | 'childrenMarkdownRemark.id'
   | 'childrenMarkdownRemark.frontmatter.title'
-  | 'childrenMarkdownRemark.frontmatter.slug'
-  | 'childrenMarkdownRemark.frontmatter.date'
-  | 'childrenMarkdownRemark.frontmatter.tag'
   | 'childrenMarkdownRemark.excerpt'
   | 'childrenMarkdownRemark.rawMarkdownBody'
-  | 'childrenMarkdownRemark.fileAbsolutePath'
   | 'childrenMarkdownRemark.html'
   | 'childrenMarkdownRemark.htmlAst'
   | 'childrenMarkdownRemark.excerptAst'
@@ -6044,12 +5923,8 @@ type contentfulBlogPostDescriptionTextNodeFieldsEnum =
   | 'childrenMarkdownRemark.internal.type'
   | 'childMarkdownRemark.id'
   | 'childMarkdownRemark.frontmatter.title'
-  | 'childMarkdownRemark.frontmatter.slug'
-  | 'childMarkdownRemark.frontmatter.date'
-  | 'childMarkdownRemark.frontmatter.tag'
   | 'childMarkdownRemark.excerpt'
   | 'childMarkdownRemark.rawMarkdownBody'
-  | 'childMarkdownRemark.fileAbsolutePath'
   | 'childMarkdownRemark.html'
   | 'childMarkdownRemark.htmlAst'
   | 'childMarkdownRemark.excerptAst'
