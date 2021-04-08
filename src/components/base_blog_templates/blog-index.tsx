@@ -1,4 +1,5 @@
 import * as React from "react"
+import BaseBlogTag from "../base_blog_tag"
 
 
 // ______________________________________________________
@@ -10,17 +11,24 @@ import * as React from "react"
 //
 const BlogIndex: React.FC = () => {
   return (
-    <div className="xl:fixed p-3 xl:p-0 w-full shadow xl:shadow-none bg-white xl:bg-background rounded xl:rounded-none">
+    <>
+    <div className="xl:fixed xl:min-w-blog-index-fixed xl:max-w-blog-index-fixed w-full shadow bg-white xl:bg-background rounded xl:rounded-none">
       <dl>
-        <dt className="mb-2 text-xl text-black xl:font-medium text-opacity-90">
+        <dt className="p-2 xl:text-xl text-base text-white bg-secondary rounded-t">
           記事内容
         </dt>
-        <div className="xl:border-l-2 xl:py-1 xl:pl-1">
-          <dd className="mb-1">section01</dd>
+        <div className="p-2">
+          <dd className="mb-1 font-extrabold xl:text-xl text-base text-black text-opacity-60">
+            section01
+          </dd>
           <dd className="mb-1">section02</dd>
         </div>
       </dl>
     </div>
+    <div>
+    
+    </div>
+    </>
   )
 }
 // ______________________________________________________
