@@ -16,6 +16,7 @@ exports.createPages = async ({ graphql, actions }) => {
             body {
               childMarkdownRemark {
                 html
+                tableOfContents
               }
             }
             heroImage {
@@ -48,7 +49,8 @@ exports.createPages = async ({ graphql, actions }) => {
           fluid: node.heroImage.fluid,
           alt: node.heroImage.title
         },
-        body: node.body.childMarkdownRemark.html
+        body: node.body.childMarkdownRemark.html,
+        postIndex: node.body.childMarkdownRemark.tableOfContents 
       }
     })
   });
