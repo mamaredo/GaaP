@@ -16,7 +16,8 @@ export type BlogTemplateProps = {
       fluid: FluidObject
       alt: string
     },
-    body: string
+    body: string,
+    postIndex: string
   }
 }
 // ______________________________________________________
@@ -30,6 +31,7 @@ const BlogTemplate: React.FC<BlogTemplateProps> = ({ pageContext }) => {
       post={pageContext.post}
       image={pageContext.image}
       body={pageContext.body} 
+      postIndex={pageContext.postIndex}
     />
   )
 }
