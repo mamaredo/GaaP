@@ -23,6 +23,7 @@ module.exports = {
         '5': '40px',
         '6': '48px',
         '7': '56px',
+        'index-size': "400px",
         'icon': '12px',
         'button-icon': '24px'
       },
@@ -35,12 +36,16 @@ module.exports = {
     maxHeight: {
       'card': '348px'
     },
+    minWidth: {
+      'blog-index-fixed': '410px'
+    },
     maxWidth: {
       '2xl': '1280px',
       'xl': '1024px',
       'md': '720px',
       'sm': '352px',
-      'max': '100%'
+      'max': '100%',
+      'blog-index-fixed': '410px',
     },
     container: {
       center: true
