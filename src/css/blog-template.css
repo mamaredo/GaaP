@@ -1,16 +1,45 @@
 .contentfull h2 {
-  @apply xl:text-3xl md:text-2xl text-xl;
+  @apply
+  xl:text-3xl
+  md:text-2xl
+  text-xl;
 }
 
 .contentfull h3 {
-  @apply text-3xl;
+  @apply
+  xl:text-2xl
+  md:text-xl
+  text-lg;
 }
 
 .contentfull h2,
 .contentfull h3 {
-  @apply font-bold
+  @apply 
+  block
+  xl:p-2
+  p-1
+  mb-3
+  bg-white
+  border-l-4
+  border-primary
+  font-bold
+  text-black
+  text-opacity-90;
 }
+
+
+.contentfull p::after,
+.contentfull ul::after,
+.contentfull pre::after {
+  content: "";
+  @apply block mb-2;
+}
+
 .contentfull p,
 .contentfull li {
   @apply text-xl;
+}
+
+.contentfull hr {
+  @apply my-5;
 }
