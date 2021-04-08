@@ -38,15 +38,24 @@ const BaseBlogTemplate: React.FC<BaseBlogTemplateProps> = ({ post, body, image }
           "
         >
 
-          <div className="xl:col-span-10 md:col-span-8 col-span-4 w-full">
-            <BlogHead title={title} date={date} image={image} />
-            <div className="contentfull xl:mt-5 mt-4" dangerouslySetInnerHTML={{ __html: body }} />
+          <div className="md:col-span-8 col-span-4 w-full">
+            <BlogHead
+              title={title} 
+              date={date}
+              image={image}
+            />
           </div>
 
-          <div className="xl:col-span-2 col-span-4">
+          <div className="md:col-span-4 col-span-4">
             <BlogIndex />
           </div>
 
+          <div className="md:col-span-8 col-span-4 w-full">
+            <div
+              className="contentfull"
+              dangerouslySetInnerHTML={{ __html: body }}
+            />
+          </div>
         </div>
       </div>
     </Layout>
