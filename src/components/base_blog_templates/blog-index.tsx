@@ -1,29 +1,31 @@
 import * as React from "react"
+import { BaseBlogTemplateProps } from "./index"
+import "../../css/blog-index.css"
 import BaseBlogTag from "../base_blog_tag"
 
 
 // ______________________________________________________
 //
-  /* types */
+type BlogIndexProps = {
+  postIndex: BaseBlogTemplateProps["postIndex"]
+}
 // ______________________________________________________
 //
 // ______________________________________________________
 //
-const BlogIndex: React.FC = () => {
+const BlogIndex: React.FC<BlogIndexProps> = ({ postIndex }) => {
   return (
     <>
     <div className="xl:fixed xl:min-w-blog-index-fixed xl:max-w-blog-index-fixed w-full shadow bg-white xl:bg-background rounded xl:rounded-none">
-      <dl>
-        <dt className="p-2 xl:text-xl text-base text-white bg-secondary rounded-t">
-          記事内容
-        </dt>
-        <div className="p-2">
-          <dd className="mb-1 font-extrabold xl:text-xl text-base text-black text-opacity-60">
-            section01
-          </dd>
-          <dd className="mb-1">section02</dd>
-        </div>
-      </dl>
+      <h3 className="p-2 xl:px-3 xl:text-xl text-base text-white bg-secondary rounded-t">
+        記事内容
+      </h3>
+      <div className="p-2 xl:pl-3">
+        <div
+          className="blog-index mb-1 font-extrabold xl:text-xl text-base text-black text-opacity-60"
+          dangerouslySetInnerHTML={{ __html: postIndex }}
+        />
+      </div>
     </div>
     <div>
     
