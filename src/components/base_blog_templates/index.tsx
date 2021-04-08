@@ -13,10 +13,11 @@ export type BaseBlogTemplateProps = {
   post: BlogTemplateProps["pageContext"]["post"]
   body: BlogTemplateProps["pageContext"]["body"]
   image: BlogTemplateProps["pageContext"]["image"]
+  postIndex: BlogTemplateProps["pageContext"]["postIndex"]
 }
 // ______________________________________________________
 //
-const BaseBlogTemplate: React.FC<BaseBlogTemplateProps> = ({ post, body, image }) => {
+const BaseBlogTemplate: React.FC<BaseBlogTemplateProps> = ({ post, body, image, postIndex }) => {
   const { title, date, tag } = post
   return (
     <Layout>
@@ -47,7 +48,7 @@ const BaseBlogTemplate: React.FC<BaseBlogTemplateProps> = ({ post, body, image }
           </div>
 
           <div className="md:col-span-4 col-span-4">
-            <BlogIndex />
+            <BlogIndex postIndex={postIndex} />
           </div>
 
           <div className="md:col-span-8 col-span-4 w-full">
