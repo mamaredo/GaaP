@@ -3,17 +3,19 @@ import BaseBlogTag from "../../components/base_blog_tag"
 
 // ______________________________________________________
 //
-  /* type */
+export type BlogTagsProps = {
+  style: string[]
+  icon: SVGAElement | string
+  tagName: string
+}
 // ______________________________________________________
 //
 // ______________________________________________________
 //
-const BlogTags: React.FC = () => {
+const BlogTags: React.FC<BlogTagsProps> = ({ style, icon = "icon", tagName }) => {
   /* logic */
-  const style: string[] = ['bg-white']
-  const text: string = 'TAG NAME'
   return (
-    <BaseBlogTag icon={'icon'} text={text} style={style} />
+    <BaseBlogTag icon={icon} text={tagName} style={style} />
   )
 }
 // ______________________________________________________
