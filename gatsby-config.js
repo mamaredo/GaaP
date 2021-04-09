@@ -18,13 +18,13 @@ module.exports = {
         path: `${__dirname}/src/content/images`,
       },
     },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `posts`,
-        path: `${__dirname}/src/content/posts`,
-      },
-    },
+    // {
+    //   resolve: `gatsby-source-filesystem`,
+    //   options: {
+    //     name: `posts`,
+    //     path: `${__dirname}/src/content/posts`,
+    //   },
+    // },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
@@ -44,7 +44,17 @@ module.exports = {
     {
       resolve: "gatsby-transformer-remark",
       options: {
-        plugins: [], // just in case those previously mentioned remark plugins sound cool :)
+        plugins: [
+          `gatsby-remark-table-of-contents`,
+          {
+            resolve: `gatsby-remark-autolink-headers`,
+            options: {
+              elements: [`h2`],
+              maintainCase: false,
+              icon: false
+            },
+          },
+        ],
       },
     },
     `gatsby-plugin-typescript`,

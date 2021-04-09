@@ -13,15 +13,16 @@ export type BaseBlogTemplateProps = {
   post: BlogTemplateProps["pageContext"]["post"]
   body: BlogTemplateProps["pageContext"]["body"]
   image: BlogTemplateProps["pageContext"]["image"]
+  postIndex: BlogTemplateProps["pageContext"]["postIndex"]
 }
 // ______________________________________________________
 //
-const BaseBlogTemplate: React.FC<BaseBlogTemplateProps> = ({ post, body, image }) => {
+const BaseBlogTemplate: React.FC<BaseBlogTemplateProps> = ({ post, body, image, postIndex }) => {
   const { title, date, tag } = post
   return (
     <Layout>
       <BaseNavigation />
-      <div className="px-1 pt-32 w-full bg-background">
+      <div className="px-1 pt-5 w-full bg-background">
         <div 
           className="
             2xl:max-w-2xl
@@ -38,15 +39,24 @@ const BaseBlogTemplate: React.FC<BaseBlogTemplateProps> = ({ post, body, image }
           "
         >
 
-          <div className="xl:col-span-10 md:col-span-8 col-span-4 w-full">
-            <BlogHead title={title} date={date} image={image} />
-            <div className="contentfull xl:mt-5 mt-4" dangerouslySetInnerHTML={{ __html: body }} />
+          <div className="md:col-span-8 col-span-4 w-full">
+            <BlogHead
+              title={title}
+              date={date}
+              image={image}
+            />
           </div>
 
-          <div className="xl:col-span-2 col-span-4">
-            <BlogIndex />
+          <div className="md:col-span-4 col-span-4">
+            <BlogIndex postIndex={postIndex} />
           </div>
 
+          <div className="md:col-span-8 col-span-4 w-full">
+            <div
+              className="contentfull"
+              dangerouslySetInnerHTML={{ __html: body }}
+            />
+          </div>
         </div>
       </div>
     </Layout>
