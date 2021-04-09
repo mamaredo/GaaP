@@ -855,8 +855,8 @@ type ContentfulBlogPost = ContentfulReference & ContentfulEntry & Node & {
   readonly slug: Maybe<Scalars['String']>;
   readonly publishDate: Maybe<Scalars['Date']>;
   readonly tags: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
-  readonly richText: Maybe<ContentfulBlogPostRichText>;
   readonly heroImage: Maybe<ContentfulAsset>;
+  readonly svgContent: Maybe<ContentfulAsset>;
   readonly description: Maybe<contentfulBlogPostDescriptionTextNode>;
   readonly body: Maybe<contentfulBlogPostBodyTextNode>;
   readonly toc: Maybe<contentfulBlogPostTocTextNode>;
@@ -864,6 +864,7 @@ type ContentfulBlogPost = ContentfulReference & ContentfulEntry & Node & {
   readonly createdAt: Maybe<Scalars['Date']>;
   readonly updatedAt: Maybe<Scalars['Date']>;
   readonly sys: Maybe<ContentfulBlogPostSys>;
+  readonly richText: Maybe<ContentfulBlogPostRichText>;
   /** Returns all children nodes filtered by type contentfulBlogPostTocTextNode */
   readonly childrenContentfulBlogPostTocTextNode: Maybe<ReadonlyArray<Maybe<contentfulBlogPostTocTextNode>>>;
   /** Returns the first child node of type contentfulBlogPostTocTextNode or null if there are no children of given type on this node */
@@ -905,11 +906,6 @@ type ContentfulBlogPost_updatedAtArgs = {
   locale: Maybe<Scalars['String']>;
 };
 
-type ContentfulBlogPostRichText = {
-  readonly raw: Maybe<Scalars['String']>;
-  readonly references: Maybe<ReadonlyArray<Maybe<ContentfulCodeBlock>>>;
-};
-
 type ContentfulBlogPostSys = {
   readonly type: Maybe<Scalars['String']>;
   readonly revision: Maybe<Scalars['Int']>;
@@ -924,6 +920,10 @@ type ContentfulBlogPostSysContentTypeSys = {
   readonly type: Maybe<Scalars['String']>;
   readonly linkType: Maybe<Scalars['String']>;
   readonly id: Maybe<Scalars['String']>;
+};
+
+type ContentfulBlogPostRichText = {
+  readonly raw: Maybe<Scalars['String']>;
 };
 
 type ContentfulPerson = ContentfulReference & ContentfulEntry & Node & {
@@ -985,23 +985,6 @@ type ContentfulCodeBlockSysContentTypeSys = {
   readonly id: Maybe<Scalars['String']>;
 };
 
-type contentfulCodeBlockProgramCodeTextNode = Node & {
-  readonly id: Scalars['ID'];
-  readonly parent: Maybe<Node>;
-  readonly children: ReadonlyArray<Node>;
-  readonly internal: Internal;
-  readonly programCode: Maybe<Scalars['String']>;
-  readonly sys: Maybe<contentfulCodeBlockProgramCodeTextNodeSys>;
-  /** Returns all children nodes filtered by type MarkdownRemark */
-  readonly childrenMarkdownRemark: Maybe<ReadonlyArray<Maybe<MarkdownRemark>>>;
-  /** Returns the first child node of type MarkdownRemark or null if there are no children of given type on this node */
-  readonly childMarkdownRemark: Maybe<MarkdownRemark>;
-};
-
-type contentfulCodeBlockProgramCodeTextNodeSys = {
-  readonly type: Maybe<Scalars['String']>;
-};
-
 type contentfulBlogPostTocTextNode = Node & {
   readonly id: Scalars['ID'];
   readonly parent: Maybe<Node>;
@@ -1016,6 +999,23 @@ type contentfulBlogPostTocTextNode = Node & {
 };
 
 type contentfulBlogPostTocTextNodeSys = {
+  readonly type: Maybe<Scalars['String']>;
+};
+
+type contentfulCodeBlockProgramCodeTextNode = Node & {
+  readonly id: Scalars['ID'];
+  readonly parent: Maybe<Node>;
+  readonly children: ReadonlyArray<Node>;
+  readonly internal: Internal;
+  readonly programCode: Maybe<Scalars['String']>;
+  readonly sys: Maybe<contentfulCodeBlockProgramCodeTextNodeSys>;
+  /** Returns all children nodes filtered by type MarkdownRemark */
+  readonly childrenMarkdownRemark: Maybe<ReadonlyArray<Maybe<MarkdownRemark>>>;
+  /** Returns the first child node of type MarkdownRemark or null if there are no children of given type on this node */
+  readonly childMarkdownRemark: Maybe<MarkdownRemark>;
+};
+
+type contentfulCodeBlockProgramCodeTextNodeSys = {
   readonly type: Maybe<Scalars['String']>;
 };
 
@@ -1113,7 +1113,6 @@ type SitePluginPluginOptions = {
   readonly background_color: Maybe<Scalars['String']>;
   readonly theme_color: Maybe<Scalars['String']>;
   readonly display: Maybe<Scalars['String']>;
-  readonly icon: Maybe<Scalars['String']>;
   readonly legacy: Maybe<Scalars['Boolean']>;
   readonly theme_color_in_head: Maybe<Scalars['Boolean']>;
   readonly cache_busting_mode: Maybe<Scalars['String']>;
@@ -1156,6 +1155,7 @@ type SitePluginPluginOptionsPlugins = {
 type SitePluginPluginOptionsPluginsPluginOptions = {
   readonly elements: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
   readonly maintainCase: Maybe<Scalars['Boolean']>;
+  readonly icon: Maybe<Scalars['Boolean']>;
   readonly offsetY: Maybe<Scalars['Int']>;
   readonly className: Maybe<Scalars['String']>;
 };
@@ -1218,10 +1218,10 @@ type Query = {
   readonly allContentfulPerson: ContentfulPersonConnection;
   readonly contentfulCodeBlock: Maybe<ContentfulCodeBlock>;
   readonly allContentfulCodeBlock: ContentfulCodeBlockConnection;
-  readonly contentfulCodeBlockProgramCodeTextNode: Maybe<contentfulCodeBlockProgramCodeTextNode>;
-  readonly allContentfulCodeBlockProgramCodeTextNode: contentfulCodeBlockProgramCodeTextNodeConnection;
   readonly contentfulBlogPostTocTextNode: Maybe<contentfulBlogPostTocTextNode>;
   readonly allContentfulBlogPostTocTextNode: contentfulBlogPostTocTextNodeConnection;
+  readonly contentfulCodeBlockProgramCodeTextNode: Maybe<contentfulCodeBlockProgramCodeTextNode>;
+  readonly allContentfulCodeBlockProgramCodeTextNode: contentfulCodeBlockProgramCodeTextNodeConnection;
   readonly contentfulBlogPostBodyTextNode: Maybe<contentfulBlogPostBodyTextNode>;
   readonly allContentfulBlogPostBodyTextNode: contentfulBlogPostBodyTextNodeConnection;
   readonly contentfulBlogPostDescriptionTextNode: Maybe<contentfulBlogPostDescriptionTextNode>;
@@ -1486,8 +1486,8 @@ type Query_contentfulBlogPostArgs = {
   slug: Maybe<StringQueryOperatorInput>;
   publishDate: Maybe<DateQueryOperatorInput>;
   tags: Maybe<StringQueryOperatorInput>;
-  richText: Maybe<ContentfulBlogPostRichTextFilterInput>;
   heroImage: Maybe<ContentfulAssetFilterInput>;
+  svgContent: Maybe<ContentfulAssetFilterInput>;
   description: Maybe<contentfulBlogPostDescriptionTextNodeFilterInput>;
   body: Maybe<contentfulBlogPostBodyTextNodeFilterInput>;
   toc: Maybe<contentfulBlogPostTocTextNodeFilterInput>;
@@ -1495,6 +1495,7 @@ type Query_contentfulBlogPostArgs = {
   createdAt: Maybe<DateQueryOperatorInput>;
   updatedAt: Maybe<DateQueryOperatorInput>;
   sys: Maybe<ContentfulBlogPostSysFilterInput>;
+  richText: Maybe<ContentfulBlogPostRichTextFilterInput>;
   childrenContentfulBlogPostTocTextNode: Maybe<contentfulBlogPostTocTextNodeFilterListInput>;
   childContentfulBlogPostTocTextNode: Maybe<contentfulBlogPostTocTextNodeFilterInput>;
   childrenContentfulBlogPostBodyTextNode: Maybe<contentfulBlogPostBodyTextNodeFilterListInput>;
@@ -1558,26 +1559,6 @@ type Query_allContentfulCodeBlockArgs = {
 };
 
 
-type Query_contentfulCodeBlockProgramCodeTextNodeArgs = {
-  id: Maybe<StringQueryOperatorInput>;
-  parent: Maybe<NodeFilterInput>;
-  children: Maybe<NodeFilterListInput>;
-  internal: Maybe<InternalFilterInput>;
-  programCode: Maybe<StringQueryOperatorInput>;
-  sys: Maybe<contentfulCodeBlockProgramCodeTextNodeSysFilterInput>;
-  childrenMarkdownRemark: Maybe<MarkdownRemarkFilterListInput>;
-  childMarkdownRemark: Maybe<MarkdownRemarkFilterInput>;
-};
-
-
-type Query_allContentfulCodeBlockProgramCodeTextNodeArgs = {
-  filter: Maybe<contentfulCodeBlockProgramCodeTextNodeFilterInput>;
-  sort: Maybe<contentfulCodeBlockProgramCodeTextNodeSortInput>;
-  skip: Maybe<Scalars['Int']>;
-  limit: Maybe<Scalars['Int']>;
-};
-
-
 type Query_contentfulBlogPostTocTextNodeArgs = {
   id: Maybe<StringQueryOperatorInput>;
   parent: Maybe<NodeFilterInput>;
@@ -1593,6 +1574,26 @@ type Query_contentfulBlogPostTocTextNodeArgs = {
 type Query_allContentfulBlogPostTocTextNodeArgs = {
   filter: Maybe<contentfulBlogPostTocTextNodeFilterInput>;
   sort: Maybe<contentfulBlogPostTocTextNodeSortInput>;
+  skip: Maybe<Scalars['Int']>;
+  limit: Maybe<Scalars['Int']>;
+};
+
+
+type Query_contentfulCodeBlockProgramCodeTextNodeArgs = {
+  id: Maybe<StringQueryOperatorInput>;
+  parent: Maybe<NodeFilterInput>;
+  children: Maybe<NodeFilterListInput>;
+  internal: Maybe<InternalFilterInput>;
+  programCode: Maybe<StringQueryOperatorInput>;
+  sys: Maybe<contentfulCodeBlockProgramCodeTextNodeSysFilterInput>;
+  childrenMarkdownRemark: Maybe<MarkdownRemarkFilterListInput>;
+  childMarkdownRemark: Maybe<MarkdownRemarkFilterInput>;
+};
+
+
+type Query_allContentfulCodeBlockProgramCodeTextNodeArgs = {
+  filter: Maybe<contentfulCodeBlockProgramCodeTextNodeFilterInput>;
+  sort: Maybe<contentfulCodeBlockProgramCodeTextNodeSortInput>;
   skip: Maybe<Scalars['Int']>;
   limit: Maybe<Scalars['Int']>;
 };
@@ -2612,7 +2613,6 @@ type SitePluginPluginOptionsFilterInput = {
   readonly background_color: Maybe<StringQueryOperatorInput>;
   readonly theme_color: Maybe<StringQueryOperatorInput>;
   readonly display: Maybe<StringQueryOperatorInput>;
-  readonly icon: Maybe<StringQueryOperatorInput>;
   readonly legacy: Maybe<BooleanQueryOperatorInput>;
   readonly theme_color_in_head: Maybe<BooleanQueryOperatorInput>;
   readonly cache_busting_mode: Maybe<StringQueryOperatorInput>;
@@ -2659,6 +2659,7 @@ type SitePluginPluginOptionsPluginsFilterInput = {
 type SitePluginPluginOptionsPluginsPluginOptionsFilterInput = {
   readonly elements: Maybe<StringQueryOperatorInput>;
   readonly maintainCase: Maybe<BooleanQueryOperatorInput>;
+  readonly icon: Maybe<BooleanQueryOperatorInput>;
   readonly offsetY: Maybe<IntQueryOperatorInput>;
   readonly className: Maybe<StringQueryOperatorInput>;
 };
@@ -2902,7 +2903,6 @@ type SitePageFieldsEnum =
   | 'pluginCreator.pluginOptions.background_color'
   | 'pluginCreator.pluginOptions.theme_color'
   | 'pluginCreator.pluginOptions.display'
-  | 'pluginCreator.pluginOptions.icon'
   | 'pluginCreator.pluginOptions.legacy'
   | 'pluginCreator.pluginOptions.theme_color_in_head'
   | 'pluginCreator.pluginOptions.cache_busting_mode'
@@ -3705,70 +3705,6 @@ type ContentfulAssetSortInput = {
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
-type ContentfulBlogPostRichTextFilterInput = {
-  readonly raw: Maybe<StringQueryOperatorInput>;
-  readonly references: Maybe<ContentfulCodeBlockFilterListInput>;
-};
-
-type ContentfulCodeBlockFilterListInput = {
-  readonly elemMatch: Maybe<ContentfulCodeBlockFilterInput>;
-};
-
-type ContentfulCodeBlockFilterInput = {
-  readonly contentful_id: Maybe<StringQueryOperatorInput>;
-  readonly id: Maybe<StringQueryOperatorInput>;
-  readonly node_locale: Maybe<StringQueryOperatorInput>;
-  readonly programCode: Maybe<contentfulCodeBlockProgramCodeTextNodeFilterInput>;
-  readonly spaceId: Maybe<StringQueryOperatorInput>;
-  readonly createdAt: Maybe<DateQueryOperatorInput>;
-  readonly updatedAt: Maybe<DateQueryOperatorInput>;
-  readonly sys: Maybe<ContentfulCodeBlockSysFilterInput>;
-  readonly childrenContentfulCodeBlockProgramCodeTextNode: Maybe<contentfulCodeBlockProgramCodeTextNodeFilterListInput>;
-  readonly childContentfulCodeBlockProgramCodeTextNode: Maybe<contentfulCodeBlockProgramCodeTextNodeFilterInput>;
-  readonly parent: Maybe<NodeFilterInput>;
-  readonly children: Maybe<NodeFilterListInput>;
-  readonly internal: Maybe<InternalFilterInput>;
-};
-
-type contentfulCodeBlockProgramCodeTextNodeFilterInput = {
-  readonly id: Maybe<StringQueryOperatorInput>;
-  readonly parent: Maybe<NodeFilterInput>;
-  readonly children: Maybe<NodeFilterListInput>;
-  readonly internal: Maybe<InternalFilterInput>;
-  readonly programCode: Maybe<StringQueryOperatorInput>;
-  readonly sys: Maybe<contentfulCodeBlockProgramCodeTextNodeSysFilterInput>;
-  readonly childrenMarkdownRemark: Maybe<MarkdownRemarkFilterListInput>;
-  readonly childMarkdownRemark: Maybe<MarkdownRemarkFilterInput>;
-};
-
-type contentfulCodeBlockProgramCodeTextNodeSysFilterInput = {
-  readonly type: Maybe<StringQueryOperatorInput>;
-};
-
-type MarkdownRemarkFilterListInput = {
-  readonly elemMatch: Maybe<MarkdownRemarkFilterInput>;
-};
-
-type ContentfulCodeBlockSysFilterInput = {
-  readonly type: Maybe<StringQueryOperatorInput>;
-  readonly revision: Maybe<IntQueryOperatorInput>;
-  readonly contentType: Maybe<ContentfulCodeBlockSysContentTypeFilterInput>;
-};
-
-type ContentfulCodeBlockSysContentTypeFilterInput = {
-  readonly sys: Maybe<ContentfulCodeBlockSysContentTypeSysFilterInput>;
-};
-
-type ContentfulCodeBlockSysContentTypeSysFilterInput = {
-  readonly type: Maybe<StringQueryOperatorInput>;
-  readonly linkType: Maybe<StringQueryOperatorInput>;
-  readonly id: Maybe<StringQueryOperatorInput>;
-};
-
-type contentfulCodeBlockProgramCodeTextNodeFilterListInput = {
-  readonly elemMatch: Maybe<contentfulCodeBlockProgramCodeTextNodeFilterInput>;
-};
-
 type contentfulBlogPostDescriptionTextNodeFilterInput = {
   readonly id: Maybe<StringQueryOperatorInput>;
   readonly parent: Maybe<NodeFilterInput>;
@@ -3782,6 +3718,10 @@ type contentfulBlogPostDescriptionTextNodeFilterInput = {
 
 type contentfulBlogPostDescriptionTextNodeSysFilterInput = {
   readonly type: Maybe<StringQueryOperatorInput>;
+};
+
+type MarkdownRemarkFilterListInput = {
+  readonly elemMatch: Maybe<MarkdownRemarkFilterInput>;
 };
 
 type contentfulBlogPostBodyTextNodeFilterInput = {
@@ -3828,6 +3768,10 @@ type ContentfulBlogPostSysContentTypeSysFilterInput = {
   readonly type: Maybe<StringQueryOperatorInput>;
   readonly linkType: Maybe<StringQueryOperatorInput>;
   readonly id: Maybe<StringQueryOperatorInput>;
+};
+
+type ContentfulBlogPostRichTextFilterInput = {
+  readonly raw: Maybe<StringQueryOperatorInput>;
 };
 
 type contentfulBlogPostTocTextNodeFilterListInput = {
@@ -3877,42 +3821,6 @@ type ContentfulBlogPostFieldsEnum =
   | 'slug'
   | 'publishDate'
   | 'tags'
-  | 'richText.raw'
-  | 'richText.references'
-  | 'richText.references.contentful_id'
-  | 'richText.references.id'
-  | 'richText.references.node_locale'
-  | 'richText.references.programCode.id'
-  | 'richText.references.programCode.children'
-  | 'richText.references.programCode.programCode'
-  | 'richText.references.programCode.childrenMarkdownRemark'
-  | 'richText.references.spaceId'
-  | 'richText.references.createdAt'
-  | 'richText.references.updatedAt'
-  | 'richText.references.sys.type'
-  | 'richText.references.sys.revision'
-  | 'richText.references.childrenContentfulCodeBlockProgramCodeTextNode'
-  | 'richText.references.childrenContentfulCodeBlockProgramCodeTextNode.id'
-  | 'richText.references.childrenContentfulCodeBlockProgramCodeTextNode.children'
-  | 'richText.references.childrenContentfulCodeBlockProgramCodeTextNode.programCode'
-  | 'richText.references.childrenContentfulCodeBlockProgramCodeTextNode.childrenMarkdownRemark'
-  | 'richText.references.childContentfulCodeBlockProgramCodeTextNode.id'
-  | 'richText.references.childContentfulCodeBlockProgramCodeTextNode.children'
-  | 'richText.references.childContentfulCodeBlockProgramCodeTextNode.programCode'
-  | 'richText.references.childContentfulCodeBlockProgramCodeTextNode.childrenMarkdownRemark'
-  | 'richText.references.parent.id'
-  | 'richText.references.parent.children'
-  | 'richText.references.children'
-  | 'richText.references.children.id'
-  | 'richText.references.children.children'
-  | 'richText.references.internal.content'
-  | 'richText.references.internal.contentDigest'
-  | 'richText.references.internal.description'
-  | 'richText.references.internal.fieldOwners'
-  | 'richText.references.internal.ignoreType'
-  | 'richText.references.internal.mediaType'
-  | 'richText.references.internal.owner'
-  | 'richText.references.internal.type'
   | 'heroImage.contentful_id'
   | 'heroImage.id'
   | 'heroImage.spaceId'
@@ -3988,6 +3896,81 @@ type ContentfulBlogPostFieldsEnum =
   | 'heroImage.internal.mediaType'
   | 'heroImage.internal.owner'
   | 'heroImage.internal.type'
+  | 'svgContent.contentful_id'
+  | 'svgContent.id'
+  | 'svgContent.spaceId'
+  | 'svgContent.createdAt'
+  | 'svgContent.updatedAt'
+  | 'svgContent.file.url'
+  | 'svgContent.file.details.size'
+  | 'svgContent.file.fileName'
+  | 'svgContent.file.contentType'
+  | 'svgContent.title'
+  | 'svgContent.description'
+  | 'svgContent.node_locale'
+  | 'svgContent.sys.type'
+  | 'svgContent.sys.revision'
+  | 'svgContent.fixed.base64'
+  | 'svgContent.fixed.tracedSVG'
+  | 'svgContent.fixed.aspectRatio'
+  | 'svgContent.fixed.width'
+  | 'svgContent.fixed.height'
+  | 'svgContent.fixed.src'
+  | 'svgContent.fixed.srcSet'
+  | 'svgContent.fixed.srcWebp'
+  | 'svgContent.fixed.srcSetWebp'
+  | 'svgContent.fluid.base64'
+  | 'svgContent.fluid.tracedSVG'
+  | 'svgContent.fluid.aspectRatio'
+  | 'svgContent.fluid.src'
+  | 'svgContent.fluid.srcSet'
+  | 'svgContent.fluid.srcWebp'
+  | 'svgContent.fluid.srcSetWebp'
+  | 'svgContent.fluid.sizes'
+  | 'svgContent.gatsbyImageData'
+  | 'svgContent.resize.base64'
+  | 'svgContent.resize.tracedSVG'
+  | 'svgContent.resize.src'
+  | 'svgContent.resize.width'
+  | 'svgContent.resize.height'
+  | 'svgContent.resize.aspectRatio'
+  | 'svgContent.parent.id'
+  | 'svgContent.parent.parent.id'
+  | 'svgContent.parent.parent.children'
+  | 'svgContent.parent.children'
+  | 'svgContent.parent.children.id'
+  | 'svgContent.parent.children.children'
+  | 'svgContent.parent.internal.content'
+  | 'svgContent.parent.internal.contentDigest'
+  | 'svgContent.parent.internal.description'
+  | 'svgContent.parent.internal.fieldOwners'
+  | 'svgContent.parent.internal.ignoreType'
+  | 'svgContent.parent.internal.mediaType'
+  | 'svgContent.parent.internal.owner'
+  | 'svgContent.parent.internal.type'
+  | 'svgContent.children'
+  | 'svgContent.children.id'
+  | 'svgContent.children.parent.id'
+  | 'svgContent.children.parent.children'
+  | 'svgContent.children.children'
+  | 'svgContent.children.children.id'
+  | 'svgContent.children.children.children'
+  | 'svgContent.children.internal.content'
+  | 'svgContent.children.internal.contentDigest'
+  | 'svgContent.children.internal.description'
+  | 'svgContent.children.internal.fieldOwners'
+  | 'svgContent.children.internal.ignoreType'
+  | 'svgContent.children.internal.mediaType'
+  | 'svgContent.children.internal.owner'
+  | 'svgContent.children.internal.type'
+  | 'svgContent.internal.content'
+  | 'svgContent.internal.contentDigest'
+  | 'svgContent.internal.description'
+  | 'svgContent.internal.fieldOwners'
+  | 'svgContent.internal.ignoreType'
+  | 'svgContent.internal.mediaType'
+  | 'svgContent.internal.owner'
+  | 'svgContent.internal.type'
   | 'description.id'
   | 'description.parent.id'
   | 'description.parent.parent.id'
@@ -4293,6 +4276,7 @@ type ContentfulBlogPostFieldsEnum =
   | 'sys.contentType.sys.type'
   | 'sys.contentType.sys.linkType'
   | 'sys.contentType.sys.id'
+  | 'richText.raw'
   | 'childrenContentfulBlogPostTocTextNode'
   | 'childrenContentfulBlogPostTocTextNode.id'
   | 'childrenContentfulBlogPostTocTextNode.parent.id'
@@ -4993,8 +4977,8 @@ type ContentfulBlogPostFilterInput = {
   readonly slug: Maybe<StringQueryOperatorInput>;
   readonly publishDate: Maybe<DateQueryOperatorInput>;
   readonly tags: Maybe<StringQueryOperatorInput>;
-  readonly richText: Maybe<ContentfulBlogPostRichTextFilterInput>;
   readonly heroImage: Maybe<ContentfulAssetFilterInput>;
+  readonly svgContent: Maybe<ContentfulAssetFilterInput>;
   readonly description: Maybe<contentfulBlogPostDescriptionTextNodeFilterInput>;
   readonly body: Maybe<contentfulBlogPostBodyTextNodeFilterInput>;
   readonly toc: Maybe<contentfulBlogPostTocTextNodeFilterInput>;
@@ -5002,6 +4986,7 @@ type ContentfulBlogPostFilterInput = {
   readonly createdAt: Maybe<DateQueryOperatorInput>;
   readonly updatedAt: Maybe<DateQueryOperatorInput>;
   readonly sys: Maybe<ContentfulBlogPostSysFilterInput>;
+  readonly richText: Maybe<ContentfulBlogPostRichTextFilterInput>;
   readonly childrenContentfulBlogPostTocTextNode: Maybe<contentfulBlogPostTocTextNodeFilterListInput>;
   readonly childContentfulBlogPostTocTextNode: Maybe<contentfulBlogPostTocTextNodeFilterInput>;
   readonly childrenContentfulBlogPostBodyTextNode: Maybe<contentfulBlogPostBodyTextNodeFilterListInput>;
@@ -5156,6 +5141,41 @@ type ContentfulPersonFilterInput = {
 type ContentfulPersonSortInput = {
   readonly fields: Maybe<ReadonlyArray<Maybe<ContentfulPersonFieldsEnum>>>;
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
+};
+
+type contentfulCodeBlockProgramCodeTextNodeFilterInput = {
+  readonly id: Maybe<StringQueryOperatorInput>;
+  readonly parent: Maybe<NodeFilterInput>;
+  readonly children: Maybe<NodeFilterListInput>;
+  readonly internal: Maybe<InternalFilterInput>;
+  readonly programCode: Maybe<StringQueryOperatorInput>;
+  readonly sys: Maybe<contentfulCodeBlockProgramCodeTextNodeSysFilterInput>;
+  readonly childrenMarkdownRemark: Maybe<MarkdownRemarkFilterListInput>;
+  readonly childMarkdownRemark: Maybe<MarkdownRemarkFilterInput>;
+};
+
+type contentfulCodeBlockProgramCodeTextNodeSysFilterInput = {
+  readonly type: Maybe<StringQueryOperatorInput>;
+};
+
+type ContentfulCodeBlockSysFilterInput = {
+  readonly type: Maybe<StringQueryOperatorInput>;
+  readonly revision: Maybe<IntQueryOperatorInput>;
+  readonly contentType: Maybe<ContentfulCodeBlockSysContentTypeFilterInput>;
+};
+
+type ContentfulCodeBlockSysContentTypeFilterInput = {
+  readonly sys: Maybe<ContentfulCodeBlockSysContentTypeSysFilterInput>;
+};
+
+type ContentfulCodeBlockSysContentTypeSysFilterInput = {
+  readonly type: Maybe<StringQueryOperatorInput>;
+  readonly linkType: Maybe<StringQueryOperatorInput>;
+  readonly id: Maybe<StringQueryOperatorInput>;
+};
+
+type contentfulCodeBlockProgramCodeTextNodeFilterListInput = {
+  readonly elemMatch: Maybe<contentfulCodeBlockProgramCodeTextNodeFilterInput>;
 };
 
 type ContentfulCodeBlockConnection = {
@@ -5590,246 +5610,24 @@ type ContentfulCodeBlockGroupConnection = {
   readonly fieldValue: Maybe<Scalars['String']>;
 };
 
+type ContentfulCodeBlockFilterInput = {
+  readonly contentful_id: Maybe<StringQueryOperatorInput>;
+  readonly id: Maybe<StringQueryOperatorInput>;
+  readonly node_locale: Maybe<StringQueryOperatorInput>;
+  readonly programCode: Maybe<contentfulCodeBlockProgramCodeTextNodeFilterInput>;
+  readonly spaceId: Maybe<StringQueryOperatorInput>;
+  readonly createdAt: Maybe<DateQueryOperatorInput>;
+  readonly updatedAt: Maybe<DateQueryOperatorInput>;
+  readonly sys: Maybe<ContentfulCodeBlockSysFilterInput>;
+  readonly childrenContentfulCodeBlockProgramCodeTextNode: Maybe<contentfulCodeBlockProgramCodeTextNodeFilterListInput>;
+  readonly childContentfulCodeBlockProgramCodeTextNode: Maybe<contentfulCodeBlockProgramCodeTextNodeFilterInput>;
+  readonly parent: Maybe<NodeFilterInput>;
+  readonly children: Maybe<NodeFilterListInput>;
+  readonly internal: Maybe<InternalFilterInput>;
+};
+
 type ContentfulCodeBlockSortInput = {
   readonly fields: Maybe<ReadonlyArray<Maybe<ContentfulCodeBlockFieldsEnum>>>;
-  readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
-};
-
-type contentfulCodeBlockProgramCodeTextNodeConnection = {
-  readonly totalCount: Scalars['Int'];
-  readonly edges: ReadonlyArray<contentfulCodeBlockProgramCodeTextNodeEdge>;
-  readonly nodes: ReadonlyArray<contentfulCodeBlockProgramCodeTextNode>;
-  readonly pageInfo: PageInfo;
-  readonly distinct: ReadonlyArray<Scalars['String']>;
-  readonly group: ReadonlyArray<contentfulCodeBlockProgramCodeTextNodeGroupConnection>;
-};
-
-
-type contentfulCodeBlockProgramCodeTextNodeConnection_distinctArgs = {
-  field: contentfulCodeBlockProgramCodeTextNodeFieldsEnum;
-};
-
-
-type contentfulCodeBlockProgramCodeTextNodeConnection_groupArgs = {
-  skip: Maybe<Scalars['Int']>;
-  limit: Maybe<Scalars['Int']>;
-  field: contentfulCodeBlockProgramCodeTextNodeFieldsEnum;
-};
-
-type contentfulCodeBlockProgramCodeTextNodeEdge = {
-  readonly next: Maybe<contentfulCodeBlockProgramCodeTextNode>;
-  readonly node: contentfulCodeBlockProgramCodeTextNode;
-  readonly previous: Maybe<contentfulCodeBlockProgramCodeTextNode>;
-};
-
-type contentfulCodeBlockProgramCodeTextNodeFieldsEnum =
-  | 'id'
-  | 'parent.id'
-  | 'parent.parent.id'
-  | 'parent.parent.parent.id'
-  | 'parent.parent.parent.children'
-  | 'parent.parent.children'
-  | 'parent.parent.children.id'
-  | 'parent.parent.children.children'
-  | 'parent.parent.internal.content'
-  | 'parent.parent.internal.contentDigest'
-  | 'parent.parent.internal.description'
-  | 'parent.parent.internal.fieldOwners'
-  | 'parent.parent.internal.ignoreType'
-  | 'parent.parent.internal.mediaType'
-  | 'parent.parent.internal.owner'
-  | 'parent.parent.internal.type'
-  | 'parent.children'
-  | 'parent.children.id'
-  | 'parent.children.parent.id'
-  | 'parent.children.parent.children'
-  | 'parent.children.children'
-  | 'parent.children.children.id'
-  | 'parent.children.children.children'
-  | 'parent.children.internal.content'
-  | 'parent.children.internal.contentDigest'
-  | 'parent.children.internal.description'
-  | 'parent.children.internal.fieldOwners'
-  | 'parent.children.internal.ignoreType'
-  | 'parent.children.internal.mediaType'
-  | 'parent.children.internal.owner'
-  | 'parent.children.internal.type'
-  | 'parent.internal.content'
-  | 'parent.internal.contentDigest'
-  | 'parent.internal.description'
-  | 'parent.internal.fieldOwners'
-  | 'parent.internal.ignoreType'
-  | 'parent.internal.mediaType'
-  | 'parent.internal.owner'
-  | 'parent.internal.type'
-  | 'children'
-  | 'children.id'
-  | 'children.parent.id'
-  | 'children.parent.parent.id'
-  | 'children.parent.parent.children'
-  | 'children.parent.children'
-  | 'children.parent.children.id'
-  | 'children.parent.children.children'
-  | 'children.parent.internal.content'
-  | 'children.parent.internal.contentDigest'
-  | 'children.parent.internal.description'
-  | 'children.parent.internal.fieldOwners'
-  | 'children.parent.internal.ignoreType'
-  | 'children.parent.internal.mediaType'
-  | 'children.parent.internal.owner'
-  | 'children.parent.internal.type'
-  | 'children.children'
-  | 'children.children.id'
-  | 'children.children.parent.id'
-  | 'children.children.parent.children'
-  | 'children.children.children'
-  | 'children.children.children.id'
-  | 'children.children.children.children'
-  | 'children.children.internal.content'
-  | 'children.children.internal.contentDigest'
-  | 'children.children.internal.description'
-  | 'children.children.internal.fieldOwners'
-  | 'children.children.internal.ignoreType'
-  | 'children.children.internal.mediaType'
-  | 'children.children.internal.owner'
-  | 'children.children.internal.type'
-  | 'children.internal.content'
-  | 'children.internal.contentDigest'
-  | 'children.internal.description'
-  | 'children.internal.fieldOwners'
-  | 'children.internal.ignoreType'
-  | 'children.internal.mediaType'
-  | 'children.internal.owner'
-  | 'children.internal.type'
-  | 'internal.content'
-  | 'internal.contentDigest'
-  | 'internal.description'
-  | 'internal.fieldOwners'
-  | 'internal.ignoreType'
-  | 'internal.mediaType'
-  | 'internal.owner'
-  | 'internal.type'
-  | 'programCode'
-  | 'sys.type'
-  | 'childrenMarkdownRemark'
-  | 'childrenMarkdownRemark.id'
-  | 'childrenMarkdownRemark.frontmatter.title'
-  | 'childrenMarkdownRemark.excerpt'
-  | 'childrenMarkdownRemark.rawMarkdownBody'
-  | 'childrenMarkdownRemark.html'
-  | 'childrenMarkdownRemark.htmlAst'
-  | 'childrenMarkdownRemark.excerptAst'
-  | 'childrenMarkdownRemark.headings'
-  | 'childrenMarkdownRemark.headings.id'
-  | 'childrenMarkdownRemark.headings.value'
-  | 'childrenMarkdownRemark.headings.depth'
-  | 'childrenMarkdownRemark.timeToRead'
-  | 'childrenMarkdownRemark.tableOfContents'
-  | 'childrenMarkdownRemark.wordCount.paragraphs'
-  | 'childrenMarkdownRemark.wordCount.sentences'
-  | 'childrenMarkdownRemark.wordCount.words'
-  | 'childrenMarkdownRemark.parent.id'
-  | 'childrenMarkdownRemark.parent.parent.id'
-  | 'childrenMarkdownRemark.parent.parent.children'
-  | 'childrenMarkdownRemark.parent.children'
-  | 'childrenMarkdownRemark.parent.children.id'
-  | 'childrenMarkdownRemark.parent.children.children'
-  | 'childrenMarkdownRemark.parent.internal.content'
-  | 'childrenMarkdownRemark.parent.internal.contentDigest'
-  | 'childrenMarkdownRemark.parent.internal.description'
-  | 'childrenMarkdownRemark.parent.internal.fieldOwners'
-  | 'childrenMarkdownRemark.parent.internal.ignoreType'
-  | 'childrenMarkdownRemark.parent.internal.mediaType'
-  | 'childrenMarkdownRemark.parent.internal.owner'
-  | 'childrenMarkdownRemark.parent.internal.type'
-  | 'childrenMarkdownRemark.children'
-  | 'childrenMarkdownRemark.children.id'
-  | 'childrenMarkdownRemark.children.parent.id'
-  | 'childrenMarkdownRemark.children.parent.children'
-  | 'childrenMarkdownRemark.children.children'
-  | 'childrenMarkdownRemark.children.children.id'
-  | 'childrenMarkdownRemark.children.children.children'
-  | 'childrenMarkdownRemark.children.internal.content'
-  | 'childrenMarkdownRemark.children.internal.contentDigest'
-  | 'childrenMarkdownRemark.children.internal.description'
-  | 'childrenMarkdownRemark.children.internal.fieldOwners'
-  | 'childrenMarkdownRemark.children.internal.ignoreType'
-  | 'childrenMarkdownRemark.children.internal.mediaType'
-  | 'childrenMarkdownRemark.children.internal.owner'
-  | 'childrenMarkdownRemark.children.internal.type'
-  | 'childrenMarkdownRemark.internal.content'
-  | 'childrenMarkdownRemark.internal.contentDigest'
-  | 'childrenMarkdownRemark.internal.description'
-  | 'childrenMarkdownRemark.internal.fieldOwners'
-  | 'childrenMarkdownRemark.internal.ignoreType'
-  | 'childrenMarkdownRemark.internal.mediaType'
-  | 'childrenMarkdownRemark.internal.owner'
-  | 'childrenMarkdownRemark.internal.type'
-  | 'childMarkdownRemark.id'
-  | 'childMarkdownRemark.frontmatter.title'
-  | 'childMarkdownRemark.excerpt'
-  | 'childMarkdownRemark.rawMarkdownBody'
-  | 'childMarkdownRemark.html'
-  | 'childMarkdownRemark.htmlAst'
-  | 'childMarkdownRemark.excerptAst'
-  | 'childMarkdownRemark.headings'
-  | 'childMarkdownRemark.headings.id'
-  | 'childMarkdownRemark.headings.value'
-  | 'childMarkdownRemark.headings.depth'
-  | 'childMarkdownRemark.timeToRead'
-  | 'childMarkdownRemark.tableOfContents'
-  | 'childMarkdownRemark.wordCount.paragraphs'
-  | 'childMarkdownRemark.wordCount.sentences'
-  | 'childMarkdownRemark.wordCount.words'
-  | 'childMarkdownRemark.parent.id'
-  | 'childMarkdownRemark.parent.parent.id'
-  | 'childMarkdownRemark.parent.parent.children'
-  | 'childMarkdownRemark.parent.children'
-  | 'childMarkdownRemark.parent.children.id'
-  | 'childMarkdownRemark.parent.children.children'
-  | 'childMarkdownRemark.parent.internal.content'
-  | 'childMarkdownRemark.parent.internal.contentDigest'
-  | 'childMarkdownRemark.parent.internal.description'
-  | 'childMarkdownRemark.parent.internal.fieldOwners'
-  | 'childMarkdownRemark.parent.internal.ignoreType'
-  | 'childMarkdownRemark.parent.internal.mediaType'
-  | 'childMarkdownRemark.parent.internal.owner'
-  | 'childMarkdownRemark.parent.internal.type'
-  | 'childMarkdownRemark.children'
-  | 'childMarkdownRemark.children.id'
-  | 'childMarkdownRemark.children.parent.id'
-  | 'childMarkdownRemark.children.parent.children'
-  | 'childMarkdownRemark.children.children'
-  | 'childMarkdownRemark.children.children.id'
-  | 'childMarkdownRemark.children.children.children'
-  | 'childMarkdownRemark.children.internal.content'
-  | 'childMarkdownRemark.children.internal.contentDigest'
-  | 'childMarkdownRemark.children.internal.description'
-  | 'childMarkdownRemark.children.internal.fieldOwners'
-  | 'childMarkdownRemark.children.internal.ignoreType'
-  | 'childMarkdownRemark.children.internal.mediaType'
-  | 'childMarkdownRemark.children.internal.owner'
-  | 'childMarkdownRemark.children.internal.type'
-  | 'childMarkdownRemark.internal.content'
-  | 'childMarkdownRemark.internal.contentDigest'
-  | 'childMarkdownRemark.internal.description'
-  | 'childMarkdownRemark.internal.fieldOwners'
-  | 'childMarkdownRemark.internal.ignoreType'
-  | 'childMarkdownRemark.internal.mediaType'
-  | 'childMarkdownRemark.internal.owner'
-  | 'childMarkdownRemark.internal.type';
-
-type contentfulCodeBlockProgramCodeTextNodeGroupConnection = {
-  readonly totalCount: Scalars['Int'];
-  readonly edges: ReadonlyArray<contentfulCodeBlockProgramCodeTextNodeEdge>;
-  readonly nodes: ReadonlyArray<contentfulCodeBlockProgramCodeTextNode>;
-  readonly pageInfo: PageInfo;
-  readonly field: Scalars['String'];
-  readonly fieldValue: Maybe<Scalars['String']>;
-};
-
-type contentfulCodeBlockProgramCodeTextNodeSortInput = {
-  readonly fields: Maybe<ReadonlyArray<Maybe<contentfulCodeBlockProgramCodeTextNodeFieldsEnum>>>;
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
@@ -6068,6 +5866,244 @@ type contentfulBlogPostTocTextNodeGroupConnection = {
 
 type contentfulBlogPostTocTextNodeSortInput = {
   readonly fields: Maybe<ReadonlyArray<Maybe<contentfulBlogPostTocTextNodeFieldsEnum>>>;
+  readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
+};
+
+type contentfulCodeBlockProgramCodeTextNodeConnection = {
+  readonly totalCount: Scalars['Int'];
+  readonly edges: ReadonlyArray<contentfulCodeBlockProgramCodeTextNodeEdge>;
+  readonly nodes: ReadonlyArray<contentfulCodeBlockProgramCodeTextNode>;
+  readonly pageInfo: PageInfo;
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly group: ReadonlyArray<contentfulCodeBlockProgramCodeTextNodeGroupConnection>;
+};
+
+
+type contentfulCodeBlockProgramCodeTextNodeConnection_distinctArgs = {
+  field: contentfulCodeBlockProgramCodeTextNodeFieldsEnum;
+};
+
+
+type contentfulCodeBlockProgramCodeTextNodeConnection_groupArgs = {
+  skip: Maybe<Scalars['Int']>;
+  limit: Maybe<Scalars['Int']>;
+  field: contentfulCodeBlockProgramCodeTextNodeFieldsEnum;
+};
+
+type contentfulCodeBlockProgramCodeTextNodeEdge = {
+  readonly next: Maybe<contentfulCodeBlockProgramCodeTextNode>;
+  readonly node: contentfulCodeBlockProgramCodeTextNode;
+  readonly previous: Maybe<contentfulCodeBlockProgramCodeTextNode>;
+};
+
+type contentfulCodeBlockProgramCodeTextNodeFieldsEnum =
+  | 'id'
+  | 'parent.id'
+  | 'parent.parent.id'
+  | 'parent.parent.parent.id'
+  | 'parent.parent.parent.children'
+  | 'parent.parent.children'
+  | 'parent.parent.children.id'
+  | 'parent.parent.children.children'
+  | 'parent.parent.internal.content'
+  | 'parent.parent.internal.contentDigest'
+  | 'parent.parent.internal.description'
+  | 'parent.parent.internal.fieldOwners'
+  | 'parent.parent.internal.ignoreType'
+  | 'parent.parent.internal.mediaType'
+  | 'parent.parent.internal.owner'
+  | 'parent.parent.internal.type'
+  | 'parent.children'
+  | 'parent.children.id'
+  | 'parent.children.parent.id'
+  | 'parent.children.parent.children'
+  | 'parent.children.children'
+  | 'parent.children.children.id'
+  | 'parent.children.children.children'
+  | 'parent.children.internal.content'
+  | 'parent.children.internal.contentDigest'
+  | 'parent.children.internal.description'
+  | 'parent.children.internal.fieldOwners'
+  | 'parent.children.internal.ignoreType'
+  | 'parent.children.internal.mediaType'
+  | 'parent.children.internal.owner'
+  | 'parent.children.internal.type'
+  | 'parent.internal.content'
+  | 'parent.internal.contentDigest'
+  | 'parent.internal.description'
+  | 'parent.internal.fieldOwners'
+  | 'parent.internal.ignoreType'
+  | 'parent.internal.mediaType'
+  | 'parent.internal.owner'
+  | 'parent.internal.type'
+  | 'children'
+  | 'children.id'
+  | 'children.parent.id'
+  | 'children.parent.parent.id'
+  | 'children.parent.parent.children'
+  | 'children.parent.children'
+  | 'children.parent.children.id'
+  | 'children.parent.children.children'
+  | 'children.parent.internal.content'
+  | 'children.parent.internal.contentDigest'
+  | 'children.parent.internal.description'
+  | 'children.parent.internal.fieldOwners'
+  | 'children.parent.internal.ignoreType'
+  | 'children.parent.internal.mediaType'
+  | 'children.parent.internal.owner'
+  | 'children.parent.internal.type'
+  | 'children.children'
+  | 'children.children.id'
+  | 'children.children.parent.id'
+  | 'children.children.parent.children'
+  | 'children.children.children'
+  | 'children.children.children.id'
+  | 'children.children.children.children'
+  | 'children.children.internal.content'
+  | 'children.children.internal.contentDigest'
+  | 'children.children.internal.description'
+  | 'children.children.internal.fieldOwners'
+  | 'children.children.internal.ignoreType'
+  | 'children.children.internal.mediaType'
+  | 'children.children.internal.owner'
+  | 'children.children.internal.type'
+  | 'children.internal.content'
+  | 'children.internal.contentDigest'
+  | 'children.internal.description'
+  | 'children.internal.fieldOwners'
+  | 'children.internal.ignoreType'
+  | 'children.internal.mediaType'
+  | 'children.internal.owner'
+  | 'children.internal.type'
+  | 'internal.content'
+  | 'internal.contentDigest'
+  | 'internal.description'
+  | 'internal.fieldOwners'
+  | 'internal.ignoreType'
+  | 'internal.mediaType'
+  | 'internal.owner'
+  | 'internal.type'
+  | 'programCode'
+  | 'sys.type'
+  | 'childrenMarkdownRemark'
+  | 'childrenMarkdownRemark.id'
+  | 'childrenMarkdownRemark.frontmatter.title'
+  | 'childrenMarkdownRemark.excerpt'
+  | 'childrenMarkdownRemark.rawMarkdownBody'
+  | 'childrenMarkdownRemark.html'
+  | 'childrenMarkdownRemark.htmlAst'
+  | 'childrenMarkdownRemark.excerptAst'
+  | 'childrenMarkdownRemark.headings'
+  | 'childrenMarkdownRemark.headings.id'
+  | 'childrenMarkdownRemark.headings.value'
+  | 'childrenMarkdownRemark.headings.depth'
+  | 'childrenMarkdownRemark.timeToRead'
+  | 'childrenMarkdownRemark.tableOfContents'
+  | 'childrenMarkdownRemark.wordCount.paragraphs'
+  | 'childrenMarkdownRemark.wordCount.sentences'
+  | 'childrenMarkdownRemark.wordCount.words'
+  | 'childrenMarkdownRemark.parent.id'
+  | 'childrenMarkdownRemark.parent.parent.id'
+  | 'childrenMarkdownRemark.parent.parent.children'
+  | 'childrenMarkdownRemark.parent.children'
+  | 'childrenMarkdownRemark.parent.children.id'
+  | 'childrenMarkdownRemark.parent.children.children'
+  | 'childrenMarkdownRemark.parent.internal.content'
+  | 'childrenMarkdownRemark.parent.internal.contentDigest'
+  | 'childrenMarkdownRemark.parent.internal.description'
+  | 'childrenMarkdownRemark.parent.internal.fieldOwners'
+  | 'childrenMarkdownRemark.parent.internal.ignoreType'
+  | 'childrenMarkdownRemark.parent.internal.mediaType'
+  | 'childrenMarkdownRemark.parent.internal.owner'
+  | 'childrenMarkdownRemark.parent.internal.type'
+  | 'childrenMarkdownRemark.children'
+  | 'childrenMarkdownRemark.children.id'
+  | 'childrenMarkdownRemark.children.parent.id'
+  | 'childrenMarkdownRemark.children.parent.children'
+  | 'childrenMarkdownRemark.children.children'
+  | 'childrenMarkdownRemark.children.children.id'
+  | 'childrenMarkdownRemark.children.children.children'
+  | 'childrenMarkdownRemark.children.internal.content'
+  | 'childrenMarkdownRemark.children.internal.contentDigest'
+  | 'childrenMarkdownRemark.children.internal.description'
+  | 'childrenMarkdownRemark.children.internal.fieldOwners'
+  | 'childrenMarkdownRemark.children.internal.ignoreType'
+  | 'childrenMarkdownRemark.children.internal.mediaType'
+  | 'childrenMarkdownRemark.children.internal.owner'
+  | 'childrenMarkdownRemark.children.internal.type'
+  | 'childrenMarkdownRemark.internal.content'
+  | 'childrenMarkdownRemark.internal.contentDigest'
+  | 'childrenMarkdownRemark.internal.description'
+  | 'childrenMarkdownRemark.internal.fieldOwners'
+  | 'childrenMarkdownRemark.internal.ignoreType'
+  | 'childrenMarkdownRemark.internal.mediaType'
+  | 'childrenMarkdownRemark.internal.owner'
+  | 'childrenMarkdownRemark.internal.type'
+  | 'childMarkdownRemark.id'
+  | 'childMarkdownRemark.frontmatter.title'
+  | 'childMarkdownRemark.excerpt'
+  | 'childMarkdownRemark.rawMarkdownBody'
+  | 'childMarkdownRemark.html'
+  | 'childMarkdownRemark.htmlAst'
+  | 'childMarkdownRemark.excerptAst'
+  | 'childMarkdownRemark.headings'
+  | 'childMarkdownRemark.headings.id'
+  | 'childMarkdownRemark.headings.value'
+  | 'childMarkdownRemark.headings.depth'
+  | 'childMarkdownRemark.timeToRead'
+  | 'childMarkdownRemark.tableOfContents'
+  | 'childMarkdownRemark.wordCount.paragraphs'
+  | 'childMarkdownRemark.wordCount.sentences'
+  | 'childMarkdownRemark.wordCount.words'
+  | 'childMarkdownRemark.parent.id'
+  | 'childMarkdownRemark.parent.parent.id'
+  | 'childMarkdownRemark.parent.parent.children'
+  | 'childMarkdownRemark.parent.children'
+  | 'childMarkdownRemark.parent.children.id'
+  | 'childMarkdownRemark.parent.children.children'
+  | 'childMarkdownRemark.parent.internal.content'
+  | 'childMarkdownRemark.parent.internal.contentDigest'
+  | 'childMarkdownRemark.parent.internal.description'
+  | 'childMarkdownRemark.parent.internal.fieldOwners'
+  | 'childMarkdownRemark.parent.internal.ignoreType'
+  | 'childMarkdownRemark.parent.internal.mediaType'
+  | 'childMarkdownRemark.parent.internal.owner'
+  | 'childMarkdownRemark.parent.internal.type'
+  | 'childMarkdownRemark.children'
+  | 'childMarkdownRemark.children.id'
+  | 'childMarkdownRemark.children.parent.id'
+  | 'childMarkdownRemark.children.parent.children'
+  | 'childMarkdownRemark.children.children'
+  | 'childMarkdownRemark.children.children.id'
+  | 'childMarkdownRemark.children.children.children'
+  | 'childMarkdownRemark.children.internal.content'
+  | 'childMarkdownRemark.children.internal.contentDigest'
+  | 'childMarkdownRemark.children.internal.description'
+  | 'childMarkdownRemark.children.internal.fieldOwners'
+  | 'childMarkdownRemark.children.internal.ignoreType'
+  | 'childMarkdownRemark.children.internal.mediaType'
+  | 'childMarkdownRemark.children.internal.owner'
+  | 'childMarkdownRemark.children.internal.type'
+  | 'childMarkdownRemark.internal.content'
+  | 'childMarkdownRemark.internal.contentDigest'
+  | 'childMarkdownRemark.internal.description'
+  | 'childMarkdownRemark.internal.fieldOwners'
+  | 'childMarkdownRemark.internal.ignoreType'
+  | 'childMarkdownRemark.internal.mediaType'
+  | 'childMarkdownRemark.internal.owner'
+  | 'childMarkdownRemark.internal.type';
+
+type contentfulCodeBlockProgramCodeTextNodeGroupConnection = {
+  readonly totalCount: Scalars['Int'];
+  readonly edges: ReadonlyArray<contentfulCodeBlockProgramCodeTextNodeEdge>;
+  readonly nodes: ReadonlyArray<contentfulCodeBlockProgramCodeTextNode>;
+  readonly pageInfo: PageInfo;
+  readonly field: Scalars['String'];
+  readonly fieldValue: Maybe<Scalars['String']>;
+};
+
+type contentfulCodeBlockProgramCodeTextNodeSortInput = {
+  readonly fields: Maybe<ReadonlyArray<Maybe<contentfulCodeBlockProgramCodeTextNodeFieldsEnum>>>;
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
@@ -6957,6 +6993,7 @@ type SitePluginFieldsEnum =
   | 'pluginOptions.plugins.version'
   | 'pluginOptions.plugins.pluginOptions.elements'
   | 'pluginOptions.plugins.pluginOptions.maintainCase'
+  | 'pluginOptions.plugins.pluginOptions.icon'
   | 'pluginOptions.plugins.pluginOptions.offsetY'
   | 'pluginOptions.plugins.pluginOptions.className'
   | 'pluginOptions.plugins.nodeAPIs'
@@ -6974,7 +7011,6 @@ type SitePluginFieldsEnum =
   | 'pluginOptions.background_color'
   | 'pluginOptions.theme_color'
   | 'pluginOptions.display'
-  | 'pluginOptions.icon'
   | 'pluginOptions.legacy'
   | 'pluginOptions.theme_color_in_head'
   | 'pluginOptions.cache_busting_mode'
