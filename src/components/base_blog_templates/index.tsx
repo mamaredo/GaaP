@@ -22,7 +22,7 @@ const BaseBlogTemplate: React.FC<BaseBlogTemplateProps> = ({ post, body, image, 
   return (
     <Layout>
       <BaseNavigation />
-      <div className="px-1 pt-32 w-full bg-background">
+      <div className="px-1 pt-5 w-full bg-background">
         <div 
           className="
             2xl:max-w-2xl
@@ -41,7 +41,7 @@ const BaseBlogTemplate: React.FC<BaseBlogTemplateProps> = ({ post, body, image, 
 
           <div className="md:col-span-8 col-span-4 w-full">
             <BlogHead
-              title={title} 
+              title={title}
               date={date}
               image={image}
             />
