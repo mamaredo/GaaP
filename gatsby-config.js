@@ -51,6 +51,7 @@ module.exports = {
             options: {
               elements: [`h2`],
               maintainCase: false,
+              icon: false
             },
           },
         ],
