@@ -8,12 +8,13 @@ import BaseBlogTag from "../base_blog_tag"
 //
 type BlogIndexProps = {
   postIndex: BaseBlogTemplateProps["postIndex"]
+  tag: BaseBlogTemplateProps["post"]["tag"]
 }
 // ______________________________________________________
 //
 // ______________________________________________________
 //
-const BlogIndex: React.FC<BlogIndexProps> = ({ postIndex }) => {
+const BlogIndex: React.FC<BlogIndexProps> = ({ postIndex, tag }) => {
   return (
     <>
     <div className="xl:fixed xl:min-w-blog-index-fixed xl:max-w-blog-index-fixed w-full shadow bg-white xl:bg-background rounded xl:rounded-none">
