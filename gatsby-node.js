@@ -33,7 +33,6 @@ exports.createPages = async ({ graphql, actions }) => {
               svg {
                 content
               }
-              title
             }
           }
         }
@@ -50,8 +49,7 @@ exports.createPages = async ({ graphql, actions }) => {
           title: node.title,
           tag: {
             tagName: node.tags,
-            svg: node.svgContent.svg.content,
-            alt: node.svgContent.title
+            svg: node.svgContent?.svg.content,
           },
           date: node.updatedAt,
         },
