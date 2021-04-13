@@ -37,7 +37,8 @@ module.exports = {
       'card': '348px'
     },
     minWidth: {
-      'blog-index-fixed': '410px'
+      'blog-index-fixed': '410px',
+      'tag': '18px'
     },
     maxWidth: {
       '2xl': '1280px',
