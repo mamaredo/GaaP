@@ -307,8 +307,13 @@ type SitePageContext = {
 
 type SitePageContextPost = {
   readonly title: Maybe<Scalars['String']>;
-  readonly tag: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
+  readonly tag: Maybe<SitePageContextPostTag>;
   readonly date: Maybe<Scalars['Date']>;
+};
+
+type SitePageContextPostTag = {
+  readonly tagName: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
+  readonly svg: Maybe<Scalars['String']>;
 };
 
 type SitePageContextImage = {
@@ -2570,8 +2575,13 @@ type SitePageContextFilterInput = {
 
 type SitePageContextPostFilterInput = {
   readonly title: Maybe<StringQueryOperatorInput>;
-  readonly tag: Maybe<StringQueryOperatorInput>;
+  readonly tag: Maybe<SitePageContextPostTagFilterInput>;
   readonly date: Maybe<DateQueryOperatorInput>;
+};
+
+type SitePageContextPostTagFilterInput = {
+  readonly tagName: Maybe<StringQueryOperatorInput>;
+  readonly svg: Maybe<StringQueryOperatorInput>;
 };
 
 type SitePageContextImageFilterInput = {
@@ -2835,7 +2845,8 @@ type SitePageFieldsEnum =
   | 'internal.type'
   | 'isCreatedByStatefulCreatePages'
   | 'context.post.title'
-  | 'context.post.tag'
+  | 'context.post.tag.tagName'
+  | 'context.post.tag.svg'
   | 'context.post.date'
   | 'context.image.fluid.base64'
   | 'context.image.fluid.aspectRatio'
@@ -7072,15 +7083,15 @@ type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
 
+type homemamaredoDGaaPsrcpagesusingTypescriptTsx2907560070QueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type homemamaredoDGaaPsrcpagesusingTypescriptTsx2907560070Query = { readonly site: Maybe<Pick<Site, 'buildTime'>> };
+
 type Unnamed_1_QueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type Unnamed_1_Query = { readonly site: Maybe<Pick<Site, 'buildTime'>> };
-
-type Unnamed_2_QueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type Unnamed_2_Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title' | 'description'>> }> };
+type Unnamed_1_Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title' | 'description'>> }> };
 
 type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
