@@ -2,7 +2,7 @@ import * as React from "react"
 import Layout from "../components/layout"
 import BlogCards from "../containers/blog_cards"
 import ProfileCard from "../containers/profile_card"
-import BlogTags from "../containers/blog_tags"
+import AllBlogTags from "../containers/all_blog_tags"
 
 
 // ______________________________________________________
@@ -55,7 +55,10 @@ const Index: React.FC = () => {
               <div className="w-full border-t border-black opacity-37 my-3"></div>
 
               <div className="mb-2 text-xl font-bold opacity-70">タグ一覧</div>
-              <BlogTags />
+
+              <div className="flex">
+                <AllBlogTags />
+              </div>
             </div>
           </div>
         </article>

@@ -48,7 +48,7 @@ const BaseBlogTemplate: React.FC<BaseBlogTemplateProps> = ({ post, body, image, 
           </div>
 
           <div className="md:col-span-4 col-span-4">
-            <BlogIndex postIndex={postIndex} />
+            <BlogIndex postIndex={postIndex} tag={tag} />
           </div>
 
           <div className="md:col-span-8 col-span-4 w-full">

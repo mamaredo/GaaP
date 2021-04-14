@@ -1,21 +1,24 @@
 import * as React from "react"
 import BaseBlogTag from "../../components/base_blog_tag"
 
+
 // ______________________________________________________
 //
-  /* type */
+export type BlogTagProps = {
+  icon: string
+  tagName: string
+  style?: string[]
+}
 // ______________________________________________________
 //
 // ______________________________________________________
 //
-const BlogTags: React.FC = () => {
+const BlogTag: React.FC<BlogTagProps> = ({ icon, tagName, style }) => {
   /* logic */
-  const style: string[] = ['bg-white']
-  const text: string = 'TAG NAME'
   return (
-    <BaseBlogTag icon={'icon'} text={text} style={style} />
+    <BaseBlogTag icon={icon} tagName={tagName} inherentStyle={style} />
   )
 }
 // ______________________________________________________
 //
-export default BlogTags
+export default BlogTag

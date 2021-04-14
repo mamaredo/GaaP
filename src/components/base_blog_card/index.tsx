@@ -1,5 +1,5 @@
 import * as React from "react"
-import BaseBlogTag from "../base_blog_tag"
+import BlogTag from "../../containers/blog_tag"
 
 
 // ______________________________________________________
@@ -33,7 +33,7 @@ const BaseBlogCard: React.FC<BaseBlogCardProps> = ({ style, frontmatter }) => {
             <p className="2xl:text-sm text-xs opacity-70">{frontmatter?.date || '2021-03-03'}</p>
           </div>
           <div className="flex flex-row-reverse">
-            <BaseBlogTag icon="" text={'TAG NAME'} style={['bg-tag-bg']} />
+            <BlogTag icon="a" tagName="TAGNAME" style={['bg-tag-bg']} />
           </div>
         </div>
       </div>

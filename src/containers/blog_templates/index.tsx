@@ -2,13 +2,18 @@ import * as React from "react"
 import { FluidObject } from "gatsby-image"
 import BaseBlogTemplate from "../../components/base_blog_templates"
 
+
 // ______________________________________________________
 //
 export type BlogTemplateProps = {
   pageContext: {
     post: {
       title: string
-      tag: string[]
+      tag: {
+        tagName: string[]
+        svg: string
+        alt: string
+      }
       date: string
     },
     // heroImage

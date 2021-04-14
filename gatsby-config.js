@@ -41,6 +41,7 @@ module.exports = {
     },
     `gatsby-plugin-gatsby-cloud`,
     `gatsby-plugin-postcss`,
+    `gatsby-transformer-inline-svg`,
     {
       resolve: "gatsby-transformer-remark",
       options: {
