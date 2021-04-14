@@ -1,7 +1,7 @@
 import * as React from "react"
 import { FluidObject } from "gatsby-image"
 import BaseBlogTemplate from "../../components/base_blog_templates"
-import { string } from "prop-types"
+
 
 // ______________________________________________________
 //
@@ -11,7 +11,7 @@ export type BlogTemplateProps = {
       title: string
       tag: {
         tagName: string[]
-        svg: SVGAElement | string
+        svg: string
         alt: string
       }
       date: string
