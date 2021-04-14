@@ -2,7 +2,7 @@ import * as React from 'react'
 
 
 const Footer: React.FC = () => (
-  <footer className="w-full bg-gray-300">
+  <footer className="w-full bg-primary">
     <div
       className="
         2xl:max-w-2xl
@@ -10,6 +10,7 @@ const Footer: React.FC = () => (
         md:max-w-md
         max-w-sm
         mx-auto
+        text-white
       "
     >
       from footer
