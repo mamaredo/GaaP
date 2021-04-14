@@ -303,6 +303,7 @@ type SitePageContext = {
   readonly image: Maybe<SitePageContextImage>;
   readonly body: Maybe<Scalars['String']>;
   readonly postIndex: Maybe<Scalars['String']>;
+  readonly tag: Maybe<Scalars['String']>;
 };
 
 type SitePageContextPost = {
@@ -2571,6 +2572,7 @@ type SitePageContextFilterInput = {
   readonly image: Maybe<SitePageContextImageFilterInput>;
   readonly body: Maybe<StringQueryOperatorInput>;
   readonly postIndex: Maybe<StringQueryOperatorInput>;
+  readonly tag: Maybe<StringQueryOperatorInput>;
 };
 
 type SitePageContextPostFilterInput = {
@@ -2856,6 +2858,7 @@ type SitePageFieldsEnum =
   | 'context.image.alt'
   | 'context.body'
   | 'context.postIndex'
+  | 'context.tag'
   | 'pluginCreator.id'
   | 'pluginCreator.parent.id'
   | 'pluginCreator.parent.parent.id'
@@ -7092,6 +7095,14 @@ type Unnamed_1_QueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type Unnamed_1_Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title' | 'description'>> }> };
+
+type AllBlogTagsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type AllBlogTagsQuery = { readonly allContentfulBlogPost: { readonly edges: ReadonlyArray<{ readonly node: (
+        Pick<ContentfulBlogPost, 'tags'>
+        & { readonly svgContent: Maybe<{ readonly svg: Maybe<Pick<InlineSvg, 'content'>> }> }
+      ) }> } };
 
 type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 

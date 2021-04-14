@@ -2815,6 +2815,18 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "tag",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -22207,6 +22219,18 @@
             "defaultValue": null,
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "tag",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "StringQueryOperatorInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "interfaces": null,
@@ -24472,6 +24496,12 @@
           },
           {
             "name": "context___postIndex",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "context___tag",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
