@@ -869,18 +869,6 @@
             "deprecationReason": null
           },
           {
-            "name": "url",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "publicURL",
             "description": "Copy file to static directory and return public url to it",
             "args": [],
@@ -2524,6 +2512,18 @@
         "fields": [
           {
             "name": "FAST_DEV",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "DEV_SSR",
             "description": null,
             "args": [],
             "type": {
@@ -6548,13 +6548,13 @@
             "args": [
               {
                 "name": "layout",
-                "description": "The layout for the image.\nFIXED: A static image sized, that does not resize according to the screen width\nFULL_WIDTH: The image resizes to fit its container. Pass a \"sizes\" option if it isn't going to be the full width of the screen.\nCONSTRAINED: Resizes to fit its container, up to a maximum width, at which point it will remain fixed in size.",
+                "description": "The layout for the image.\nCONSTRAINED: Resizes to fit its container, up to a maximum width, at which point it will remain fixed in size. \nFIXED: A static image size, that does not resize according to the screen width\nFULL_WIDTH: The image resizes to fit its container, even if that is larger than the source image.\nPass a value to \"sizes\" if the container is not the full width of the screen.",
                 "type": {
                   "kind": "ENUM",
-                  "name": "GatsbyImageLayout",
+                  "name": "ContentfulImageLayout",
                   "ofType": null
                 },
-                "defaultValue": null,
+                "defaultValue": "CONSTRAINED",
                 "isDeprecated": false,
                 "deprecationReason": null
               },
@@ -6599,10 +6599,10 @@
                 "description": "Format of generated placeholder image, displayed while the main image loads.\nBLURRED: a blurred, low resolution image, encoded as a base64 data URI (default)\nDOMINANT_COLOR: a solid color, calculated from the dominant color of the image.\nTRACED_SVG: a low-resolution traced SVG of the image.\nNONE: no placeholder. Set the argument \"backgroundColor\" to use a fixed background color.",
                 "type": {
                   "kind": "ENUM",
-                  "name": "GatsbyImagePlaceholder",
+                  "name": "ContentfulImagePlaceholder",
                   "ofType": null
                 },
-                "defaultValue": null,
+                "defaultValue": "DOMINANT_COLOR",
                 "isDeprecated": false,
                 "deprecationReason": null
               },
@@ -7523,7 +7523,7 @@
       },
       {
         "kind": "ENUM",
-        "name": "GatsbyImageLayout",
+        "name": "ContentfulImageLayout",
         "description": null,
         "specifiedByUrl": null,
         "fields": null,
@@ -7553,7 +7553,7 @@
       },
       {
         "kind": "ENUM",
-        "name": "GatsbyImagePlaceholder",
+        "name": "ContentfulImagePlaceholder",
         "description": null,
         "specifiedByUrl": null,
         "fields": null,
@@ -11395,18 +11395,6 @@
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "IntQueryOperatorInput",
-                  "ofType": null
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
-                "name": "url",
-                "description": null,
-                "type": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "StringQueryOperatorInput",
                   "ofType": null
                 },
                 "defaultValue": null,
@@ -17357,12 +17345,6 @@
             "deprecationReason": null
           },
           {
-            "name": "url",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "publicURL",
             "description": null,
             "isDeprecated": false,
@@ -19257,18 +19239,6 @@
             "deprecationReason": null
           },
           {
-            "name": "url",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringQueryOperatorInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "publicURL",
             "description": null,
             "type": {
@@ -21087,6 +21057,18 @@
             "defaultValue": null,
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "DEV_SSR",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "BooleanQueryOperatorInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "interfaces": null,
@@ -21390,6 +21372,12 @@
           },
           {
             "name": "flags___FAST_DEV",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "flags___DEV_SSR",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
