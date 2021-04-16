@@ -6,7 +6,17 @@ import AllBlogTags from "../containers/all_blog_tags"
 
 // ______________________________________________________
 //
-const TagPage: React.FC = () => {
+export type TopPageProps = {
+  pageContext: {
+    tag: string
+  }
+}
+// ______________________________________________________
+//
+// ______________________________________________________
+//
+const TagPage: React.FC<TopPageProps> = ({ pageContext }) => {
+  const { tag } = pageContext
   return (
     <Layout>
       <div className="w-full h-full">
@@ -28,10 +38,10 @@ const TagPage: React.FC = () => {
             >
             <div className="md:col-span-8 col-span-4 w-full">
               <div className="mb-3">
-                <h2 className="text-2xl text-black text-opacity-90 font-extrabold">
-                  tagNameの記事一覧
+                <h2 className="text-xl text-black text-opacity-90 font-extrabold">
+                  <span className="text-3xl">{tag}</span>
                 </h2>
-                <div className="mt-1 text-xl text-black text-opacity-70 font-medium">
+                <div className="mt-1 text-lg text-black text-opacity-70 font-medium">
                   記事件数/ n件
                 </div>
               </div>

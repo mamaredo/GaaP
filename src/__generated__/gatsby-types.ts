@@ -278,6 +278,7 @@ type Site_buildTimeArgs = {
 
 type SiteFlags = {
   readonly FAST_DEV: Maybe<Scalars['Boolean']>;
+  readonly DEV_SSR: Maybe<Scalars['Boolean']>;
 };
 
 type SiteSiteMetadata = {
@@ -2418,6 +2419,7 @@ type SiteSiteMetadataFilterInput = {
 
 type SiteFlagsFilterInput = {
   readonly FAST_DEV: Maybe<BooleanQueryOperatorInput>;
+  readonly DEV_SSR: Maybe<BooleanQueryOperatorInput>;
 };
 
 type SiteConnection = {
@@ -2455,6 +2457,7 @@ type SiteFieldsEnum =
   | 'port'
   | 'host'
   | 'flags.FAST_DEV'
+  | 'flags.DEV_SSR'
   | 'polyfill'
   | 'pathPrefix'
   | 'id'
