@@ -17,7 +17,7 @@ const BaseBlogTag: React.FC<BaseBlogTagProps> = ({ icon, tagName, inherentStyle 
   const style = inherentStyle?.join(' ')
   return (
     <Link
-      className={`flex justify-center items-center rounded min-h-button ${style}}`}
+      className={`flex justify-center items-center rounded min-h-button ${style}`}
       to={`/tags/${tagName}`}
     >
       <div className="ml-icon min-w-tag" dangerouslySetInnerHTML={{ __html: icon }} />
