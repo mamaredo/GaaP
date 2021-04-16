@@ -8,7 +8,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
   // ______________________________________________________
   //
-  const blogTemplate = path.resolve(`./src/containers/blog_templates/index.tsx`)
+  const blogTemplate = path.resolve(`./src/template/post-page.tsx`)
   const allPostData = await graphql(`
   {
     allContentfulBlogPost {
@@ -49,13 +49,13 @@ exports.createPages = async ({ graphql, actions }) => {
         path: `/post/${node.slug}`,
         component: blogTemplate,
         context: {
-          post: {
+          head: {
             title: node.title,
-            tag: {
-              tagName: node.tags,
-              svg: node.svgContent?.svg.content,
-            },
             date: node.updatedAt,
+          },
+          tag: {
+            tagName: node.tags?.[0],
+            svg: node.svgContent?.svg.content,
           },
           image: {
             fluid: node.heroImage.fluid,
