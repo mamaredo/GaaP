@@ -1,0 +1,11 @@
+.blog-index li {
+  @apply
+  mb-2
+  ;
+}
+
+.blog-index a {
+  @apply
+  py-1
+  ;
+}

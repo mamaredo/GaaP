@@ -1,17 +1,37 @@
-/**
- * SEO component that queries for data with
- *  Gatsby's useStaticQuery React hook
- *
- * See: https://www.gatsbyjs.com/docs/use-static-query/
- */
+import * as React from 'react'
+import { Helmet } from 'react-helmet'
+import { useStaticQuery, graphql } from 'gatsby'
 
-import * as React from "react"
-// import { Helmet } from "react-helmet"
-// import { useStaticQuery, graphql } from "gatsby"
-
-type Props = {
-  title: string
+type siteMetadata = {
+  site: {
+    siteMetadata: {
+      title?: string,
+      description?: string,
+    }
+  }
 }
 
-const SEO: React.FC<Props> = ({title}) => (<div>{title}</div>)
+const query = graphql`
+    query {
+      site {
+        siteMetadata {
+          title
+          description
+        }
+      }
+    }
+  `
+
+const SEO: React.FC = () => {
+  const { site }: siteMetadata = useStaticQuery(query)
+  return (
+    <Helmet>
+      <html lang="jp" />
+      <meta charSet="utf-8" />
+      <title>{site.siteMetadata.title}</title>
+      <meta name="description" content={site.siteMetadata.description} />
+    </Helmet>
+  )
+}
+
 export default SEO
