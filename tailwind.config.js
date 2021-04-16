@@ -7,7 +7,7 @@ module.exports = {
         'primary': '#60CAAD',
         'secondary': '#333333',
         'background': '#FAFAFA',
-        'tag-bg': '#FAFAFA',
+        'tag-bg': '#FFFFFF',
         'twitter': '#1DA1F2',
         'git-hub': '#24292E',
         'content-full': '#0E1E25'
