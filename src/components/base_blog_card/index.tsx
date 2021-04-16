@@ -33,7 +33,7 @@ const BaseBlogCard: React.FC<BaseBlogCardProps> = ({ style, frontmatter }) => {
             <p className="2xl:text-sm text-xs opacity-70">{frontmatter?.date || '2021-03-03'}</p>
           </div>
           <div className="flex flex-row-reverse">
-            <BlogTag icon="a" tagName="TAGNAME" style={['bg-tag-bg']} />
+            <BlogTag tag={{svg: '', tagName: 'TagName'}} />
           </div>
         </div>
       </div>
