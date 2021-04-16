@@ -10,7 +10,8 @@ module.exports = {
         'tag-bg': '#FFFFFF',
         'twitter': '#1DA1F2',
         'git-hub': '#24292E',
-        'content-full': '#0E1E25'
+        'content-full': '#0E1E25',
+        'hr': '#DADADA'
       },
       opacity: {
         '37': '0.37',
