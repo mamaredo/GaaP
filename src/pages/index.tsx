@@ -52,14 +52,16 @@ const Index: React.FC = () => {
             <div className="col-span-4">
               <ProfileCard />
 
-              <div className="w-full border-t border-black opacity-37 my-3"></div>
+              <hr className="w-full my-3 bg-hr" />
 
-              <div className="mb-2 text-xl font-bold opacity-70">タグ一覧</div>
-
+              <div className="mb-2 text-xl font-bold opacity-70">
+                タグ一覧
+              </div>
               <div className="flex">
                 <AllBlogTags />
               </div>
             </div>
+
           </div>
         </article>
       </div>
