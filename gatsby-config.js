@@ -5,6 +5,7 @@ require('dotenv').config({
 module.exports = {
   flags: {
     FAST_DEV: true,
+    DEV_SSR:false
   },
   siteMetadata: {
     title: `GaaP`,

@@ -83,7 +83,7 @@ exports.createPages = async ({ graphql, actions }) => {
     }
     `)
     const allTags = allTagsData.data.allContentfulBlogPost.edges.map(({node}) => node.tags[0])
-    const distinctTags = allTags.filter((el, i, self) => self.indexOf(el) === i)
+    const distinctTags = await allTags.filter((el, i, self) => self.indexOf(el) === i)
     distinctTags.forEach(tagName => {
       createPage({
         path: `tags/${tagName}`,
