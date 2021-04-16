@@ -3,6 +3,9 @@ require('dotenv').config({
 })
 
 module.exports = {
+  flags: {
+    FAST_DEV: true,
+  },
   siteMetadata: {
     title: `GaaP`,
     description: `blog to grow as a programmer.`,
