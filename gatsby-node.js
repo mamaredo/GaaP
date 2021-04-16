@@ -8,6 +8,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
   // ______________________________________________________
   //
+  /* ブログ記事のページを作成 */
   const blogTemplate = path.resolve(`./src/template/post-page.tsx`)
   const allPostData = await graphql(`
   {
@@ -70,6 +71,7 @@ exports.createPages = async ({ graphql, actions }) => {
     //
     // ______________________________________________________
     //
+    /* タグごとのページを作成 */
     const tagPageTemplate = path.resolve(`./src/template/tag-page.tsx`)
     const allTagsData = await graphql(`
     {
@@ -77,19 +79,41 @@ exports.createPages = async ({ graphql, actions }) => {
         edges {
           node {
             tags
+            svgContent {
+              svg {
+                content
+              }
+            }
           }
         }
       }
     }
     `)
-    const allTags = allTagsData.data.allContentfulBlogPost.edges.map(({node}) => node.tags[0])
-    const distinctTags = await allTags.filter((el, i, self) => self.indexOf(el) === i)
-    distinctTags.forEach(tagName => {
+    const allTags = allTagsData.data.allContentfulBlogPost.edges.map(({node}) => {
+      return {
+        tag: node.tags[0],
+        svg: node.svgContent?.svg.content || 'Non image'
+      }
+    })
+    const distinctTags = allTags.filter((el, i, self) => self.findIndex(e => e.tag === el.tag) === i)
+    /* タグごとの投稿数を含んだ配列を作成 */
+    const postForEachTagsData = distinctTags.map(el => {
+      const postCount = allTags.filter(e => el.tag === e.tag).length
+      return {
+        ...el,
+        postCount
+      }
+    })
+    postForEachTagsData.forEach(el => {
       createPage({
-        path: `tags/${tagName}`,
+        path: `tags/${el.tag}`,
         component: tagPageTemplate,
         context: {
-          tag: tagName
+          heading: {
+            tag: el.tag,
+            svg: el.svg,
+            postCount: el.postCount
+          }
         }
       })
     })

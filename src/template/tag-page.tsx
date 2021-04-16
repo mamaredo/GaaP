@@ -1,26 +1,31 @@
 import * as React from "react"
 import Layout from "../components/layout"
+import TagPageHeading from "../containers/tag_page_heading"
 import BlogCards from "../containers/blog_cards"
 import AllBlogTags from "../containers/all_blog_tags"
 
 
 // ______________________________________________________
 //
-export type TopPageProps = {
+export type TagPageProps = {
   pageContext: {
-    tag: string
+    heading: {
+      tag: string
+      svg: string,
+      postCount: number
+    }
   }
 }
 // ______________________________________________________
 //
 // ______________________________________________________
 //
-const TagPage: React.FC<TopPageProps> = ({ pageContext }) => {
-  const { tag } = pageContext
+const TagPage: React.FC<TagPageProps> = ({ pageContext }) => {
+  const { heading } = pageContext
   return (
     <Layout>
       <div className="w-full h-full">
-        <header>
+        <header className="h-80">
           this is tag-page.tsx
         </header>
         <article className="pb-20 px-1 bg-background">
@@ -37,17 +42,13 @@ const TagPage: React.FC<TopPageProps> = ({ pageContext }) => {
             "
             >
             <div className="md:col-span-8 col-span-4 w-full">
-              <div className="mb-3">
-                <h2 className="text-xl text-black text-opacity-90 font-extrabold">
-                  <span className="text-3xl">{tag}</span>
-                </h2>
-                <div className="mt-1 text-lg text-black text-opacity-70 font-medium">
-                  記事件数/ n件
-                </div>
+              <div className="text-center mt-3">
+                <TagPageHeading heading={heading} />
               </div>
 
               <div
                 className="
+                mt-3
                 md:col-span-8
                 col-span-4
                 grid
