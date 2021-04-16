@@ -1,22 +1,23 @@
 import * as React from "react"
+import { PostPageProps } from "../../template/post-page"
 import BaseBlogTag from "../../components/base_blog_tag"
 
 
 // ______________________________________________________
 //
-export type BlogTagProps = {
-  icon: string
-  tagName: string
+type BlogTagProps = {
+  tag: PostPageProps['pageContext']['tag']
   style?: string[]
 }
 // ______________________________________________________
 //
 // ______________________________________________________
 //
-const BlogTag: React.FC<BlogTagProps> = ({ icon, tagName, style }) => {
+const BlogTag: React.FC<BlogTagProps> = ({ tag, style }) => {
   /* logic */
+  const { tagName, svg } = tag
   return (
-    <BaseBlogTag icon={icon} tagName={tagName} inherentStyle={style} />
+    <BaseBlogTag icon={svg} tagName={tagName} inherentStyle={style} />
   )
 }
 // ______________________________________________________
