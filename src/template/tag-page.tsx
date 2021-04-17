@@ -1,27 +1,27 @@
 import * as React from "react"
 import Layout from "../components/layout"
-import TagPageHeading from "../containers/tag_page_heading"
-import BlogCards from "../containers/blog_cards"
+import TagPageHeading, { TagPageHeadingProps } from "../containers/tag_page_heading"
+import { TagInfoType } from "../containers/blog_tag"
+import BlogCards, { BlogCardsType } from "../containers/blog_cards"
 import AllBlogTags from "../containers/all_blog_tags"
 
 
 // ______________________________________________________
 //
-export type TagPageProps = {
-  pageContext: {
-    heading: {
-      tag: string
-      svg: string,
-      postCount: number
-    }
-  }
+type TagPageProps = {
+  pageContext: 
+  & TagInfoType['tagInfo']
+  & TagPageHeadingProps['heading']
+  & BlogCardsType
 }
 // ______________________________________________________
 //
 // ______________________________________________________
 //
 const TagPage: React.FC<TagPageProps> = ({ pageContext }) => {
-  const { heading } = pageContext
+  const { tag, svg, postCount } = pageContext
+  const heading = { tag, svg, postCount }
+  const { blogCardInfo } = pageContext
   return (
     <Layout>
       <div className="w-full h-full">
@@ -58,10 +58,7 @@ const TagPage: React.FC<TagPageProps> = ({ pageContext }) => {
                 gap-2
                 "
               >
-                <BlogCards />
-                <BlogCards />
-                <BlogCards />
-                <BlogCards />
+                <BlogCards tag={tag} svg={svg} blogCardInfo={blogCardInfo} />
               </div>
 
               <hr className="my-5 w-full bg-hr" />
