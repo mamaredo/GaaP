@@ -54,8 +54,8 @@ exports.createPages = async ({ graphql, actions }) => {
             title: node.title,
             date: node.updatedAt,
           },
-          tag: {
-            tagName: node.tags?.[0],
+          tagInfo: {
+            tag: node.tags?.[0],
             svg: node.svgContent?.svg.content,
           },
           image: {
@@ -78,6 +78,9 @@ exports.createPages = async ({ graphql, actions }) => {
       allContentfulBlogPost {
         edges {
           node {
+            slug
+            title
+            updatedAt(formatString: "YYYY-MM-DD")
             tags
             svgContent {
               svg {
@@ -95,6 +98,14 @@ exports.createPages = async ({ graphql, actions }) => {
         svg: node.svgContent?.svg.content || 'Non image'
       }
     })
+    const allBlogCardInfo = allTagsData.data.allContentfulBlogPost.edges.map(({node}) => {
+      return {
+        tag: node.tags[0],
+        slug: node.slug,
+        title: node.title,
+        date: node.updatedAt,
+      }
+    })
     const distinctTags = allTags.filter((el, i, self) => self.findIndex(e => e.tag === el.tag) === i)
     /* タグごとの投稿数を含んだ配列を作成 */
     const postForEachTagsData = distinctTags.map(el => {
@@ -105,15 +116,15 @@ exports.createPages = async ({ graphql, actions }) => {
       }
     })
     postForEachTagsData.forEach(el => {
+      const blogCardInfo = allBlogCardInfo.filter(e => el.tag === e.tag)
       createPage({
         path: `tags/${el.tag}`,
         component: tagPageTemplate,
         context: {
-          heading: {
-            tag: el.tag,
-            svg: el.svg,
-            postCount: el.postCount
-          }
+          tag: el.tag,
+          svg: el.svg,
+          postCount: el.postCount,
+          blogCardInfo: blogCardInfo
         }
       })
     })

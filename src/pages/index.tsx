@@ -1,6 +1,6 @@
 import * as React from "react"
 import Layout from "../components/layout"
-import BlogCards from "../containers/blog_cards"
+import AllBlogCards from "../containers/all_blog_cards"
 import ProfileCard from "../containers/profile_card"
 import AllBlogTags from "../containers/all_blog_tags"
 
@@ -43,10 +43,7 @@ const Index: React.FC = () => {
                 gap-2
               "
             >
-              <BlogCards />
-              <BlogCards />
-              <BlogCards />
-              <BlogCards />
+              <AllBlogCards />
             </div>
 
             <div className="col-span-4">

@@ -4,7 +4,7 @@ import BaseNavigation from "../components/base_navigation"
 import BlogHead from "../containers/blog_head"
 import BlogHeroImage from "../containers/blog_hero_image"
 import BlogIndex from "../containers/blog_index"
-import BlogTag from "../containers/blog_tag"
+import BlogTag, { TagInfoType } from "../containers/blog_tag"
 import Layout from "../components/layout"
 import "../css/blog-template.css"
 
@@ -17,17 +17,13 @@ export type PostPageProps = {
       title: string
       date: string
     }
-    tag: {
-      tagName: string
-      svg: string
-    }
     image: {
       fluid: FluidObject
       alt?: string
     }
     body: string
     postIndex: string
-  }
+  } & TagInfoType
 }
 // ______________________________________________________
 //
@@ -36,7 +32,7 @@ export type PostPageProps = {
 const PostPage: React.FC<PostPageProps> = ({ pageContext }) => {
   const {
     head,
-    tag,
+    tagInfo,
     image,
     body,
     postIndex
@@ -74,7 +70,7 @@ const PostPage: React.FC<PostPageProps> = ({ pageContext }) => {
             <div className="xl:fixed xl:min-w-blog-index-fixed xl:max-w-blog-index-fixed w-full">
               <BlogIndex postIndex={postIndex} />
               <div className="mt-3 flex">
-                <BlogTag tag={tag} style={tagStyle} />
+                <BlogTag tagInfo={tagInfo} style={tagStyle} />
               </div>
             </div>
           </div>

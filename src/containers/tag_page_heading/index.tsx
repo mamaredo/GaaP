@@ -1,12 +1,11 @@
 import * as React from "react"
-import { TagPageProps } from "../../template/tag-page"
-import BaseTagPageHeading from "../../components/base_tag_page_heading"
+import BaseTagPageHeading, { BaseTagPageHeadingProps } from "../../components/base_tag_page_heading"
 
 
 // ______________________________________________________
 //
-type TagPageHeadingProps = {
-  heading: TagPageProps['pageContext']['heading']
+export type TagPageHeadingProps = {
+  heading: BaseTagPageHeadingProps
 }
 // ______________________________________________________
 //
@@ -14,7 +13,7 @@ type TagPageHeadingProps = {
 //
 const TagPageHeading: React.FC<TagPageHeadingProps> = ({ heading }) => {
   const { tag, svg, postCount } = heading
-  return <BaseTagPageHeading tag={tag} icon={svg} postCount={postCount} />
+  return <BaseTagPageHeading tag={tag} svg={svg} postCount={postCount} />
 }
 // ______________________________________________________
 //

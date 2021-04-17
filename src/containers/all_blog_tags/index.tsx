@@ -2,10 +2,7 @@ import * as React from "react"
 import BaseBlogTag from "../../components/base_blog_tag"
 import { useAllBlogTagsQuery } from "./query"
 
-// ______________________________________________________
-//
-// ______________________________________________________
-//
+
 // ______________________________________________________
 //
 const AllBlogTags: React.FC = () => {
@@ -23,9 +20,9 @@ const AllBlogTags: React.FC = () => {
       distinctTags.map((el, index) => (
         <div className='mr-2' key={index}>
           <BaseBlogTag
-            icon={el.icon || ''}
-            tagName={el.tag || 'TAGNAME'}
-            inherentStyle={style}
+            svg={el.icon || ''}
+            tag={el.tag || 'TAGNAME'}
+            style={style}
           />
         </div>
       ))

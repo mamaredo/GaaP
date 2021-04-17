@@ -306,11 +306,14 @@ type SitePage = Node & {
 
 type SitePageContext = {
   readonly head: Maybe<SitePageContextHead>;
-  readonly tag: Maybe<SitePageContextTag>;
+  readonly tagInfo: Maybe<SitePageContextTagInfo>;
   readonly image: Maybe<SitePageContextImage>;
   readonly body: Maybe<Scalars['String']>;
   readonly postIndex: Maybe<Scalars['String']>;
-  readonly heading: Maybe<SitePageContextHeading>;
+  readonly tag: Maybe<Scalars['String']>;
+  readonly svg: Maybe<Scalars['String']>;
+  readonly postCount: Maybe<Scalars['Int']>;
+  readonly blogCardInfo: Maybe<ReadonlyArray<Maybe<SitePageContextBlogCardInfo>>>;
 };
 
 type SitePageContextHead = {
@@ -318,8 +321,8 @@ type SitePageContextHead = {
   readonly date: Maybe<Scalars['Date']>;
 };
 
-type SitePageContextTag = {
-  readonly tagName: Maybe<Scalars['String']>;
+type SitePageContextTagInfo = {
+  readonly tag: Maybe<Scalars['String']>;
   readonly svg: Maybe<Scalars['String']>;
 };
 
@@ -336,10 +339,11 @@ type SitePageContextImageFluid = {
   readonly sizes: Maybe<Scalars['String']>;
 };
 
-type SitePageContextHeading = {
+type SitePageContextBlogCardInfo = {
   readonly tag: Maybe<Scalars['String']>;
-  readonly svg: Maybe<Scalars['String']>;
-  readonly postCount: Maybe<Scalars['Int']>;
+  readonly slug: Maybe<Scalars['String']>;
+  readonly title: Maybe<Scalars['String']>;
+  readonly date: Maybe<Scalars['Date']>;
 };
 
 type ImageFormat =
@@ -2590,11 +2594,14 @@ type SiteSortInput = {
 
 type SitePageContextFilterInput = {
   readonly head: Maybe<SitePageContextHeadFilterInput>;
-  readonly tag: Maybe<SitePageContextTagFilterInput>;
+  readonly tagInfo: Maybe<SitePageContextTagInfoFilterInput>;
   readonly image: Maybe<SitePageContextImageFilterInput>;
   readonly body: Maybe<StringQueryOperatorInput>;
   readonly postIndex: Maybe<StringQueryOperatorInput>;
-  readonly heading: Maybe<SitePageContextHeadingFilterInput>;
+  readonly tag: Maybe<StringQueryOperatorInput>;
+  readonly svg: Maybe<StringQueryOperatorInput>;
+  readonly postCount: Maybe<IntQueryOperatorInput>;
+  readonly blogCardInfo: Maybe<SitePageContextBlogCardInfoFilterListInput>;
 };
 
 type SitePageContextHeadFilterInput = {
@@ -2602,8 +2609,8 @@ type SitePageContextHeadFilterInput = {
   readonly date: Maybe<DateQueryOperatorInput>;
 };
 
-type SitePageContextTagFilterInput = {
-  readonly tagName: Maybe<StringQueryOperatorInput>;
+type SitePageContextTagInfoFilterInput = {
+  readonly tag: Maybe<StringQueryOperatorInput>;
   readonly svg: Maybe<StringQueryOperatorInput>;
 };
 
@@ -2620,10 +2627,15 @@ type SitePageContextImageFluidFilterInput = {
   readonly sizes: Maybe<StringQueryOperatorInput>;
 };
 
-type SitePageContextHeadingFilterInput = {
+type SitePageContextBlogCardInfoFilterListInput = {
+  readonly elemMatch: Maybe<SitePageContextBlogCardInfoFilterInput>;
+};
+
+type SitePageContextBlogCardInfoFilterInput = {
   readonly tag: Maybe<StringQueryOperatorInput>;
-  readonly svg: Maybe<StringQueryOperatorInput>;
-  readonly postCount: Maybe<IntQueryOperatorInput>;
+  readonly slug: Maybe<StringQueryOperatorInput>;
+  readonly title: Maybe<StringQueryOperatorInput>;
+  readonly date: Maybe<DateQueryOperatorInput>;
 };
 
 type SitePluginFilterInput = {
@@ -2875,8 +2887,8 @@ type SitePageFieldsEnum =
   | 'isCreatedByStatefulCreatePages'
   | 'context.head.title'
   | 'context.head.date'
-  | 'context.tag.tagName'
-  | 'context.tag.svg'
+  | 'context.tagInfo.tag'
+  | 'context.tagInfo.svg'
   | 'context.image.fluid.base64'
   | 'context.image.fluid.aspectRatio'
   | 'context.image.fluid.src'
@@ -2885,9 +2897,14 @@ type SitePageFieldsEnum =
   | 'context.image.alt'
   | 'context.body'
   | 'context.postIndex'
-  | 'context.heading.tag'
-  | 'context.heading.svg'
-  | 'context.heading.postCount'
+  | 'context.tag'
+  | 'context.svg'
+  | 'context.postCount'
+  | 'context.blogCardInfo'
+  | 'context.blogCardInfo.tag'
+  | 'context.blogCardInfo.slug'
+  | 'context.blogCardInfo.title'
+  | 'context.blogCardInfo.date'
   | 'pluginCreator.id'
   | 'pluginCreator.parent.id'
   | 'pluginCreator.parent.parent.id'
@@ -7133,6 +7150,26 @@ type AllBlogTagsQuery = { readonly allContentfulBlogPost: { readonly edges: Read
         & { readonly svgContent: Maybe<{ readonly svg: Maybe<Pick<InlineSvg, 'content'>> }> }
       ) }> } };
 
+type GatsbyContentfulFixedFragment = Pick<ContentfulFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
+
+type GatsbyContentfulFixed_tracedSVGFragment = Pick<ContentfulFixed, 'tracedSVG' | 'width' | 'height' | 'src' | 'srcSet'>;
+
+type GatsbyContentfulFixed_noBase64Fragment = Pick<ContentfulFixed, 'width' | 'height' | 'src' | 'srcSet'>;
+
+type GatsbyContentfulFixed_withWebpFragment = Pick<ContentfulFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
+
+type GatsbyContentfulFixed_withWebp_noBase64Fragment = Pick<ContentfulFixed, 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
+
+type GatsbyContentfulFluidFragment = Pick<ContentfulFluid, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
+
+type GatsbyContentfulFluid_tracedSVGFragment = Pick<ContentfulFluid, 'tracedSVG' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
+
+type GatsbyContentfulFluid_noBase64Fragment = Pick<ContentfulFluid, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
+
+type GatsbyContentfulFluid_withWebpFragment = Pick<ContentfulFluid, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
+
+type GatsbyContentfulFluid_withWebp_noBase64Fragment = Pick<ContentfulFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
+
 type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
 type GatsbyImageSharpFixed_tracedSVGFragment = Pick<ImageSharpFixed, 'tracedSVG' | 'width' | 'height' | 'src' | 'srcSet'>;
@@ -7159,24 +7196,12 @@ type GatsbyImageSharpFluid_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio
 
 type GatsbyImageSharpFluid_withWebp_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
 
-type GatsbyContentfulFixedFragment = Pick<ContentfulFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
+type AllBlogPostsQueryVariables = Exact<{ [key: string]: never; }>;
 
-type GatsbyContentfulFixed_tracedSVGFragment = Pick<ContentfulFixed, 'tracedSVG' | 'width' | 'height' | 'src' | 'srcSet'>;
 
-type GatsbyContentfulFixed_noBase64Fragment = Pick<ContentfulFixed, 'width' | 'height' | 'src' | 'srcSet'>;
-
-type GatsbyContentfulFixed_withWebpFragment = Pick<ContentfulFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
-
-type GatsbyContentfulFixed_withWebp_noBase64Fragment = Pick<ContentfulFixed, 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
-
-type GatsbyContentfulFluidFragment = Pick<ContentfulFluid, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
-
-type GatsbyContentfulFluid_tracedSVGFragment = Pick<ContentfulFluid, 'tracedSVG' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
-
-type GatsbyContentfulFluid_noBase64Fragment = Pick<ContentfulFluid, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
-
-type GatsbyContentfulFluid_withWebpFragment = Pick<ContentfulFluid, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
-
-type GatsbyContentfulFluid_withWebp_noBase64Fragment = Pick<ContentfulFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
+type AllBlogPostsQuery = { readonly allContentfulBlogPost: { readonly edges: ReadonlyArray<{ readonly node: (
+        Pick<ContentfulBlogPost, 'tags' | 'slug' | 'title' | 'updatedAt'>
+        & { readonly svgContent: Maybe<{ readonly svg: Maybe<Pick<InlineSvg, 'content'>> }> }
+      ) }> } };
 
 }

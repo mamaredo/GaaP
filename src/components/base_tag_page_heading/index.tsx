@@ -3,18 +3,18 @@ import * as React from "react"
 
 // ______________________________________________________
 //
-type BaseTagPageHeadingProps = {
+export type BaseTagPageHeadingProps = {
   tag: string
-  icon: string
-  postCount: number
+  svg: string
+  postCount: string
 }
 // ______________________________________________________
 //
 // ______________________________________________________
 //
-const BaseTagPageHeading: React.FC<BaseTagPageHeadingProps> = ({ tag, icon, postCount }) => (
+const BaseTagPageHeading: React.FC<BaseTagPageHeadingProps> = ({ tag, svg, postCount }) => (
   <>
-    <div className="w-7 h-7 mb-1 mx-auto" dangerouslySetInnerHTML={{ __html: icon }} />
+    <div className="w-7 h-7 mb-1 mx-auto" dangerouslySetInnerHTML={{ __html: svg }} />
     <h2 className="text-4xl text-black text-opacity-90 font-extrabold">
       {tag}
     </h2>

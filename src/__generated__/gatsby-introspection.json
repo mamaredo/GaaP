@@ -2829,12 +2829,12 @@
             "deprecationReason": null
           },
           {
-            "name": "tag",
+            "name": "tagInfo",
             "description": null,
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "SitePageContextTag",
+              "name": "SitePageContextTagInfo",
               "ofType": null
             },
             "isDeprecated": false,
@@ -2877,13 +2877,53 @@
             "deprecationReason": null
           },
           {
-            "name": "heading",
+            "name": "tag",
             "description": null,
             "args": [],
             "type": {
-              "kind": "OBJECT",
-              "name": "SitePageContextHeading",
+              "kind": "SCALAR",
+              "name": "String",
               "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "svg",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "postCount",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "blogCardInfo",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "SitePageContextBlogCardInfo",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -2932,12 +2972,12 @@
       },
       {
         "kind": "OBJECT",
-        "name": "SitePageContextTag",
+        "name": "SitePageContextTagInfo",
         "description": null,
         "specifiedByUrl": null,
         "fields": [
           {
-            "name": "tagName",
+            "name": "tag",
             "description": null,
             "args": [],
             "type": {
@@ -3076,7 +3116,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "SitePageContextHeading",
+        "name": "SitePageContextBlogCardInfo",
         "description": null,
         "specifiedByUrl": null,
         "fields": [
@@ -3093,7 +3133,7 @@
             "deprecationReason": null
           },
           {
-            "name": "svg",
+            "name": "slug",
             "description": null,
             "args": [],
             "type": {
@@ -3105,12 +3145,24 @@
             "deprecationReason": null
           },
           {
-            "name": "postCount",
+            "name": "title",
             "description": null,
             "args": [],
             "type": {
               "kind": "SCALAR",
-              "name": "Int",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "date",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Date",
               "ofType": null
             },
             "isDeprecated": false,
@@ -22349,11 +22401,11 @@
             "deprecationReason": null
           },
           {
-            "name": "tag",
+            "name": "tagInfo",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "SitePageContextTagFilterInput",
+              "name": "SitePageContextTagInfoFilterInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -22397,11 +22449,47 @@
             "deprecationReason": null
           },
           {
-            "name": "heading",
+            "name": "tag",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "SitePageContextHeadingFilterInput",
+              "name": "StringQueryOperatorInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "svg",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "StringQueryOperatorInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "postCount",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "IntQueryOperatorInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "blogCardInfo",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "SitePageContextBlogCardInfoFilterListInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -22451,13 +22539,13 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "SitePageContextTagFilterInput",
+        "name": "SitePageContextTagInfoFilterInput",
         "description": null,
         "specifiedByUrl": null,
         "fields": null,
         "inputFields": [
           {
-            "name": "tagName",
+            "name": "tag",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -22595,7 +22683,31 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "SitePageContextHeadingFilterInput",
+        "name": "SitePageContextBlogCardInfoFilterListInput",
+        "description": null,
+        "specifiedByUrl": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "elemMatch",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "SitePageContextBlogCardInfoFilterInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "SitePageContextBlogCardInfoFilterInput",
         "description": null,
         "specifiedByUrl": null,
         "fields": null,
@@ -22613,7 +22725,7 @@
             "deprecationReason": null
           },
           {
-            "name": "svg",
+            "name": "slug",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -22625,11 +22737,23 @@
             "deprecationReason": null
           },
           {
-            "name": "postCount",
+            "name": "title",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "IntQueryOperatorInput",
+              "name": "StringQueryOperatorInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "date",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "DateQueryOperatorInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -24653,13 +24777,13 @@
             "deprecationReason": null
           },
           {
-            "name": "context___tag___tagName",
+            "name": "context___tagInfo___tag",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "context___tag___svg",
+            "name": "context___tagInfo___svg",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -24713,19 +24837,49 @@
             "deprecationReason": null
           },
           {
-            "name": "context___heading___tag",
+            "name": "context___tag",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "context___heading___svg",
+            "name": "context___svg",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "context___heading___postCount",
+            "name": "context___postCount",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "context___blogCardInfo",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "context___blogCardInfo___tag",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "context___blogCardInfo___slug",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "context___blogCardInfo___title",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "context___blogCardInfo___date",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
