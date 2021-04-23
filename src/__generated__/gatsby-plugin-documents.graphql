@@ -1,86 +1,3 @@
-fragment GatsbyContentfulFixed on ContentfulFixed {
-  base64
-  width
-  height
-  src
-  srcSet
-}
-
-fragment GatsbyContentfulFixed_tracedSVG on ContentfulFixed {
-  tracedSVG
-  width
-  height
-  src
-  srcSet
-}
-
-fragment GatsbyContentfulFixed_noBase64 on ContentfulFixed {
-  width
-  height
-  src
-  srcSet
-}
-
-fragment GatsbyContentfulFixed_withWebp on ContentfulFixed {
-  base64
-  width
-  height
-  src
-  srcSet
-  srcWebp
-  srcSetWebp
-}
-
-fragment GatsbyContentfulFixed_withWebp_noBase64 on ContentfulFixed {
-  width
-  height
-  src
-  srcSet
-  srcWebp
-  srcSetWebp
-}
-
-fragment GatsbyContentfulFluid on ContentfulFluid {
-  base64
-  aspectRatio
-  src
-  srcSet
-  sizes
-}
-
-fragment GatsbyContentfulFluid_tracedSVG on ContentfulFluid {
-  tracedSVG
-  aspectRatio
-  src
-  srcSet
-  sizes
-}
-
-fragment GatsbyContentfulFluid_noBase64 on ContentfulFluid {
-  aspectRatio
-  src
-  srcSet
-  sizes
-}
-
-fragment GatsbyContentfulFluid_withWebp on ContentfulFluid {
-  base64
-  aspectRatio
-  src
-  srcSet
-  srcWebp
-  srcSetWebp
-  sizes
-}
-
-fragment GatsbyContentfulFluid_withWebp_noBase64 on ContentfulFluid {
-  aspectRatio
-  src
-  srcSet
-  srcWebp
-  srcSetWebp
-  sizes
-}
 fragment GatsbyImageSharpFixed on ImageSharpFixed {
   base64
   width
@@ -182,6 +99,89 @@ fragment GatsbyImageSharpFluid_noBase64 on ImageSharpFluid {
 }
 
 fragment GatsbyImageSharpFluid_withWebp_noBase64 on ImageSharpFluid {
+  aspectRatio
+  src
+  srcSet
+  srcWebp
+  srcSetWebp
+  sizes
+}
+fragment GatsbyContentfulFixed on ContentfulFixed {
+  base64
+  width
+  height
+  src
+  srcSet
+}
+
+fragment GatsbyContentfulFixed_tracedSVG on ContentfulFixed {
+  tracedSVG
+  width
+  height
+  src
+  srcSet
+}
+
+fragment GatsbyContentfulFixed_noBase64 on ContentfulFixed {
+  width
+  height
+  src
+  srcSet
+}
+
+fragment GatsbyContentfulFixed_withWebp on ContentfulFixed {
+  base64
+  width
+  height
+  src
+  srcSet
+  srcWebp
+  srcSetWebp
+}
+
+fragment GatsbyContentfulFixed_withWebp_noBase64 on ContentfulFixed {
+  width
+  height
+  src
+  srcSet
+  srcWebp
+  srcSetWebp
+}
+
+fragment GatsbyContentfulFluid on ContentfulFluid {
+  base64
+  aspectRatio
+  src
+  srcSet
+  sizes
+}
+
+fragment GatsbyContentfulFluid_tracedSVG on ContentfulFluid {
+  tracedSVG
+  aspectRatio
+  src
+  srcSet
+  sizes
+}
+
+fragment GatsbyContentfulFluid_noBase64 on ContentfulFluid {
+  aspectRatio
+  src
+  srcSet
+  sizes
+}
+
+fragment GatsbyContentfulFluid_withWebp on ContentfulFluid {
+  base64
+  aspectRatio
+  src
+  srcSet
+  srcWebp
+  srcSetWebp
+  sizes
+}
+
+fragment GatsbyContentfulFluid_withWebp_noBase64 on ContentfulFluid {
   aspectRatio
   src
   srcSet
