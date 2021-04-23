@@ -6,8 +6,7 @@ import { useAllBlogTagsQuery } from "./query"
 // ______________________________________________________
 //
 const AllBlogTags: React.FC = () => {
-  /* logic */
-  const style = ['shadow']
+  const style = ['shadow', 'bg-white']
   const { edges } = useAllBlogTagsQuery()
   const allTags = edges.map(el => ({
     icon: el.node.svgContent?.svg?.content,
