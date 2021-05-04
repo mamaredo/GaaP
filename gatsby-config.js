@@ -59,6 +59,12 @@ module.exports = {
               icon: false
             },
           },
+          {
+            resolve: `gatsby-remark-external-links`,
+            options: {
+              rel: `noopener noreferrer`,
+            },
+          },
         ],
       },
     },
@@ -81,7 +87,17 @@ module.exports = {
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
         // host: `preview.contentful.com`
       }
-    }
+    },
+    {
+      resolve: `gatsby-remark-prismjs`,
+      options: {
+        classPrefix: "language-",
+        inlineCodeMarker: null,
+        aliases: {},
+        showLineNumbers: true,
+        noInlineHighlight: false,
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
