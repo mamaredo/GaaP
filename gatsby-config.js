@@ -22,13 +22,6 @@ module.exports = {
         path: `${__dirname}/src/content/images`,
       },
     },
-    // {
-    //   resolve: `gatsby-source-filesystem`,
-    //   options: {
-    //     name: `posts`,
-    //     path: `${__dirname}/src/content/posts`,
-    //   },
-    // },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
@@ -59,6 +52,12 @@ module.exports = {
               icon: false
             },
           },
+          {
+            resolve: `gatsby-remark-external-links`,
+            options: {
+              rel: `noopener noreferrer`,
+            },
+          },
         ],
       },
     },
@@ -81,7 +80,7 @@ module.exports = {
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
         // host: `preview.contentful.com`
       }
-    }
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

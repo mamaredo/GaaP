@@ -1,0 +1,27 @@
+import { graphql, useStaticQuery } from "gatsby"
+
+
+// ______________________________________________________
+//
+export const useProfileQuery = () => {
+  const { contentfulProfile } = useStaticQuery<GatsbyTypes.ProfileQuery>(
+    graphql`
+      query Profile {
+        contentfulProfile {
+          name
+          bio {
+            childrenMarkdownRemark {
+              html
+            }
+          }
+          twitter
+          gitHub
+          contact
+        }
+      }
+    `
+  )
+  return contentfulProfile
+}
+// ______________________________________________________
+//
