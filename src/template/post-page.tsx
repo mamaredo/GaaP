@@ -7,8 +7,8 @@ import BlogIndex from "../containers/blog_index"
 import BlogTag, { TagInfoType } from "../containers/blog_tag"
 import Layout from "../components/layout"
 import "../css/blog-template.css"
-// import Prism from "prismjs/prism.js"
-// import 'prismjs/themes/prism.css'
+import Prism from 'prismjs'
+import 'prismjs/themes/prism-okaidia.css'
 
 
 // ______________________________________________________
@@ -32,9 +32,9 @@ export type PostPageProps = {
 // ______________________________________________________
 //
 const PostPage: React.FC<PostPageProps> = ({ pageContext }) => {
-  // React.useEffect(() => {
-  //   Prism
-  // })
+  React.useEffect(() => {
+    Prism.highlightAll()
+  },[])
   const {
     head,
     tagInfo,
