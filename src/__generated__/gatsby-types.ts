@@ -1236,9 +1236,6 @@ type SitePluginPluginOptions = {
   readonly pageLimit: Maybe<Scalars['Int']>;
   readonly assetDownloadWorkers: Maybe<Scalars['Int']>;
   readonly useNameForId: Maybe<Scalars['Boolean']>;
-  readonly classPrefix: Maybe<Scalars['String']>;
-  readonly showLineNumbers: Maybe<Scalars['Boolean']>;
-  readonly noInlineHighlight: Maybe<Scalars['Boolean']>;
   readonly pathCheck: Maybe<Scalars['Boolean']>;
 };
 
@@ -2825,9 +2822,6 @@ type SitePluginPluginOptionsFilterInput = {
   readonly pageLimit: Maybe<IntQueryOperatorInput>;
   readonly assetDownloadWorkers: Maybe<IntQueryOperatorInput>;
   readonly useNameForId: Maybe<BooleanQueryOperatorInput>;
-  readonly classPrefix: Maybe<StringQueryOperatorInput>;
-  readonly showLineNumbers: Maybe<BooleanQueryOperatorInput>;
-  readonly noInlineHighlight: Maybe<BooleanQueryOperatorInput>;
   readonly pathCheck: Maybe<BooleanQueryOperatorInput>;
 };
 
@@ -3129,9 +3123,6 @@ type SitePageFieldsEnum =
   | 'pluginCreator.pluginOptions.pageLimit'
   | 'pluginCreator.pluginOptions.assetDownloadWorkers'
   | 'pluginCreator.pluginOptions.useNameForId'
-  | 'pluginCreator.pluginOptions.classPrefix'
-  | 'pluginCreator.pluginOptions.showLineNumbers'
-  | 'pluginCreator.pluginOptions.noInlineHighlight'
   | 'pluginCreator.pluginOptions.pathCheck'
   | 'pluginCreator.nodeAPIs'
   | 'pluginCreator.browserAPIs'
@@ -7970,9 +7961,6 @@ type SitePluginFieldsEnum =
   | 'pluginOptions.pageLimit'
   | 'pluginOptions.assetDownloadWorkers'
   | 'pluginOptions.useNameForId'
-  | 'pluginOptions.classPrefix'
-  | 'pluginOptions.showLineNumbers'
-  | 'pluginOptions.noInlineHighlight'
   | 'pluginOptions.pathCheck'
   | 'nodeAPIs'
   | 'browserAPIs'
@@ -8030,6 +8018,14 @@ type AllBlogPostsQuery = { readonly allContentfulBlogPost: { readonly edges: Rea
         Pick<ContentfulBlogPost, 'tags' | 'slug' | 'title' | 'updatedAt'>
         & { readonly svgContent: Maybe<{ readonly svg: Maybe<Pick<InlineSvg, 'content'>> }> }
       ) }> } };
+
+type ProfileQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type ProfileQuery = { readonly contentfulProfile: Maybe<(
+    Pick<ContentfulProfile, 'name' | 'twitter' | 'gitHub' | 'contact'>
+    & { readonly bio: Maybe<{ readonly childrenMarkdownRemark: Maybe<ReadonlyArray<Maybe<Pick<MarkdownRemark, 'html'>>>> }> }
+  )> };
 
 type AllBlogTagsQueryVariables = Exact<{ [key: string]: never; }>;
 
