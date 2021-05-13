@@ -1,22 +1,22 @@
 import * as React from "react"
 import { PostPageProps } from "../../template/post-page"
-import BaseBlogHeroImage from "../../components/base_blog_hero_image"
+import BaseBlogHead from "../../components/base-blog-head"
 
 
 // ______________________________________________________
 //
-type BlogHeroImageProps = {
-  image: PostPageProps['pageContext']['image']
+type BlogHeadProps = {
+  head: PostPageProps['pageContext']['head']
 }
 // ______________________________________________________
 //
 // ______________________________________________________
 //
-const BlogHeroImage: React.FC<BlogHeroImageProps> = ({ image }) => {
+const BlogHead: React.FC<BlogHeadProps> = ({ head }) => {
   /* Logic */
-  const { fluid, alt } = image
-  return (<BaseBlogHeroImage fluid={fluid} alt={alt} />)
+  const { date, title } = head
+  return (<BaseBlogHead date={date} title={title} />)
 }
 // ______________________________________________________
 //
-export default BlogHeroImage
+export default BlogHead

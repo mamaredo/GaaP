@@ -1,22 +1,22 @@
 import * as React from "react"
 import { PostPageProps } from "../../template/post-page"
-import BaseBlogHead from "../../components/base_blog_head"
+import BaseBlogIndex from "../../components/base-blog-index/index"
 
 
 // ______________________________________________________
 //
-type BlogHeadProps = {
-  head: PostPageProps['pageContext']['head']
+type BlogIndexProps = {
+  postIndex: PostPageProps['pageContext']['postIndex']
 }
 // ______________________________________________________
 //
 // ______________________________________________________
 //
-const BlogHead: React.FC<BlogHeadProps> = ({ head }) => {
-  /* Logic */
-  const { date, title } = head
-  return (<BaseBlogHead date={date} title={title} />)
+const BlogIndex: React.FC<BlogIndexProps> = ({ postIndex }) => {
+  return (
+    <BaseBlogIndex postIndex={postIndex} />
+  )
 }
 // ______________________________________________________
 //
-export default BlogHead
+export default BlogIndex

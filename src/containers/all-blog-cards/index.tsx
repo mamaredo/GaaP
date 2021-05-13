@@ -1,6 +1,6 @@
 import * as React from "react"
 import { useAllBlogPostsQuery } from "./query"
-import BaseBlogCard from "../../components/base_blog_card"
+import BaseBlogCard from "../../components/base-blog-card"
 
 
 
