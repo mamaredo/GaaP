@@ -1,9 +1,9 @@
 import * as React from "react"
 import Layout from "../components/layout"
 import TagPageHeading, { TagPageHeadingProps } from "../containers/tag-page-heading"
-import { TagInfoType } from "../containers/blog_tag"
+import { TagInfoType } from "../containers/blog-tag"
 import BlogCards, { BlogCardsType } from "../containers/blog-cards"
-import AllBlogTags from "../containers/all_blog_tags"
+import AllBlogTags from "../containers/all-blog-tags"
 
 
 // ______________________________________________________

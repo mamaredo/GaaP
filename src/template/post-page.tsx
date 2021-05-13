@@ -4,7 +4,7 @@ import BaseNavigation from "../components/base-navigation"
 import BlogHead from "../containers/blog-head"
 import BlogHeroImage from "../containers/blog-hero-image"
 import BlogIndex from "../containers/blog-index/index"
-import BlogTag, { TagInfoType } from "../containers/blog_tag"
+import BlogTag, { TagInfoType } from "../containers/blog-tag"
 import Layout from "../components/layout"
 import "../css/blog-template.css"
 import Prism from 'prismjs'
