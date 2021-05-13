@@ -3,7 +3,6 @@
   xl:text-3xl
   md:text-2xl
   text-xl
-  
   ;
 }
 
@@ -21,16 +20,17 @@
   mb-3
   font-bold
   text-black
-  text-opacity-90;
+  text-opacity-90
+  ;
 }
 
 .contentfull h2::before {
-  content: "#";
+  content: "##";
   @apply
   xl:text-3xl
   md:text-2xl
   text-xl
-  mr-1
+  mr-2
   text-primary
 }
 
