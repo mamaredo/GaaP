@@ -1,13 +1,20 @@
 import * as React from "react"
 
-const BaseNavigation: React.FC = () => {
+// ______________________________________________________
+//
+const BaseNavigation: React.VFC = () => {
   return (
-    <nav className="w-full h-20 flex items-center justify-center bg-background">
-      <h1 className="text-3xl">
-        GaaP
-      </h1>
-    </nav>
+    <div className="w-full h-7">
+      <nav className="w-full h-7 flex items-center bg-primary shadow-md fixed z-20">
+        <div className="flex items-centeer justify-between box-border xl:px-3 px-2 2xl:max-w-2xl lg:max-w-xl max-w-md w-full mx-auto">
+          <h1 className="block text-2xl leading-10 text-black text-opacity-90 font-black">
+            GaaP
+          </h1>
+        </div>
+      </nav>
+    </div>
   )
 }
-
+// ______________________________________________________
+//
 export default BaseNavigation
