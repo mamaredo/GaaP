@@ -1,4 +1,4 @@
-import * as React from "react"
+import React, { useState } from "react"
 import { PostPageProps } from "../../template/post-page"
 import BaseBlogIndex from "../../components/base-blog-index/index"
 
@@ -12,9 +12,14 @@ type BlogIndexProps = {
 //
 // ______________________________________________________
 //
-const BlogIndex: React.FC<BlogIndexProps> = ({ postIndex }) => {
+const BlogIndex: React.VFC<BlogIndexProps> = ({ postIndex }) => {
+  const [isShow, setIsShow] = useState(false)
   return (
-    <BaseBlogIndex postIndex={postIndex} />
+    <BaseBlogIndex
+      postIndex={postIndex}
+      isShow={isShow}
+      handleIsShow={() => setIsShow(!isShow)}
+    />
   )
 }
 // ______________________________________________________
