@@ -191,6 +191,8 @@ type Directory = Node & {
   readonly birthtime: Maybe<Scalars['Date']>;
   /** @deprecated Use `birthTime` instead */
   readonly birthtimeMs: Maybe<Scalars['Float']>;
+  readonly blksize: Maybe<Scalars['Int']>;
+  readonly blocks: Maybe<Scalars['Int']>;
   readonly id: Scalars['ID'];
   readonly parent: Maybe<Node>;
   readonly children: ReadonlyArray<Node>;
@@ -304,14 +306,14 @@ type SitePage = Node & {
   readonly internalComponentName: Scalars['String'];
   readonly componentChunkName: Scalars['String'];
   readonly matchPath: Maybe<Scalars['String']>;
-  readonly isCreatedByStatefulCreatePages: Maybe<Scalars['Boolean']>;
-  readonly pluginCreator: Maybe<SitePlugin>;
-  readonly pluginCreatorId: Maybe<Scalars['String']>;
   readonly id: Scalars['ID'];
   readonly parent: Maybe<Node>;
   readonly children: ReadonlyArray<Node>;
   readonly internal: Internal;
+  readonly isCreatedByStatefulCreatePages: Maybe<Scalars['Boolean']>;
   readonly context: Maybe<SitePageContext>;
+  readonly pluginCreator: Maybe<SitePlugin>;
+  readonly pluginCreatorId: Maybe<Scalars['String']>;
 };
 
 type SitePageContext = {
@@ -1435,6 +1437,8 @@ type Query_directoryArgs = {
   ctime: Maybe<DateQueryOperatorInput>;
   birthtime: Maybe<DateQueryOperatorInput>;
   birthtimeMs: Maybe<FloatQueryOperatorInput>;
+  blksize: Maybe<IntQueryOperatorInput>;
+  blocks: Maybe<IntQueryOperatorInput>;
   id: Maybe<StringQueryOperatorInput>;
   parent: Maybe<NodeFilterInput>;
   children: Maybe<NodeFilterListInput>;
@@ -1500,14 +1504,14 @@ type Query_sitePageArgs = {
   internalComponentName: Maybe<StringQueryOperatorInput>;
   componentChunkName: Maybe<StringQueryOperatorInput>;
   matchPath: Maybe<StringQueryOperatorInput>;
-  isCreatedByStatefulCreatePages: Maybe<BooleanQueryOperatorInput>;
-  pluginCreator: Maybe<SitePluginFilterInput>;
-  pluginCreatorId: Maybe<StringQueryOperatorInput>;
   id: Maybe<StringQueryOperatorInput>;
   parent: Maybe<NodeFilterInput>;
   children: Maybe<NodeFilterListInput>;
   internal: Maybe<InternalFilterInput>;
+  isCreatedByStatefulCreatePages: Maybe<BooleanQueryOperatorInput>;
   context: Maybe<SitePageContextFilterInput>;
+  pluginCreator: Maybe<SitePluginFilterInput>;
+  pluginCreatorId: Maybe<StringQueryOperatorInput>;
 };
 
 
@@ -2480,6 +2484,8 @@ type DirectoryFieldsEnum =
   | 'ctime'
   | 'birthtime'
   | 'birthtimeMs'
+  | 'blksize'
+  | 'blocks'
   | 'id'
   | 'parent.id'
   | 'parent.parent.id'
@@ -2608,6 +2614,8 @@ type DirectoryFilterInput = {
   readonly ctime: Maybe<DateQueryOperatorInput>;
   readonly birthtime: Maybe<DateQueryOperatorInput>;
   readonly birthtimeMs: Maybe<FloatQueryOperatorInput>;
+  readonly blksize: Maybe<IntQueryOperatorInput>;
+  readonly blocks: Maybe<IntQueryOperatorInput>;
   readonly id: Maybe<StringQueryOperatorInput>;
   readonly parent: Maybe<NodeFilterInput>;
   readonly children: Maybe<NodeFilterListInput>;
@@ -2965,6 +2973,52 @@ type SiteFunctionSortInput = {
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
+type SitePageContextFilterInput = {
+  readonly head: Maybe<SitePageContextHeadFilterInput>;
+  readonly tagInfo: Maybe<SitePageContextTagInfoFilterInput>;
+  readonly image: Maybe<SitePageContextImageFilterInput>;
+  readonly body: Maybe<StringQueryOperatorInput>;
+  readonly postIndex: Maybe<StringQueryOperatorInput>;
+  readonly tag: Maybe<StringQueryOperatorInput>;
+  readonly svg: Maybe<StringQueryOperatorInput>;
+  readonly postCount: Maybe<IntQueryOperatorInput>;
+  readonly blogCardInfo: Maybe<SitePageContextBlogCardInfoFilterListInput>;
+};
+
+type SitePageContextHeadFilterInput = {
+  readonly title: Maybe<StringQueryOperatorInput>;
+  readonly date: Maybe<DateQueryOperatorInput>;
+};
+
+type SitePageContextTagInfoFilterInput = {
+  readonly tag: Maybe<StringQueryOperatorInput>;
+  readonly svg: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePageContextImageFilterInput = {
+  readonly fluid: Maybe<SitePageContextImageFluidFilterInput>;
+  readonly alt: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePageContextImageFluidFilterInput = {
+  readonly base64: Maybe<StringQueryOperatorInput>;
+  readonly aspectRatio: Maybe<FloatQueryOperatorInput>;
+  readonly src: Maybe<StringQueryOperatorInput>;
+  readonly srcSet: Maybe<StringQueryOperatorInput>;
+  readonly sizes: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePageContextBlogCardInfoFilterListInput = {
+  readonly elemMatch: Maybe<SitePageContextBlogCardInfoFilterInput>;
+};
+
+type SitePageContextBlogCardInfoFilterInput = {
+  readonly tag: Maybe<StringQueryOperatorInput>;
+  readonly slug: Maybe<StringQueryOperatorInput>;
+  readonly title: Maybe<StringQueryOperatorInput>;
+  readonly date: Maybe<DateQueryOperatorInput>;
+};
+
 type SitePluginFilterInput = {
   readonly id: Maybe<StringQueryOperatorInput>;
   readonly parent: Maybe<NodeFilterInput>;
@@ -3094,52 +3148,6 @@ type SitePluginPackageJsonPeerDependenciesFilterInput = {
   readonly version: Maybe<StringQueryOperatorInput>;
 };
 
-type SitePageContextFilterInput = {
-  readonly head: Maybe<SitePageContextHeadFilterInput>;
-  readonly tagInfo: Maybe<SitePageContextTagInfoFilterInput>;
-  readonly image: Maybe<SitePageContextImageFilterInput>;
-  readonly body: Maybe<StringQueryOperatorInput>;
-  readonly postIndex: Maybe<StringQueryOperatorInput>;
-  readonly tag: Maybe<StringQueryOperatorInput>;
-  readonly svg: Maybe<StringQueryOperatorInput>;
-  readonly postCount: Maybe<IntQueryOperatorInput>;
-  readonly blogCardInfo: Maybe<SitePageContextBlogCardInfoFilterListInput>;
-};
-
-type SitePageContextHeadFilterInput = {
-  readonly title: Maybe<StringQueryOperatorInput>;
-  readonly date: Maybe<DateQueryOperatorInput>;
-};
-
-type SitePageContextTagInfoFilterInput = {
-  readonly tag: Maybe<StringQueryOperatorInput>;
-  readonly svg: Maybe<StringQueryOperatorInput>;
-};
-
-type SitePageContextImageFilterInput = {
-  readonly fluid: Maybe<SitePageContextImageFluidFilterInput>;
-  readonly alt: Maybe<StringQueryOperatorInput>;
-};
-
-type SitePageContextImageFluidFilterInput = {
-  readonly base64: Maybe<StringQueryOperatorInput>;
-  readonly aspectRatio: Maybe<FloatQueryOperatorInput>;
-  readonly src: Maybe<StringQueryOperatorInput>;
-  readonly srcSet: Maybe<StringQueryOperatorInput>;
-  readonly sizes: Maybe<StringQueryOperatorInput>;
-};
-
-type SitePageContextBlogCardInfoFilterListInput = {
-  readonly elemMatch: Maybe<SitePageContextBlogCardInfoFilterInput>;
-};
-
-type SitePageContextBlogCardInfoFilterInput = {
-  readonly tag: Maybe<StringQueryOperatorInput>;
-  readonly slug: Maybe<StringQueryOperatorInput>;
-  readonly title: Maybe<StringQueryOperatorInput>;
-  readonly date: Maybe<DateQueryOperatorInput>;
-};
-
 type SitePageConnection = {
   readonly totalCount: Scalars['Int'];
   readonly edges: ReadonlyArray<SitePageEdge>;
@@ -3191,7 +3199,113 @@ type SitePageFieldsEnum =
   | 'internalComponentName'
   | 'componentChunkName'
   | 'matchPath'
+  | 'id'
+  | 'parent.id'
+  | 'parent.parent.id'
+  | 'parent.parent.parent.id'
+  | 'parent.parent.parent.children'
+  | 'parent.parent.children'
+  | 'parent.parent.children.id'
+  | 'parent.parent.children.children'
+  | 'parent.parent.internal.content'
+  | 'parent.parent.internal.contentDigest'
+  | 'parent.parent.internal.description'
+  | 'parent.parent.internal.fieldOwners'
+  | 'parent.parent.internal.ignoreType'
+  | 'parent.parent.internal.mediaType'
+  | 'parent.parent.internal.owner'
+  | 'parent.parent.internal.type'
+  | 'parent.children'
+  | 'parent.children.id'
+  | 'parent.children.parent.id'
+  | 'parent.children.parent.children'
+  | 'parent.children.children'
+  | 'parent.children.children.id'
+  | 'parent.children.children.children'
+  | 'parent.children.internal.content'
+  | 'parent.children.internal.contentDigest'
+  | 'parent.children.internal.description'
+  | 'parent.children.internal.fieldOwners'
+  | 'parent.children.internal.ignoreType'
+  | 'parent.children.internal.mediaType'
+  | 'parent.children.internal.owner'
+  | 'parent.children.internal.type'
+  | 'parent.internal.content'
+  | 'parent.internal.contentDigest'
+  | 'parent.internal.description'
+  | 'parent.internal.fieldOwners'
+  | 'parent.internal.ignoreType'
+  | 'parent.internal.mediaType'
+  | 'parent.internal.owner'
+  | 'parent.internal.type'
+  | 'children'
+  | 'children.id'
+  | 'children.parent.id'
+  | 'children.parent.parent.id'
+  | 'children.parent.parent.children'
+  | 'children.parent.children'
+  | 'children.parent.children.id'
+  | 'children.parent.children.children'
+  | 'children.parent.internal.content'
+  | 'children.parent.internal.contentDigest'
+  | 'children.parent.internal.description'
+  | 'children.parent.internal.fieldOwners'
+  | 'children.parent.internal.ignoreType'
+  | 'children.parent.internal.mediaType'
+  | 'children.parent.internal.owner'
+  | 'children.parent.internal.type'
+  | 'children.children'
+  | 'children.children.id'
+  | 'children.children.parent.id'
+  | 'children.children.parent.children'
+  | 'children.children.children'
+  | 'children.children.children.id'
+  | 'children.children.children.children'
+  | 'children.children.internal.content'
+  | 'children.children.internal.contentDigest'
+  | 'children.children.internal.description'
+  | 'children.children.internal.fieldOwners'
+  | 'children.children.internal.ignoreType'
+  | 'children.children.internal.mediaType'
+  | 'children.children.internal.owner'
+  | 'children.children.internal.type'
+  | 'children.internal.content'
+  | 'children.internal.contentDigest'
+  | 'children.internal.description'
+  | 'children.internal.fieldOwners'
+  | 'children.internal.ignoreType'
+  | 'children.internal.mediaType'
+  | 'children.internal.owner'
+  | 'children.internal.type'
+  | 'internal.content'
+  | 'internal.contentDigest'
+  | 'internal.description'
+  | 'internal.fieldOwners'
+  | 'internal.ignoreType'
+  | 'internal.mediaType'
+  | 'internal.owner'
+  | 'internal.type'
   | 'isCreatedByStatefulCreatePages'
+  | 'context.head.title'
+  | 'context.head.date'
+  | 'context.tagInfo.tag'
+  | 'context.tagInfo.svg'
+  | 'context.image.fluid.base64'
+  | 'context.image.fluid.aspectRatio'
+  | 'context.image.fluid.src'
+  | 'context.image.fluid.srcSet'
+  | 'context.image.fluid.sizes'
+  | 'context.image.alt'
+  | 'context.body'
+  | 'context.postIndex'
+  | 'context.tag'
+  | 'context.svg'
+  | 'context.postCount'
+  | 'context.blogCardInfo'
+  | 'context.blogCardInfo.tag'
+  | 'context.blogCardInfo.slug'
+  | 'context.blogCardInfo.title'
+  | 'context.blogCardInfo.date'
   | 'pluginCreator.id'
   | 'pluginCreator.parent.id'
   | 'pluginCreator.parent.parent.id'
@@ -3298,113 +3412,7 @@ type SitePageFieldsEnum =
   | 'pluginCreator.packageJson.peerDependencies.name'
   | 'pluginCreator.packageJson.peerDependencies.version'
   | 'pluginCreator.packageJson.keywords'
-  | 'pluginCreatorId'
-  | 'id'
-  | 'parent.id'
-  | 'parent.parent.id'
-  | 'parent.parent.parent.id'
-  | 'parent.parent.parent.children'
-  | 'parent.parent.children'
-  | 'parent.parent.children.id'
-  | 'parent.parent.children.children'
-  | 'parent.parent.internal.content'
-  | 'parent.parent.internal.contentDigest'
-  | 'parent.parent.internal.description'
-  | 'parent.parent.internal.fieldOwners'
-  | 'parent.parent.internal.ignoreType'
-  | 'parent.parent.internal.mediaType'
-  | 'parent.parent.internal.owner'
-  | 'parent.parent.internal.type'
-  | 'parent.children'
-  | 'parent.children.id'
-  | 'parent.children.parent.id'
-  | 'parent.children.parent.children'
-  | 'parent.children.children'
-  | 'parent.children.children.id'
-  | 'parent.children.children.children'
-  | 'parent.children.internal.content'
-  | 'parent.children.internal.contentDigest'
-  | 'parent.children.internal.description'
-  | 'parent.children.internal.fieldOwners'
-  | 'parent.children.internal.ignoreType'
-  | 'parent.children.internal.mediaType'
-  | 'parent.children.internal.owner'
-  | 'parent.children.internal.type'
-  | 'parent.internal.content'
-  | 'parent.internal.contentDigest'
-  | 'parent.internal.description'
-  | 'parent.internal.fieldOwners'
-  | 'parent.internal.ignoreType'
-  | 'parent.internal.mediaType'
-  | 'parent.internal.owner'
-  | 'parent.internal.type'
-  | 'children'
-  | 'children.id'
-  | 'children.parent.id'
-  | 'children.parent.parent.id'
-  | 'children.parent.parent.children'
-  | 'children.parent.children'
-  | 'children.parent.children.id'
-  | 'children.parent.children.children'
-  | 'children.parent.internal.content'
-  | 'children.parent.internal.contentDigest'
-  | 'children.parent.internal.description'
-  | 'children.parent.internal.fieldOwners'
-  | 'children.parent.internal.ignoreType'
-  | 'children.parent.internal.mediaType'
-  | 'children.parent.internal.owner'
-  | 'children.parent.internal.type'
-  | 'children.children'
-  | 'children.children.id'
-  | 'children.children.parent.id'
-  | 'children.children.parent.children'
-  | 'children.children.children'
-  | 'children.children.children.id'
-  | 'children.children.children.children'
-  | 'children.children.internal.content'
-  | 'children.children.internal.contentDigest'
-  | 'children.children.internal.description'
-  | 'children.children.internal.fieldOwners'
-  | 'children.children.internal.ignoreType'
-  | 'children.children.internal.mediaType'
-  | 'children.children.internal.owner'
-  | 'children.children.internal.type'
-  | 'children.internal.content'
-  | 'children.internal.contentDigest'
-  | 'children.internal.description'
-  | 'children.internal.fieldOwners'
-  | 'children.internal.ignoreType'
-  | 'children.internal.mediaType'
-  | 'children.internal.owner'
-  | 'children.internal.type'
-  | 'internal.content'
-  | 'internal.contentDigest'
-  | 'internal.description'
-  | 'internal.fieldOwners'
-  | 'internal.ignoreType'
-  | 'internal.mediaType'
-  | 'internal.owner'
-  | 'internal.type'
-  | 'context.head.title'
-  | 'context.head.date'
-  | 'context.tagInfo.tag'
-  | 'context.tagInfo.svg'
-  | 'context.image.fluid.base64'
-  | 'context.image.fluid.aspectRatio'
-  | 'context.image.fluid.src'
-  | 'context.image.fluid.srcSet'
-  | 'context.image.fluid.sizes'
-  | 'context.image.alt'
-  | 'context.body'
-  | 'context.postIndex'
-  | 'context.tag'
-  | 'context.svg'
-  | 'context.postCount'
-  | 'context.blogCardInfo'
-  | 'context.blogCardInfo.tag'
-  | 'context.blogCardInfo.slug'
-  | 'context.blogCardInfo.title'
-  | 'context.blogCardInfo.date';
+  | 'pluginCreatorId';
 
 type SitePageGroupConnection = {
   readonly totalCount: Scalars['Int'];
@@ -3421,14 +3429,14 @@ type SitePageFilterInput = {
   readonly internalComponentName: Maybe<StringQueryOperatorInput>;
   readonly componentChunkName: Maybe<StringQueryOperatorInput>;
   readonly matchPath: Maybe<StringQueryOperatorInput>;
-  readonly isCreatedByStatefulCreatePages: Maybe<BooleanQueryOperatorInput>;
-  readonly pluginCreator: Maybe<SitePluginFilterInput>;
-  readonly pluginCreatorId: Maybe<StringQueryOperatorInput>;
   readonly id: Maybe<StringQueryOperatorInput>;
   readonly parent: Maybe<NodeFilterInput>;
   readonly children: Maybe<NodeFilterListInput>;
   readonly internal: Maybe<InternalFilterInput>;
+  readonly isCreatedByStatefulCreatePages: Maybe<BooleanQueryOperatorInput>;
   readonly context: Maybe<SitePageContextFilterInput>;
+  readonly pluginCreator: Maybe<SitePluginFilterInput>;
+  readonly pluginCreatorId: Maybe<StringQueryOperatorInput>;
 };
 
 type SitePageSortInput = {
@@ -8558,19 +8566,19 @@ type Unnamed_1_QueryVariables = Exact<{ [key: string]: never; }>;
 
 type Unnamed_1_Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title' | 'description'>> }> };
 
-type AllBlogPostsQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type AllBlogPostsQuery = { readonly allContentfulBlogPost: { readonly edges: ReadonlyArray<{ readonly node: (
-        Pick<ContentfulBlogPost, 'tags' | 'slug' | 'title' | 'updatedAt'>
-        & { readonly svgContent: Maybe<{ readonly svg: Maybe<Pick<InlineSvg, 'content'>> }> }
-      ) }> } };
-
 type AllBlogTagsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type AllBlogTagsQuery = { readonly allContentfulBlogPost: { readonly edges: ReadonlyArray<{ readonly node: (
         Pick<ContentfulBlogPost, 'tags'>
+        & { readonly svgContent: Maybe<{ readonly svg: Maybe<Pick<InlineSvg, 'content'>> }> }
+      ) }> } };
+
+type AllBlogPostsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type AllBlogPostsQuery = { readonly allContentfulBlogPost: { readonly edges: ReadonlyArray<{ readonly node: (
+        Pick<ContentfulBlogPost, 'tags' | 'slug' | 'title' | 'updatedAt'>
         & { readonly svgContent: Maybe<{ readonly svg: Maybe<Pick<InlineSvg, 'content'>> }> }
       ) }> } };
 

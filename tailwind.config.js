@@ -45,7 +45,7 @@ module.exports = {
       '2xl': '1280px',
       'xl': '1024px',
       'md': '720px',
-      'sm': '352px',
+      'sm': '360px',
       'max': '100%',
       'blog-index-fixed': '410px',
     },

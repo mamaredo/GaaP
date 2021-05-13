@@ -2,12 +2,12 @@ import * as React from "react"
 import Layout from "../components/layout"
 import AllBlogCards from "../containers/all-blog-cards"
 import ProfileCard from "../containers/profile-card"
-import AllBlogTags from "../containers/all_blog_tags"
+import AllBlogTags from "../containers/all-blog-tags"
 
 
 // ______________________________________________________
 //
-const Index: React.FC = () => {
+const Index: React.VFC = () => {
   return (
     <Layout>
       <div className="w-full h-full">
@@ -19,10 +19,7 @@ const Index: React.FC = () => {
         <article className="px-1 py-5 bg-background">
           <div
             className="
-              2xl:max-w-2xl
-              xl:max-w-xl
-              md:max-w-md
-              max-w-sm
+              2xl:max-w-2xl xl:max-w-xl md:max-w-md max-w-sm
               mx-auto
               grid
               xl:grid-cols-12
