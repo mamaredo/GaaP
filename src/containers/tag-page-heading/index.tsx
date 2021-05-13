@@ -1,5 +1,5 @@
 import * as React from "react"
-import BaseTagPageHeading, { BaseTagPageHeadingProps } from "../../components/base_tag_page_heading"
+import BaseTagPageHeading, { BaseTagPageHeadingProps } from "../../components/base-tag-page-heading"
 
 
 // ______________________________________________________

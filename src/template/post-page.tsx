@@ -1,9 +1,9 @@
 import * as React from 'react'
 import { FluidObject } from 'gatsby-image'
-import BaseNavigation from "../components/base_navigation"
-import BlogHead from "../containers/blog_head"
-import BlogHeroImage from "../containers/blog_hero_image"
-import BlogIndex from "../containers/blog_index"
+import BaseNavigation from "../components/base-navigation"
+import BlogHead from "../containers/blog-head"
+import BlogHeroImage from "../containers/blog-hero-image"
+import BlogIndex from "../containers/blog-index/index"
 import BlogTag, { TagInfoType } from "../containers/blog_tag"
 import Layout from "../components/layout"
 import "../css/blog-template.css"

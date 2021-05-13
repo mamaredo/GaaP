@@ -1,6 +1,6 @@
 import * as React from "react"
-import { TagType } from "../../components/base_blog_tag"
-import BaseBlogCard, { BlogCardType } from "../../components/base_blog_card"
+import { TagType } from "../../components/base-blog-tag"
+import BaseBlogCard, { BlogCardType } from "../../components/base-blog-card"
 
 
 // ______________________________________________________

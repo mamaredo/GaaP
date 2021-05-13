@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Link } from "gatsby"
-import BaseBlogTag, { TagType } from "../base_blog_tag"
+import BaseBlogTag, { TagType } from "../base-blog-tag"
 
 
 // ______________________________________________________

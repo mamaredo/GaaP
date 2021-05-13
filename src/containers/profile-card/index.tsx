@@ -1,6 +1,6 @@
 import * as React from "react"
 import { useProfileQuery } from "./query"
-import BaseProfileCard from "../../components/base_profile_card"
+import BaseProfileCard from "../../components/base-profile-card"
 
 
 // ______________________________________________________

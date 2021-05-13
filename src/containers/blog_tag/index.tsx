@@ -1,5 +1,5 @@
 import * as React from "react"
-import BaseBlogTag, { TagType, StyleType } from "../../components/base_blog_tag"
+import BaseBlogTag, { TagType, StyleType } from "../../components/base-blog-tag"
 
 
 // ______________________________________________________

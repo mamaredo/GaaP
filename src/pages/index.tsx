@@ -1,7 +1,7 @@
 import * as React from "react"
 import Layout from "../components/layout"
-import AllBlogCards from "../containers/all_blog_cards"
-import ProfileCard from "../containers/profile_card"
+import AllBlogCards from "../containers/all-blog-cards"
+import ProfileCard from "../containers/profile-card"
 import AllBlogTags from "../containers/all_blog_tags"
 
 
