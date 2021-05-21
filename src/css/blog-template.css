@@ -3,14 +3,21 @@
   xl:text-3xl
   md:text-2xl
   text-xl
+  pt-7
   ;
 }
+
+/* .contentfull h2:first-child {
+  @apply
+  ;
+} */
 
 .contentfull h3 {
   @apply
   xl:text-2xl
   md:text-xl
-  text-lg;
+  text-lg
+  ;
 }
 
 .contentfull h2,
@@ -47,5 +54,5 @@
 }
 
 .contentfull hr {
-  @apply my-5;
+  @apply mt-14;
 }
