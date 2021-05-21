@@ -28,6 +28,9 @@ module.exports = {
         'icon': '12px',
         'button-icon': '24px'
       },
+      zIndex: {
+        top: '9999'
+      }
     },
     minHeight: {
       'card': '348px',
