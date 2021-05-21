@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import { FluidObject } from 'gatsby-image'
 import BaseNavigation from "../components/base-navigation"
 import BlogHead from "../containers/blog-head"

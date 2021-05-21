@@ -6,6 +6,8 @@
 
 .blog-index a {
   @apply
-  py-1
+  p-1
+  hover:text-secondary
+  transition-colors
   ;
 }

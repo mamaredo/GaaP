@@ -8551,28 +8551,20 @@ type SitePluginSortInput = {
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
+type homemamaredoGaaPsrcpagesusingTypescriptTsx2907560070QueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type homemamaredoGaaPsrcpagesusingTypescriptTsx2907560070Query = { readonly site: Maybe<Pick<Site, 'buildTime'>> };
+
 type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type PagesQueryQuery = { readonly allSiteFunction: { readonly nodes: ReadonlyArray<Pick<SiteFunction, 'apiRoute'>> }, readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
 
-type homemamaredoDGaaPsrcpagesusingTypescriptTsx2907560070QueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type homemamaredoDGaaPsrcpagesusingTypescriptTsx2907560070Query = { readonly site: Maybe<Pick<Site, 'buildTime'>> };
-
 type Unnamed_1_QueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type Unnamed_1_Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title' | 'description'>> }> };
-
-type AllBlogTagsQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type AllBlogTagsQuery = { readonly allContentfulBlogPost: { readonly edges: ReadonlyArray<{ readonly node: (
-        Pick<ContentfulBlogPost, 'tags'>
-        & { readonly svgContent: Maybe<{ readonly svg: Maybe<Pick<InlineSvg, 'content'>> }> }
-      ) }> } };
 
 type AllBlogPostsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -8589,6 +8581,14 @@ type ProfileQuery = { readonly contentfulProfile: Maybe<(
     Pick<ContentfulProfile, 'name' | 'twitter' | 'gitHub' | 'contact'>
     & { readonly bio: Maybe<{ readonly childrenMarkdownRemark: Maybe<ReadonlyArray<Maybe<Pick<MarkdownRemark, 'html'>>>> }> }
   )> };
+
+type AllBlogTagsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type AllBlogTagsQuery = { readonly allContentfulBlogPost: { readonly edges: ReadonlyArray<{ readonly node: (
+        Pick<ContentfulBlogPost, 'tags'>
+        & { readonly svgContent: Maybe<{ readonly svg: Maybe<Pick<InlineSvg, 'content'>> }> }
+      ) }> } };
 
 type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
