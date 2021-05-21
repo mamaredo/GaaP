@@ -23,8 +23,11 @@ const BaseBlogIndexFab: React.VFC<BaseBlogIndexProps> = ({ postIndex, isShow, ha
     >
       <img src={`../../../list-white-24dp.svg`} alt="blog-index-fab" />
     </button>
-    <div style={{ display: isShow ? 'none' : 'inline' }}>
-      <FabContent postIndex={postIndex} />
+    <div style={{ display: isShow ? 'inline' : 'none' }}>
+      <FabContent
+        postIndex={postIndex}
+        handleIsShow={handleIsShow}
+      />
     </div>
   </>
 )

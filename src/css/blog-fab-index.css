@@ -1,0 +1,31 @@
+.blog-fab-index ul {
+  @apply
+  flex
+  flex-col
+  ;
+}
+
+/* .blog-fab-index ul, */
+
+.blog-fab-index li {
+  @apply
+  inline-block
+  ;
+}
+
+.blog-fab-index li {
+  @apply
+  mb-2
+  ;
+}
+
+.blog-fab-index a {
+  @apply
+  inline-block
+  w-full
+  box-border
+  px-2
+  leading-9
+  text-base
+  ;
+}
