@@ -1,4 +1,4 @@
-import * as React from "react"
+import React from "react"
 import BaseBlogTag, { TagType, StyleType } from "../../components/base-blog-tag"
 
 
@@ -12,7 +12,7 @@ type BlogTagProps = TagInfoType & StyleType
 //
 // ______________________________________________________
 //
-const BlogTag: React.FC<BlogTagProps> = ({ tagInfo, style }) => {
+const BlogTag: React.VFC<BlogTagProps> = ({ tagInfo, style }) => {
   /* logic */
   const { tag, svg } = tagInfo
   return (
@@ -21,4 +21,4 @@ const BlogTag: React.FC<BlogTagProps> = ({ tagInfo, style }) => {
 }
 // ______________________________________________________
 //
-export default BlogTag
+export default React.memo(BlogTag)

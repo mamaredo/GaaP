@@ -1,4 +1,4 @@
-import * as React from "react"
+import React from "react"
 import { PostPageProps } from "../../template/post-page"
 import BaseBlogHeroImage from "../../components/base-blog-hero-image"
 
@@ -12,11 +12,11 @@ type BlogHeroImageProps = {
 //
 // ______________________________________________________
 //
-const BlogHeroImage: React.FC<BlogHeroImageProps> = ({ image }) => {
+const BlogHeroImage: React.VFC<BlogHeroImageProps> = ({ image }) => {
   /* Logic */
   const { fluid, alt } = image
   return (<BaseBlogHeroImage fluid={fluid} alt={alt} />)
 }
 // ______________________________________________________
 //
-export default BlogHeroImage
+export default React.memo(BlogHeroImage)
