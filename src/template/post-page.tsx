@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { FluidObject } from 'gatsby-image'
 import BaseNavigation from "../components/base-navigation"
 import BlogHead from "../containers/blog-head"
@@ -43,7 +43,7 @@ const PostPage: React.VFC<PostPageProps> = ({ pageContext }) => {
     postIndex
   } = pageContext
   
-  const tagStyle = ['shadow', 'bg-tag-bg']
+  const tagStyle = useMemo(() => ['shadow', 'bg-tag-bg'], [tagInfo])
   return (
     <Layout>
       <BaseNavigation />
@@ -63,7 +63,9 @@ const PostPage: React.VFC<PostPageProps> = ({ pageContext }) => {
           <div className="box-border xl:p-3 p-2 md:col-span-8 col-span-4 w-full bg-white">
             <div className="w-full">
               <BlogHead head={head} />
-              <BlogHeroImage image={image} />
+              <div className="mb-2">
+                <BlogHeroImage image={image} />
+              </div>
             </div>
 
 

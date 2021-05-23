@@ -1,6 +1,7 @@
 import * as React from "react"
 import { useAllBlogPostsQuery } from "./query"
 import BaseBlogCard from "../../components/base-blog-card"
+import { IGatsbyImageData } from "gatsby-plugin-image"
 
 
 
@@ -17,6 +18,8 @@ const AllBlogCards: React.FC = () => {
           svg={node.svgContent?.svg?.content || ''}
           tag={node.tags?.[0] || 'TAGNAME'}
           slug={node.slug || '404'}
+          image={node.heroImage?.gatsbyImageData as unknown as IGatsbyImageData}
+          alt={node.heroImage?.title || ''}
           title={node.title || 'Title'}
           date={node.updatedAt || 'YYYY-MM-DD'}
         />

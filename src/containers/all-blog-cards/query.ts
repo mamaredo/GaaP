@@ -11,6 +11,14 @@ export const useAllBlogPostsQuery = () => {
           edges {
             node {
               tags
+              heroImage {
+                gatsbyImageData(
+                  layout: CONSTRAINED,
+                  placeholder: BLURRED,
+                  aspectRatio: 1.33
+                )
+                title
+              }
               svgContent {
                 svg {
                   content
