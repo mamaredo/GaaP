@@ -68,7 +68,6 @@ type File = Node & {
   readonly birthtimeMs: Maybe<Scalars['Float']>;
   readonly blksize: Maybe<Scalars['Int']>;
   readonly blocks: Maybe<Scalars['Int']>;
-  readonly url: Maybe<Scalars['String']>;
   /** Copy file to static directory and return public url to it */
   readonly publicURL: Maybe<Scalars['String']>;
   /** Returns all children nodes filtered by type ImageSharp */
@@ -356,6 +355,37 @@ type SitePageContextBlogCardInfo = {
   readonly slug: Maybe<Scalars['String']>;
   readonly title: Maybe<Scalars['String']>;
   readonly date: Maybe<Scalars['Date']>;
+  readonly image: Maybe<SitePageContextBlogCardInfoImage>;
+  readonly alt: Maybe<Scalars['String']>;
+};
+
+type SitePageContextBlogCardInfoImage = {
+  readonly images: Maybe<SitePageContextBlogCardInfoImageImages>;
+  readonly layout: Maybe<Scalars['String']>;
+  readonly width: Maybe<Scalars['Int']>;
+  readonly height: Maybe<Scalars['Int']>;
+  readonly placeholder: Maybe<SitePageContextBlogCardInfoImagePlaceholder>;
+};
+
+type SitePageContextBlogCardInfoImageImages = {
+  readonly sources: Maybe<ReadonlyArray<Maybe<SitePageContextBlogCardInfoImageImagesSources>>>;
+  readonly fallback: Maybe<SitePageContextBlogCardInfoImageImagesFallback>;
+};
+
+type SitePageContextBlogCardInfoImageImagesSources = {
+  readonly srcSet: Maybe<Scalars['String']>;
+  readonly sizes: Maybe<Scalars['String']>;
+  readonly type: Maybe<Scalars['String']>;
+};
+
+type SitePageContextBlogCardInfoImageImagesFallback = {
+  readonly src: Maybe<Scalars['String']>;
+  readonly srcSet: Maybe<Scalars['String']>;
+  readonly sizes: Maybe<Scalars['String']>;
+};
+
+type SitePageContextBlogCardInfoImagePlaceholder = {
+  readonly fallback: Maybe<Scalars['String']>;
 };
 
 type ImageFormat =
@@ -1031,6 +1061,7 @@ type ContentfulProfile = ContentfulReference & ContentfulEntry & Node & {
   readonly twitter: Maybe<Scalars['String']>;
   readonly gitHub: Maybe<Scalars['String']>;
   readonly contact: Maybe<Scalars['String']>;
+  readonly icon: Maybe<ContentfulAsset>;
   readonly bio: Maybe<contentfulProfileBioTextNode>;
   readonly spaceId: Maybe<Scalars['String']>;
   readonly createdAt: Maybe<Scalars['Date']>;
@@ -1386,7 +1417,6 @@ type Query_fileArgs = {
   birthtimeMs: Maybe<FloatQueryOperatorInput>;
   blksize: Maybe<IntQueryOperatorInput>;
   blocks: Maybe<IntQueryOperatorInput>;
-  url: Maybe<StringQueryOperatorInput>;
   publicURL: Maybe<StringQueryOperatorInput>;
   childrenImageSharp: Maybe<ImageSharpFilterListInput>;
   childImageSharp: Maybe<ImageSharpFilterInput>;
@@ -1705,6 +1735,7 @@ type Query_contentfulProfileArgs = {
   twitter: Maybe<StringQueryOperatorInput>;
   gitHub: Maybe<StringQueryOperatorInput>;
   contact: Maybe<StringQueryOperatorInput>;
+  icon: Maybe<ContentfulAssetFilterInput>;
   bio: Maybe<contentfulProfileBioTextNodeFilterInput>;
   spaceId: Maybe<StringQueryOperatorInput>;
   createdAt: Maybe<DateQueryOperatorInput>;
@@ -2115,7 +2146,6 @@ type FileFieldsEnum =
   | 'birthtimeMs'
   | 'blksize'
   | 'blocks'
-  | 'url'
   | 'publicURL'
   | 'childrenImageSharp'
   | 'childrenImageSharp.fixed.base64'
@@ -2388,7 +2418,6 @@ type FileFilterInput = {
   readonly birthtimeMs: Maybe<FloatQueryOperatorInput>;
   readonly blksize: Maybe<IntQueryOperatorInput>;
   readonly blocks: Maybe<IntQueryOperatorInput>;
-  readonly url: Maybe<StringQueryOperatorInput>;
   readonly publicURL: Maybe<StringQueryOperatorInput>;
   readonly childrenImageSharp: Maybe<ImageSharpFilterListInput>;
   readonly childImageSharp: Maybe<ImageSharpFilterInput>;
@@ -3017,6 +3046,41 @@ type SitePageContextBlogCardInfoFilterInput = {
   readonly slug: Maybe<StringQueryOperatorInput>;
   readonly title: Maybe<StringQueryOperatorInput>;
   readonly date: Maybe<DateQueryOperatorInput>;
+  readonly image: Maybe<SitePageContextBlogCardInfoImageFilterInput>;
+  readonly alt: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePageContextBlogCardInfoImageFilterInput = {
+  readonly images: Maybe<SitePageContextBlogCardInfoImageImagesFilterInput>;
+  readonly layout: Maybe<StringQueryOperatorInput>;
+  readonly width: Maybe<IntQueryOperatorInput>;
+  readonly height: Maybe<IntQueryOperatorInput>;
+  readonly placeholder: Maybe<SitePageContextBlogCardInfoImagePlaceholderFilterInput>;
+};
+
+type SitePageContextBlogCardInfoImageImagesFilterInput = {
+  readonly sources: Maybe<SitePageContextBlogCardInfoImageImagesSourcesFilterListInput>;
+  readonly fallback: Maybe<SitePageContextBlogCardInfoImageImagesFallbackFilterInput>;
+};
+
+type SitePageContextBlogCardInfoImageImagesSourcesFilterListInput = {
+  readonly elemMatch: Maybe<SitePageContextBlogCardInfoImageImagesSourcesFilterInput>;
+};
+
+type SitePageContextBlogCardInfoImageImagesSourcesFilterInput = {
+  readonly srcSet: Maybe<StringQueryOperatorInput>;
+  readonly sizes: Maybe<StringQueryOperatorInput>;
+  readonly type: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePageContextBlogCardInfoImageImagesFallbackFilterInput = {
+  readonly src: Maybe<StringQueryOperatorInput>;
+  readonly srcSet: Maybe<StringQueryOperatorInput>;
+  readonly sizes: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePageContextBlogCardInfoImagePlaceholderFilterInput = {
+  readonly fallback: Maybe<StringQueryOperatorInput>;
 };
 
 type SitePluginFilterInput = {
@@ -3306,6 +3370,10 @@ type SitePageFieldsEnum =
   | 'context.blogCardInfo.slug'
   | 'context.blogCardInfo.title'
   | 'context.blogCardInfo.date'
+  | 'context.blogCardInfo.image.layout'
+  | 'context.blogCardInfo.image.width'
+  | 'context.blogCardInfo.image.height'
+  | 'context.blogCardInfo.alt'
   | 'pluginCreator.id'
   | 'pluginCreator.parent.id'
   | 'pluginCreator.parent.parent.id'
@@ -6302,6 +6370,81 @@ type ContentfulProfileFieldsEnum =
   | 'twitter'
   | 'gitHub'
   | 'contact'
+  | 'icon.contentful_id'
+  | 'icon.id'
+  | 'icon.spaceId'
+  | 'icon.createdAt'
+  | 'icon.updatedAt'
+  | 'icon.file.url'
+  | 'icon.file.details.size'
+  | 'icon.file.fileName'
+  | 'icon.file.contentType'
+  | 'icon.title'
+  | 'icon.description'
+  | 'icon.node_locale'
+  | 'icon.sys.type'
+  | 'icon.sys.revision'
+  | 'icon.fixed.base64'
+  | 'icon.fixed.tracedSVG'
+  | 'icon.fixed.aspectRatio'
+  | 'icon.fixed.width'
+  | 'icon.fixed.height'
+  | 'icon.fixed.src'
+  | 'icon.fixed.srcSet'
+  | 'icon.fixed.srcWebp'
+  | 'icon.fixed.srcSetWebp'
+  | 'icon.fluid.base64'
+  | 'icon.fluid.tracedSVG'
+  | 'icon.fluid.aspectRatio'
+  | 'icon.fluid.src'
+  | 'icon.fluid.srcSet'
+  | 'icon.fluid.srcWebp'
+  | 'icon.fluid.srcSetWebp'
+  | 'icon.fluid.sizes'
+  | 'icon.gatsbyImageData'
+  | 'icon.resize.base64'
+  | 'icon.resize.tracedSVG'
+  | 'icon.resize.src'
+  | 'icon.resize.width'
+  | 'icon.resize.height'
+  | 'icon.resize.aspectRatio'
+  | 'icon.parent.id'
+  | 'icon.parent.parent.id'
+  | 'icon.parent.parent.children'
+  | 'icon.parent.children'
+  | 'icon.parent.children.id'
+  | 'icon.parent.children.children'
+  | 'icon.parent.internal.content'
+  | 'icon.parent.internal.contentDigest'
+  | 'icon.parent.internal.description'
+  | 'icon.parent.internal.fieldOwners'
+  | 'icon.parent.internal.ignoreType'
+  | 'icon.parent.internal.mediaType'
+  | 'icon.parent.internal.owner'
+  | 'icon.parent.internal.type'
+  | 'icon.children'
+  | 'icon.children.id'
+  | 'icon.children.parent.id'
+  | 'icon.children.parent.children'
+  | 'icon.children.children'
+  | 'icon.children.children.id'
+  | 'icon.children.children.children'
+  | 'icon.children.internal.content'
+  | 'icon.children.internal.contentDigest'
+  | 'icon.children.internal.description'
+  | 'icon.children.internal.fieldOwners'
+  | 'icon.children.internal.ignoreType'
+  | 'icon.children.internal.mediaType'
+  | 'icon.children.internal.owner'
+  | 'icon.children.internal.type'
+  | 'icon.internal.content'
+  | 'icon.internal.contentDigest'
+  | 'icon.internal.description'
+  | 'icon.internal.fieldOwners'
+  | 'icon.internal.ignoreType'
+  | 'icon.internal.mediaType'
+  | 'icon.internal.owner'
+  | 'icon.internal.type'
   | 'bio.id'
   | 'bio.parent.id'
   | 'bio.parent.parent.id'
@@ -6711,6 +6854,7 @@ type ContentfulProfileFilterInput = {
   readonly twitter: Maybe<StringQueryOperatorInput>;
   readonly gitHub: Maybe<StringQueryOperatorInput>;
   readonly contact: Maybe<StringQueryOperatorInput>;
+  readonly icon: Maybe<ContentfulAssetFilterInput>;
   readonly bio: Maybe<contentfulProfileBioTextNodeFilterInput>;
   readonly spaceId: Maybe<StringQueryOperatorInput>;
   readonly createdAt: Maybe<DateQueryOperatorInput>;
@@ -8551,20 +8695,20 @@ type SitePluginSortInput = {
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
-type homemamaredoGaaPsrcpagesusingTypescriptTsx2907560070QueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type homemamaredoGaaPsrcpagesusingTypescriptTsx2907560070Query = { readonly site: Maybe<Pick<Site, 'buildTime'>> };
-
 type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type PagesQueryQuery = { readonly allSiteFunction: { readonly nodes: ReadonlyArray<Pick<SiteFunction, 'apiRoute'>> }, readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
 
-type Unnamed_1_QueryVariables = Exact<{ [key: string]: never; }>;
+type homemamaredoGaaPsrcpagesusingTypescriptTsx2907560070QueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type Unnamed_1_Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title' | 'description'>> }> };
+type homemamaredoGaaPsrcpagesusingTypescriptTsx2907560070Query = { readonly site: Maybe<Pick<Site, 'buildTime'>> };
+
+type MetadataQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type MetadataQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<{ defaultTitle: SiteSiteMetadata['title'], defaultDescription: SiteSiteMetadata['description'] }> }> };
 
 type AllBlogPostsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -8587,7 +8731,7 @@ type ProfileQueryVariables = Exact<{ [key: string]: never; }>;
 
 type ProfileQuery = { readonly contentfulProfile: Maybe<(
     Pick<ContentfulProfile, 'name' | 'twitter' | 'gitHub' | 'contact'>
-    & { readonly bio: Maybe<{ readonly childrenMarkdownRemark: Maybe<ReadonlyArray<Maybe<Pick<MarkdownRemark, 'html'>>>> }> }
+    & { readonly bio: Maybe<{ readonly childrenMarkdownRemark: Maybe<ReadonlyArray<Maybe<Pick<MarkdownRemark, 'html'>>>> }>, readonly icon: Maybe<Pick<ContentfulAsset, 'gatsbyImageData'>> }
   )> };
 
 type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
