@@ -1,8 +1,9 @@
 import React from "react"
 import Layout from "../components/layout"
+import MainVisual from "../components/main-visual"
 import TagPageHeading, { TagPageHeadingProps } from "../containers/tag-page-heading"
 import { TagInfoType } from "../containers/blog-tag"
-import BlogCards, { BlogCardsType } from "../containers/blog-cards"
+import BlogCardsByTag, { BlogCardsByTagType } from "../containers/blog-cards-by-tag"
 import AllBlogTags from "../containers/all-blog-tags"
 
 
@@ -12,7 +13,7 @@ type TagPageProps = {
   pageContext: 
   & TagInfoType['tagInfo']
   & TagPageHeadingProps['heading']
-  & BlogCardsType
+  & BlogCardsByTagType
 }
 // ______________________________________________________
 //
@@ -23,11 +24,9 @@ const TagPage: React.VFC<TagPageProps> = ({ pageContext }) => {
   const heading = { tag, svg, postCount }
   const { blogCardInfo } = pageContext
   return (
-    <Layout>
+    <Layout title={tag}>
       <div className="w-full h-full">
-        <header className="h-80">
-          this is tag-page.tsx
-        </header>
+        <MainVisual />
         <article className="pb-20 px-1 bg-background">
           <div
             className="
@@ -58,7 +57,7 @@ const TagPage: React.VFC<TagPageProps> = ({ pageContext }) => {
                 gap-2
                 "
               >
-                <BlogCards tag={tag} svg={svg} blogCardInfo={blogCardInfo} />
+                <BlogCardsByTag tag={tag} svg={svg} blogCardInfo={blogCardInfo} />
               </div>
 
               <hr className="my-5 w-full bg-hr" />
