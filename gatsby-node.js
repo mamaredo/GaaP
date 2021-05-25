@@ -87,6 +87,14 @@ exports.createPages = async ({ graphql, actions }) => {
                 content
               }
             }
+            heroImage {
+              gatsbyImageData(
+                layout: CONSTRAINED,
+                placeholder: BLURRED,
+                aspectRatio: 1.33
+              )
+              title
+            }
           }
         }
       }
@@ -104,6 +112,8 @@ exports.createPages = async ({ graphql, actions }) => {
         slug: node.slug,
         title: node.title,
         date: node.updatedAt,
+        image: node.heroImage.gatsbyImageData,
+        alt: node.heroImage.title
       }
     })
     const distinctTags = allTags.filter((el, i, self) => self.findIndex(e => e.tag === el.tag) === i)
