@@ -1,18 +1,25 @@
 import * as React from "react"
 import { ProfileType } from "./index"
+import { GatsbyImage } from "gatsby-plugin-image"
 
 
 // ______________________________________________________
 //
-type ProfileAvatarProps = { avatar: ProfileType["avatar"] }
+type ProfileAvatarProps = {
+  avatar: ProfileType["avatar"]
+  alt: ProfileType["name"]
+}
 // ______________________________________________________
 //
 // ______________________________________________________
 //
-const ProfileAvatar: React.FC<ProfileAvatarProps> = ({ avatar }) => (
-  <div className="rounded bg-gray-200 h-1/2">
-    {avatar}
-  </div>
+const ProfileAvatar: React.FC<ProfileAvatarProps> = ({ avatar, alt }) => (
+  <GatsbyImage
+    className="rounded-full"
+    image={avatar}
+    alt={alt}
+  >
+  </GatsbyImage>
 )
 // ______________________________________________________
 //
