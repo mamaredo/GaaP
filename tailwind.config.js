@@ -26,7 +26,8 @@ module.exports = {
         '7': '56px',
         'index-size': "400px",
         'icon': '12px',
-        'button-icon': '24px'
+        'button-icon': '24px',
+        'main-visual': '35vw'
       },
       zIndex: {
         top: '9999'
