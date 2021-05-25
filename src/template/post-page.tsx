@@ -45,7 +45,7 @@ const PostPage: React.VFC<PostPageProps> = ({ pageContext }) => {
   
   const tagStyle = useMemo(() => ['shadow', 'bg-tag-bg'], [tagInfo])
   return (
-    <Layout>
+    <Layout title={head.title}>
       <BaseNavigation />
       <div className="px-1 w-full bg-background">
         <div 
@@ -80,7 +80,10 @@ const PostPage: React.VFC<PostPageProps> = ({ pageContext }) => {
           <div className="pt-5 md:col-span-4 col-span-4">
             <div className="xl:fixed  w-full">
               <BlogIndex postIndex={postIndex} />
-              <div className="mt-5 flex">
+              <div className="my-2 text-xl font-bold opacity-70">
+                タグ
+              </div>
+              <div className="mb-5 flex">
                 <BlogTag tagInfo={tagInfo} style={tagStyle} />
               </div>
             </div>
