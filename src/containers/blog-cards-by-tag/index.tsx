@@ -1,25 +1,28 @@
 import * as React from "react"
 import { TagType } from "../../components/base-blog-tag"
 import BaseBlogCard, { BlogCardType } from "../../components/base-blog-card"
+import { IGatsbyImageData } from "gatsby-plugin-image"
 
 
 // ______________________________________________________
 //
-export type BlogCardsType = {
+export type BlogCardsByTagType = {
   blogCardInfo: BlogCardType[]
 }
-export type BlogCardsProps = TagType & BlogCardsType
+export type BlogCardsByTagProps = TagType & BlogCardsByTagType
 // ______________________________________________________
 //
 // ______________________________________________________
 //
-const BlogCards: React.FC<BlogCardsProps> = ({ tag, svg, blogCardInfo }) => {
+const BlogCardsByTag: React.FC<BlogCardsByTagProps> = ({ tag, svg, blogCardInfo }) => {
   return (
     <>
     {
       blogCardInfo.map((el, index) => (
           <BaseBlogCard
             key={index}
+            image={el.image as IGatsbyImageData}
+            alt={el.alt}
             slug={el.slug}
             title={el.title}
             date={el.date}
@@ -34,4 +37,4 @@ const BlogCards: React.FC<BlogCardsProps> = ({ tag, svg, blogCardInfo }) => {
 }
 // ______________________________________________________
 //
-export default BlogCards
+export default BlogCardsByTag
