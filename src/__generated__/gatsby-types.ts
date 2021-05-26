@@ -1277,6 +1277,7 @@ type SitePluginPluginOptions = {
   readonly pageLimit: Maybe<Scalars['Int']>;
   readonly assetDownloadWorkers: Maybe<Scalars['Int']>;
   readonly useNameForId: Maybe<Scalars['Boolean']>;
+  readonly fonts: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
   readonly pathCheck: Maybe<Scalars['Boolean']>;
 };
 
@@ -3052,6 +3053,7 @@ type SitePluginPluginOptionsFilterInput = {
   readonly pageLimit: Maybe<IntQueryOperatorInput>;
   readonly assetDownloadWorkers: Maybe<IntQueryOperatorInput>;
   readonly useNameForId: Maybe<BooleanQueryOperatorInput>;
+  readonly fonts: Maybe<StringQueryOperatorInput>;
   readonly pathCheck: Maybe<BooleanQueryOperatorInput>;
 };
 
@@ -3346,6 +3348,7 @@ type SitePageFieldsEnum =
   | 'pluginCreator.pluginOptions.pageLimit'
   | 'pluginCreator.pluginOptions.assetDownloadWorkers'
   | 'pluginCreator.pluginOptions.useNameForId'
+  | 'pluginCreator.pluginOptions.fonts'
   | 'pluginCreator.pluginOptions.pathCheck'
   | 'pluginCreator.nodeAPIs'
   | 'pluginCreator.browserAPIs'
@@ -8656,6 +8659,7 @@ type SitePluginFieldsEnum =
   | 'pluginOptions.pageLimit'
   | 'pluginOptions.assetDownloadWorkers'
   | 'pluginOptions.useNameForId'
+  | 'pluginOptions.fonts'
   | 'pluginOptions.pathCheck'
   | 'nodeAPIs'
   | 'browserAPIs'
@@ -8714,14 +8718,6 @@ type AllBlogTagsQuery = { readonly allContentfulBlogPost: { readonly edges: Read
         & { readonly svgContent: Maybe<{ readonly svg: Maybe<Pick<InlineSvg, 'content'>> }> }
       ) }> } };
 
-type AllBlogPostsQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type AllBlogPostsQuery = { readonly allContentfulBlogPost: { readonly edges: ReadonlyArray<{ readonly node: (
-        Pick<ContentfulBlogPost, 'tags' | 'slug' | 'title' | 'updatedAt'>
-        & { readonly heroImage: Maybe<Pick<ContentfulAsset, 'gatsbyImageData' | 'title'>>, readonly svgContent: Maybe<{ readonly svg: Maybe<Pick<InlineSvg, 'content'>> }> }
-      ) }> } };
-
 type ProfileQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -8775,5 +8771,13 @@ type GatsbyContentfulFluid_noBase64Fragment = Pick<ContentfulFluid, 'aspectRatio
 type GatsbyContentfulFluid_withWebpFragment = Pick<ContentfulFluid, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
 
 type GatsbyContentfulFluid_withWebp_noBase64Fragment = Pick<ContentfulFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
+
+type AllBlogPostsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type AllBlogPostsQuery = { readonly allContentfulBlogPost: { readonly edges: ReadonlyArray<{ readonly node: (
+        Pick<ContentfulBlogPost, 'tags' | 'slug' | 'title' | 'updatedAt'>
+        & { readonly heroImage: Maybe<Pick<ContentfulAsset, 'gatsbyImageData' | 'title'>>, readonly svgContent: Maybe<{ readonly svg: Maybe<Pick<InlineSvg, 'content'>> }> }
+      ) }> } };
 
 }

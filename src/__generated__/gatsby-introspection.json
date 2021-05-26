@@ -11725,6 +11725,22 @@
             "deprecationReason": null
           },
           {
+            "name": "fonts",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "pathCheck",
             "description": null,
             "args": [],
@@ -26152,6 +26168,18 @@
             "deprecationReason": null
           },
           {
+            "name": "fonts",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "StringQueryOperatorInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "pathCheck",
             "description": null,
             "type": {
@@ -28298,6 +28326,12 @@
           },
           {
             "name": "pluginCreator___pluginOptions___useNameForId",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "pluginCreator___pluginOptions___fonts",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -63662,6 +63696,12 @@
           },
           {
             "name": "pluginOptions___useNameForId",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "pluginOptions___fonts",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
