@@ -1,11 +1,11 @@
 import * as React from "react"
-import { socialType } from "./index"
+import { SocialType } from "./index"
 
 
 
 // ______________________________________________________
 //
-const ProfileSocial: React.FC<socialType> = ({ twitter, gitHub, contact }) => (
+const ProfileSocial: React.FC<SocialType> = ({ twitter, gitHub, contact }) => (
   <>
     <div className="mt-3 w-full min-h-button flex justify-between">
       <a href={twitter} className="flex items-center justify-center mr-1 w-full bg-twitter text-white font-semibold rounded">
