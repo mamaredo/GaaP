@@ -85,7 +85,7 @@ const MainVisual: React.VFC = () => (
           </div>
         </div>
         <div className="md:pt-3 pt-1">
-          <p className="font-black md:text-2xl text-xl text-center text-header-text">
+          <p className="font-balsamiq italic font-bold md:text-2xl text-xl text-center text-header-text">
           blog to growth as a programmer
           </p>
         </div>
