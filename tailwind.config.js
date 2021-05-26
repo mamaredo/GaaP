@@ -6,6 +6,7 @@ module.exports = {
       colors: {
         'primary': '#60CAAD',
         'secondary': '#333333',
+        'header-text': '#2B2B2B',
         'background': '#FAFAFA',
         'tag-bg': '#FFFFFF',
         'twitter': '#1DA1F2',
@@ -27,7 +28,7 @@ module.exports = {
         'index-size': "400px",
         'icon': '12px',
         'button-icon': '24px',
-        'main-visual': '35vw'
+        'main-visual': '25vw'
       },
       zIndex: {
         top: '9999'
