@@ -3,6 +3,9 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      fontFamily: {
+        'balsamiq': ['"Balsamiq Sans"', 'cursive']
+      },
       colors: {
         'primary': '#60CAAD',
         'secondary': '#333333',
