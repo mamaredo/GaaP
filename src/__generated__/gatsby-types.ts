@@ -68,6 +68,7 @@ type File = Node & {
   readonly birthtimeMs: Maybe<Scalars['Float']>;
   readonly blksize: Maybe<Scalars['Int']>;
   readonly blocks: Maybe<Scalars['Int']>;
+  readonly url: Maybe<Scalars['String']>;
   /** Copy file to static directory and return public url to it */
   readonly publicURL: Maybe<Scalars['String']>;
   /** Returns all children nodes filtered by type ImageSharp */
@@ -260,8 +261,6 @@ type Site = Node & {
   readonly port: Maybe<Scalars['Int']>;
   readonly host: Maybe<Scalars['String']>;
   readonly flags: Maybe<SiteFlags>;
-  readonly polyfill: Maybe<Scalars['Boolean']>;
-  readonly pathPrefix: Maybe<Scalars['String']>;
   readonly id: Scalars['ID'];
   readonly parent: Maybe<Node>;
   readonly children: ReadonlyArray<Node>;
@@ -305,14 +304,14 @@ type SitePage = Node & {
   readonly internalComponentName: Scalars['String'];
   readonly componentChunkName: Scalars['String'];
   readonly matchPath: Maybe<Scalars['String']>;
+  readonly isCreatedByStatefulCreatePages: Maybe<Scalars['Boolean']>;
+  readonly pluginCreator: Maybe<SitePlugin>;
+  readonly pluginCreatorId: Maybe<Scalars['String']>;
   readonly id: Scalars['ID'];
   readonly parent: Maybe<Node>;
   readonly children: ReadonlyArray<Node>;
   readonly internal: Internal;
-  readonly isCreatedByStatefulCreatePages: Maybe<Scalars['Boolean']>;
   readonly context: Maybe<SitePageContext>;
-  readonly pluginCreator: Maybe<SitePlugin>;
-  readonly pluginCreatorId: Maybe<Scalars['String']>;
 };
 
 type SitePageContext = {
@@ -1417,6 +1416,7 @@ type Query_fileArgs = {
   birthtimeMs: Maybe<FloatQueryOperatorInput>;
   blksize: Maybe<IntQueryOperatorInput>;
   blocks: Maybe<IntQueryOperatorInput>;
+  url: Maybe<StringQueryOperatorInput>;
   publicURL: Maybe<StringQueryOperatorInput>;
   childrenImageSharp: Maybe<ImageSharpFilterListInput>;
   childImageSharp: Maybe<ImageSharpFilterInput>;
@@ -1490,8 +1490,6 @@ type Query_siteArgs = {
   port: Maybe<IntQueryOperatorInput>;
   host: Maybe<StringQueryOperatorInput>;
   flags: Maybe<SiteFlagsFilterInput>;
-  polyfill: Maybe<BooleanQueryOperatorInput>;
-  pathPrefix: Maybe<StringQueryOperatorInput>;
   id: Maybe<StringQueryOperatorInput>;
   parent: Maybe<NodeFilterInput>;
   children: Maybe<NodeFilterListInput>;
@@ -1534,14 +1532,14 @@ type Query_sitePageArgs = {
   internalComponentName: Maybe<StringQueryOperatorInput>;
   componentChunkName: Maybe<StringQueryOperatorInput>;
   matchPath: Maybe<StringQueryOperatorInput>;
+  isCreatedByStatefulCreatePages: Maybe<BooleanQueryOperatorInput>;
+  pluginCreator: Maybe<SitePluginFilterInput>;
+  pluginCreatorId: Maybe<StringQueryOperatorInput>;
   id: Maybe<StringQueryOperatorInput>;
   parent: Maybe<NodeFilterInput>;
   children: Maybe<NodeFilterListInput>;
   internal: Maybe<InternalFilterInput>;
-  isCreatedByStatefulCreatePages: Maybe<BooleanQueryOperatorInput>;
   context: Maybe<SitePageContextFilterInput>;
-  pluginCreator: Maybe<SitePluginFilterInput>;
-  pluginCreatorId: Maybe<StringQueryOperatorInput>;
 };
 
 
@@ -2146,6 +2144,7 @@ type FileFieldsEnum =
   | 'birthtimeMs'
   | 'blksize'
   | 'blocks'
+  | 'url'
   | 'publicURL'
   | 'childrenImageSharp'
   | 'childrenImageSharp.fixed.base64'
@@ -2418,6 +2417,7 @@ type FileFilterInput = {
   readonly birthtimeMs: Maybe<FloatQueryOperatorInput>;
   readonly blksize: Maybe<IntQueryOperatorInput>;
   readonly blocks: Maybe<IntQueryOperatorInput>;
+  readonly url: Maybe<StringQueryOperatorInput>;
   readonly publicURL: Maybe<StringQueryOperatorInput>;
   readonly childrenImageSharp: Maybe<ImageSharpFilterListInput>;
   readonly childImageSharp: Maybe<ImageSharpFilterInput>;
@@ -2721,8 +2721,6 @@ type SiteFieldsEnum =
   | 'host'
   | 'flags.FAST_DEV'
   | 'flags.DEV_SSR'
-  | 'polyfill'
-  | 'pathPrefix'
   | 'id'
   | 'parent.id'
   | 'parent.parent.id'
@@ -2825,8 +2823,6 @@ type SiteFilterInput = {
   readonly port: Maybe<IntQueryOperatorInput>;
   readonly host: Maybe<StringQueryOperatorInput>;
   readonly flags: Maybe<SiteFlagsFilterInput>;
-  readonly polyfill: Maybe<BooleanQueryOperatorInput>;
-  readonly pathPrefix: Maybe<StringQueryOperatorInput>;
   readonly id: Maybe<StringQueryOperatorInput>;
   readonly parent: Maybe<NodeFilterInput>;
   readonly children: Maybe<NodeFilterListInput>;
@@ -3002,87 +2998,6 @@ type SiteFunctionSortInput = {
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
-type SitePageContextFilterInput = {
-  readonly head: Maybe<SitePageContextHeadFilterInput>;
-  readonly tagInfo: Maybe<SitePageContextTagInfoFilterInput>;
-  readonly image: Maybe<SitePageContextImageFilterInput>;
-  readonly body: Maybe<StringQueryOperatorInput>;
-  readonly postIndex: Maybe<StringQueryOperatorInput>;
-  readonly tag: Maybe<StringQueryOperatorInput>;
-  readonly svg: Maybe<StringQueryOperatorInput>;
-  readonly postCount: Maybe<IntQueryOperatorInput>;
-  readonly blogCardInfo: Maybe<SitePageContextBlogCardInfoFilterListInput>;
-};
-
-type SitePageContextHeadFilterInput = {
-  readonly title: Maybe<StringQueryOperatorInput>;
-  readonly date: Maybe<DateQueryOperatorInput>;
-};
-
-type SitePageContextTagInfoFilterInput = {
-  readonly tag: Maybe<StringQueryOperatorInput>;
-  readonly svg: Maybe<StringQueryOperatorInput>;
-};
-
-type SitePageContextImageFilterInput = {
-  readonly fluid: Maybe<SitePageContextImageFluidFilterInput>;
-  readonly alt: Maybe<StringQueryOperatorInput>;
-};
-
-type SitePageContextImageFluidFilterInput = {
-  readonly base64: Maybe<StringQueryOperatorInput>;
-  readonly aspectRatio: Maybe<FloatQueryOperatorInput>;
-  readonly src: Maybe<StringQueryOperatorInput>;
-  readonly srcSet: Maybe<StringQueryOperatorInput>;
-  readonly sizes: Maybe<StringQueryOperatorInput>;
-};
-
-type SitePageContextBlogCardInfoFilterListInput = {
-  readonly elemMatch: Maybe<SitePageContextBlogCardInfoFilterInput>;
-};
-
-type SitePageContextBlogCardInfoFilterInput = {
-  readonly tag: Maybe<StringQueryOperatorInput>;
-  readonly slug: Maybe<StringQueryOperatorInput>;
-  readonly title: Maybe<StringQueryOperatorInput>;
-  readonly date: Maybe<DateQueryOperatorInput>;
-  readonly image: Maybe<SitePageContextBlogCardInfoImageFilterInput>;
-  readonly alt: Maybe<StringQueryOperatorInput>;
-};
-
-type SitePageContextBlogCardInfoImageFilterInput = {
-  readonly images: Maybe<SitePageContextBlogCardInfoImageImagesFilterInput>;
-  readonly layout: Maybe<StringQueryOperatorInput>;
-  readonly width: Maybe<IntQueryOperatorInput>;
-  readonly height: Maybe<IntQueryOperatorInput>;
-  readonly placeholder: Maybe<SitePageContextBlogCardInfoImagePlaceholderFilterInput>;
-};
-
-type SitePageContextBlogCardInfoImageImagesFilterInput = {
-  readonly sources: Maybe<SitePageContextBlogCardInfoImageImagesSourcesFilterListInput>;
-  readonly fallback: Maybe<SitePageContextBlogCardInfoImageImagesFallbackFilterInput>;
-};
-
-type SitePageContextBlogCardInfoImageImagesSourcesFilterListInput = {
-  readonly elemMatch: Maybe<SitePageContextBlogCardInfoImageImagesSourcesFilterInput>;
-};
-
-type SitePageContextBlogCardInfoImageImagesSourcesFilterInput = {
-  readonly srcSet: Maybe<StringQueryOperatorInput>;
-  readonly sizes: Maybe<StringQueryOperatorInput>;
-  readonly type: Maybe<StringQueryOperatorInput>;
-};
-
-type SitePageContextBlogCardInfoImageImagesFallbackFilterInput = {
-  readonly src: Maybe<StringQueryOperatorInput>;
-  readonly srcSet: Maybe<StringQueryOperatorInput>;
-  readonly sizes: Maybe<StringQueryOperatorInput>;
-};
-
-type SitePageContextBlogCardInfoImagePlaceholderFilterInput = {
-  readonly fallback: Maybe<StringQueryOperatorInput>;
-};
-
 type SitePluginFilterInput = {
   readonly id: Maybe<StringQueryOperatorInput>;
   readonly parent: Maybe<NodeFilterInput>;
@@ -3212,6 +3127,87 @@ type SitePluginPackageJsonPeerDependenciesFilterInput = {
   readonly version: Maybe<StringQueryOperatorInput>;
 };
 
+type SitePageContextFilterInput = {
+  readonly head: Maybe<SitePageContextHeadFilterInput>;
+  readonly tagInfo: Maybe<SitePageContextTagInfoFilterInput>;
+  readonly image: Maybe<SitePageContextImageFilterInput>;
+  readonly body: Maybe<StringQueryOperatorInput>;
+  readonly postIndex: Maybe<StringQueryOperatorInput>;
+  readonly tag: Maybe<StringQueryOperatorInput>;
+  readonly svg: Maybe<StringQueryOperatorInput>;
+  readonly postCount: Maybe<IntQueryOperatorInput>;
+  readonly blogCardInfo: Maybe<SitePageContextBlogCardInfoFilterListInput>;
+};
+
+type SitePageContextHeadFilterInput = {
+  readonly title: Maybe<StringQueryOperatorInput>;
+  readonly date: Maybe<DateQueryOperatorInput>;
+};
+
+type SitePageContextTagInfoFilterInput = {
+  readonly tag: Maybe<StringQueryOperatorInput>;
+  readonly svg: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePageContextImageFilterInput = {
+  readonly fluid: Maybe<SitePageContextImageFluidFilterInput>;
+  readonly alt: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePageContextImageFluidFilterInput = {
+  readonly base64: Maybe<StringQueryOperatorInput>;
+  readonly aspectRatio: Maybe<FloatQueryOperatorInput>;
+  readonly src: Maybe<StringQueryOperatorInput>;
+  readonly srcSet: Maybe<StringQueryOperatorInput>;
+  readonly sizes: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePageContextBlogCardInfoFilterListInput = {
+  readonly elemMatch: Maybe<SitePageContextBlogCardInfoFilterInput>;
+};
+
+type SitePageContextBlogCardInfoFilterInput = {
+  readonly tag: Maybe<StringQueryOperatorInput>;
+  readonly slug: Maybe<StringQueryOperatorInput>;
+  readonly title: Maybe<StringQueryOperatorInput>;
+  readonly date: Maybe<DateQueryOperatorInput>;
+  readonly image: Maybe<SitePageContextBlogCardInfoImageFilterInput>;
+  readonly alt: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePageContextBlogCardInfoImageFilterInput = {
+  readonly images: Maybe<SitePageContextBlogCardInfoImageImagesFilterInput>;
+  readonly layout: Maybe<StringQueryOperatorInput>;
+  readonly width: Maybe<IntQueryOperatorInput>;
+  readonly height: Maybe<IntQueryOperatorInput>;
+  readonly placeholder: Maybe<SitePageContextBlogCardInfoImagePlaceholderFilterInput>;
+};
+
+type SitePageContextBlogCardInfoImageImagesFilterInput = {
+  readonly sources: Maybe<SitePageContextBlogCardInfoImageImagesSourcesFilterListInput>;
+  readonly fallback: Maybe<SitePageContextBlogCardInfoImageImagesFallbackFilterInput>;
+};
+
+type SitePageContextBlogCardInfoImageImagesSourcesFilterListInput = {
+  readonly elemMatch: Maybe<SitePageContextBlogCardInfoImageImagesSourcesFilterInput>;
+};
+
+type SitePageContextBlogCardInfoImageImagesSourcesFilterInput = {
+  readonly srcSet: Maybe<StringQueryOperatorInput>;
+  readonly sizes: Maybe<StringQueryOperatorInput>;
+  readonly type: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePageContextBlogCardInfoImageImagesFallbackFilterInput = {
+  readonly src: Maybe<StringQueryOperatorInput>;
+  readonly srcSet: Maybe<StringQueryOperatorInput>;
+  readonly sizes: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePageContextBlogCardInfoImagePlaceholderFilterInput = {
+  readonly fallback: Maybe<StringQueryOperatorInput>;
+};
+
 type SitePageConnection = {
   readonly totalCount: Scalars['Int'];
   readonly edges: ReadonlyArray<SitePageEdge>;
@@ -3263,117 +3259,7 @@ type SitePageFieldsEnum =
   | 'internalComponentName'
   | 'componentChunkName'
   | 'matchPath'
-  | 'id'
-  | 'parent.id'
-  | 'parent.parent.id'
-  | 'parent.parent.parent.id'
-  | 'parent.parent.parent.children'
-  | 'parent.parent.children'
-  | 'parent.parent.children.id'
-  | 'parent.parent.children.children'
-  | 'parent.parent.internal.content'
-  | 'parent.parent.internal.contentDigest'
-  | 'parent.parent.internal.description'
-  | 'parent.parent.internal.fieldOwners'
-  | 'parent.parent.internal.ignoreType'
-  | 'parent.parent.internal.mediaType'
-  | 'parent.parent.internal.owner'
-  | 'parent.parent.internal.type'
-  | 'parent.children'
-  | 'parent.children.id'
-  | 'parent.children.parent.id'
-  | 'parent.children.parent.children'
-  | 'parent.children.children'
-  | 'parent.children.children.id'
-  | 'parent.children.children.children'
-  | 'parent.children.internal.content'
-  | 'parent.children.internal.contentDigest'
-  | 'parent.children.internal.description'
-  | 'parent.children.internal.fieldOwners'
-  | 'parent.children.internal.ignoreType'
-  | 'parent.children.internal.mediaType'
-  | 'parent.children.internal.owner'
-  | 'parent.children.internal.type'
-  | 'parent.internal.content'
-  | 'parent.internal.contentDigest'
-  | 'parent.internal.description'
-  | 'parent.internal.fieldOwners'
-  | 'parent.internal.ignoreType'
-  | 'parent.internal.mediaType'
-  | 'parent.internal.owner'
-  | 'parent.internal.type'
-  | 'children'
-  | 'children.id'
-  | 'children.parent.id'
-  | 'children.parent.parent.id'
-  | 'children.parent.parent.children'
-  | 'children.parent.children'
-  | 'children.parent.children.id'
-  | 'children.parent.children.children'
-  | 'children.parent.internal.content'
-  | 'children.parent.internal.contentDigest'
-  | 'children.parent.internal.description'
-  | 'children.parent.internal.fieldOwners'
-  | 'children.parent.internal.ignoreType'
-  | 'children.parent.internal.mediaType'
-  | 'children.parent.internal.owner'
-  | 'children.parent.internal.type'
-  | 'children.children'
-  | 'children.children.id'
-  | 'children.children.parent.id'
-  | 'children.children.parent.children'
-  | 'children.children.children'
-  | 'children.children.children.id'
-  | 'children.children.children.children'
-  | 'children.children.internal.content'
-  | 'children.children.internal.contentDigest'
-  | 'children.children.internal.description'
-  | 'children.children.internal.fieldOwners'
-  | 'children.children.internal.ignoreType'
-  | 'children.children.internal.mediaType'
-  | 'children.children.internal.owner'
-  | 'children.children.internal.type'
-  | 'children.internal.content'
-  | 'children.internal.contentDigest'
-  | 'children.internal.description'
-  | 'children.internal.fieldOwners'
-  | 'children.internal.ignoreType'
-  | 'children.internal.mediaType'
-  | 'children.internal.owner'
-  | 'children.internal.type'
-  | 'internal.content'
-  | 'internal.contentDigest'
-  | 'internal.description'
-  | 'internal.fieldOwners'
-  | 'internal.ignoreType'
-  | 'internal.mediaType'
-  | 'internal.owner'
-  | 'internal.type'
   | 'isCreatedByStatefulCreatePages'
-  | 'context.head.title'
-  | 'context.head.date'
-  | 'context.tagInfo.tag'
-  | 'context.tagInfo.svg'
-  | 'context.image.fluid.base64'
-  | 'context.image.fluid.aspectRatio'
-  | 'context.image.fluid.src'
-  | 'context.image.fluid.srcSet'
-  | 'context.image.fluid.sizes'
-  | 'context.image.alt'
-  | 'context.body'
-  | 'context.postIndex'
-  | 'context.tag'
-  | 'context.svg'
-  | 'context.postCount'
-  | 'context.blogCardInfo'
-  | 'context.blogCardInfo.tag'
-  | 'context.blogCardInfo.slug'
-  | 'context.blogCardInfo.title'
-  | 'context.blogCardInfo.date'
-  | 'context.blogCardInfo.image.layout'
-  | 'context.blogCardInfo.image.width'
-  | 'context.blogCardInfo.image.height'
-  | 'context.blogCardInfo.alt'
   | 'pluginCreator.id'
   | 'pluginCreator.parent.id'
   | 'pluginCreator.parent.parent.id'
@@ -3480,7 +3366,117 @@ type SitePageFieldsEnum =
   | 'pluginCreator.packageJson.peerDependencies.name'
   | 'pluginCreator.packageJson.peerDependencies.version'
   | 'pluginCreator.packageJson.keywords'
-  | 'pluginCreatorId';
+  | 'pluginCreatorId'
+  | 'id'
+  | 'parent.id'
+  | 'parent.parent.id'
+  | 'parent.parent.parent.id'
+  | 'parent.parent.parent.children'
+  | 'parent.parent.children'
+  | 'parent.parent.children.id'
+  | 'parent.parent.children.children'
+  | 'parent.parent.internal.content'
+  | 'parent.parent.internal.contentDigest'
+  | 'parent.parent.internal.description'
+  | 'parent.parent.internal.fieldOwners'
+  | 'parent.parent.internal.ignoreType'
+  | 'parent.parent.internal.mediaType'
+  | 'parent.parent.internal.owner'
+  | 'parent.parent.internal.type'
+  | 'parent.children'
+  | 'parent.children.id'
+  | 'parent.children.parent.id'
+  | 'parent.children.parent.children'
+  | 'parent.children.children'
+  | 'parent.children.children.id'
+  | 'parent.children.children.children'
+  | 'parent.children.internal.content'
+  | 'parent.children.internal.contentDigest'
+  | 'parent.children.internal.description'
+  | 'parent.children.internal.fieldOwners'
+  | 'parent.children.internal.ignoreType'
+  | 'parent.children.internal.mediaType'
+  | 'parent.children.internal.owner'
+  | 'parent.children.internal.type'
+  | 'parent.internal.content'
+  | 'parent.internal.contentDigest'
+  | 'parent.internal.description'
+  | 'parent.internal.fieldOwners'
+  | 'parent.internal.ignoreType'
+  | 'parent.internal.mediaType'
+  | 'parent.internal.owner'
+  | 'parent.internal.type'
+  | 'children'
+  | 'children.id'
+  | 'children.parent.id'
+  | 'children.parent.parent.id'
+  | 'children.parent.parent.children'
+  | 'children.parent.children'
+  | 'children.parent.children.id'
+  | 'children.parent.children.children'
+  | 'children.parent.internal.content'
+  | 'children.parent.internal.contentDigest'
+  | 'children.parent.internal.description'
+  | 'children.parent.internal.fieldOwners'
+  | 'children.parent.internal.ignoreType'
+  | 'children.parent.internal.mediaType'
+  | 'children.parent.internal.owner'
+  | 'children.parent.internal.type'
+  | 'children.children'
+  | 'children.children.id'
+  | 'children.children.parent.id'
+  | 'children.children.parent.children'
+  | 'children.children.children'
+  | 'children.children.children.id'
+  | 'children.children.children.children'
+  | 'children.children.internal.content'
+  | 'children.children.internal.contentDigest'
+  | 'children.children.internal.description'
+  | 'children.children.internal.fieldOwners'
+  | 'children.children.internal.ignoreType'
+  | 'children.children.internal.mediaType'
+  | 'children.children.internal.owner'
+  | 'children.children.internal.type'
+  | 'children.internal.content'
+  | 'children.internal.contentDigest'
+  | 'children.internal.description'
+  | 'children.internal.fieldOwners'
+  | 'children.internal.ignoreType'
+  | 'children.internal.mediaType'
+  | 'children.internal.owner'
+  | 'children.internal.type'
+  | 'internal.content'
+  | 'internal.contentDigest'
+  | 'internal.description'
+  | 'internal.fieldOwners'
+  | 'internal.ignoreType'
+  | 'internal.mediaType'
+  | 'internal.owner'
+  | 'internal.type'
+  | 'context.head.title'
+  | 'context.head.date'
+  | 'context.tagInfo.tag'
+  | 'context.tagInfo.svg'
+  | 'context.image.fluid.base64'
+  | 'context.image.fluid.aspectRatio'
+  | 'context.image.fluid.src'
+  | 'context.image.fluid.srcSet'
+  | 'context.image.fluid.sizes'
+  | 'context.image.alt'
+  | 'context.body'
+  | 'context.postIndex'
+  | 'context.tag'
+  | 'context.svg'
+  | 'context.postCount'
+  | 'context.blogCardInfo'
+  | 'context.blogCardInfo.tag'
+  | 'context.blogCardInfo.slug'
+  | 'context.blogCardInfo.title'
+  | 'context.blogCardInfo.date'
+  | 'context.blogCardInfo.image.layout'
+  | 'context.blogCardInfo.image.width'
+  | 'context.blogCardInfo.image.height'
+  | 'context.blogCardInfo.alt';
 
 type SitePageGroupConnection = {
   readonly totalCount: Scalars['Int'];
@@ -3497,14 +3493,14 @@ type SitePageFilterInput = {
   readonly internalComponentName: Maybe<StringQueryOperatorInput>;
   readonly componentChunkName: Maybe<StringQueryOperatorInput>;
   readonly matchPath: Maybe<StringQueryOperatorInput>;
+  readonly isCreatedByStatefulCreatePages: Maybe<BooleanQueryOperatorInput>;
+  readonly pluginCreator: Maybe<SitePluginFilterInput>;
+  readonly pluginCreatorId: Maybe<StringQueryOperatorInput>;
   readonly id: Maybe<StringQueryOperatorInput>;
   readonly parent: Maybe<NodeFilterInput>;
   readonly children: Maybe<NodeFilterListInput>;
   readonly internal: Maybe<InternalFilterInput>;
-  readonly isCreatedByStatefulCreatePages: Maybe<BooleanQueryOperatorInput>;
   readonly context: Maybe<SitePageContextFilterInput>;
-  readonly pluginCreator: Maybe<SitePluginFilterInput>;
-  readonly pluginCreatorId: Maybe<StringQueryOperatorInput>;
 };
 
 type SitePageSortInput = {
@@ -8700,23 +8696,15 @@ type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 type PagesQueryQuery = { readonly allSiteFunction: { readonly nodes: ReadonlyArray<Pick<SiteFunction, 'apiRoute'>> }, readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
 
-type homemamaredoGaaPsrcpagesusingTypescriptTsx2907560070QueryVariables = Exact<{ [key: string]: never; }>;
+type homemamaredoDGaaPsrcpagesusingTypescriptTsx2907560070QueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type homemamaredoGaaPsrcpagesusingTypescriptTsx2907560070Query = { readonly site: Maybe<Pick<Site, 'buildTime'>> };
+type homemamaredoDGaaPsrcpagesusingTypescriptTsx2907560070Query = { readonly site: Maybe<Pick<Site, 'buildTime'>> };
 
 type MetadataQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type MetadataQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<{ defaultTitle: SiteSiteMetadata['title'], defaultDescription: SiteSiteMetadata['description'] }> }> };
-
-type AllBlogPostsQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type AllBlogPostsQuery = { readonly allContentfulBlogPost: { readonly edges: ReadonlyArray<{ readonly node: (
-        Pick<ContentfulBlogPost, 'tags' | 'slug' | 'title' | 'updatedAt'>
-        & { readonly heroImage: Maybe<Pick<ContentfulAsset, 'gatsbyImageData' | 'title'>>, readonly svgContent: Maybe<{ readonly svg: Maybe<Pick<InlineSvg, 'content'>> }> }
-      ) }> } };
 
 type AllBlogTagsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -8724,6 +8712,14 @@ type AllBlogTagsQueryVariables = Exact<{ [key: string]: never; }>;
 type AllBlogTagsQuery = { readonly allContentfulBlogPost: { readonly edges: ReadonlyArray<{ readonly node: (
         Pick<ContentfulBlogPost, 'tags'>
         & { readonly svgContent: Maybe<{ readonly svg: Maybe<Pick<InlineSvg, 'content'>> }> }
+      ) }> } };
+
+type AllBlogPostsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type AllBlogPostsQuery = { readonly allContentfulBlogPost: { readonly edges: ReadonlyArray<{ readonly node: (
+        Pick<ContentfulBlogPost, 'tags' | 'slug' | 'title' | 'updatedAt'>
+        & { readonly heroImage: Maybe<Pick<ContentfulAsset, 'gatsbyImageData' | 'title'>>, readonly svgContent: Maybe<{ readonly svg: Maybe<Pick<InlineSvg, 'content'>> }> }
       ) }> } };
 
 type ProfileQueryVariables = Exact<{ [key: string]: never; }>;
