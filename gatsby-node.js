@@ -143,22 +143,3 @@ exports.createPages = async ({ graphql, actions }) => {
   }
   // ______________________________________________________
   //
-
-  // ______________________________________________________
-  //
-  // exports.onCreateNode = ({ node, actions, getNode }) => {
-    //   const { createNodeField } = actions
-    
-    //   // md file only
-    //   if (node.internal.type === `md`) {
-      //     const value = createFilePath({ node, getNode })
-      
-      //     createNodeField({
-        //       node,
-        //       name: "slug",
-        //       value: `/blog${value}`,
-        //     })
-        //   }
-        // }
-        // ______________________________________________________
-        //
