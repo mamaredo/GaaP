@@ -9,8 +9,8 @@ module.exports = {
   },
   siteMetadata: {
     title: `GaaP`,
-    description: `blog to grow as a programmer.`,
-    author: `@gatsbyjs`,
+    description: `Nishimuraの技術ブログ。開発する上で役に立ったこと、注意したいこと、やってみたことを投稿します。`,
+    author: `Nishimura`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -33,7 +33,7 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/assets/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/assets/gaap-logo.svg`, // This path is relative to the root of the site.
       },
     },
     `gatsby-plugin-postcss`,
@@ -42,6 +42,12 @@ module.exports = {
       resolve: "gatsby-transformer-remark",
       options: {
         plugins: [
+          {
+            resolve: `gatsby-remark-external-links`,
+            options: {
+              rel: `noopener noreferrer`,
+            }
+          },
           `gatsby-remark-table-of-contents`,
           {
             resolve: `gatsby-remark-autolink-headers`,
@@ -49,12 +55,6 @@ module.exports = {
               elements: [`h2`],
               maintainCase: false,
               icon: false
-            },
-          },
-          {
-            resolve: `gatsby-remark-external-links`,
-            options: {
-              rel: `noopener noreferrer`,
             },
           },
         ],
