@@ -1,0 +1,75 @@
+.contentfull h2 {
+  @apply
+  xl:text-3xl
+  md:text-2xl
+  text-xl
+  pt-7
+  ;
+}
+
+/* .contentfull h2:first-child {
+  @apply
+  ;
+} */
+
+.contentfull h3 {
+  @apply
+  xl:text-2xl
+  md:text-xl
+  text-lg
+  ;
+}
+
+.contentfull h2,
+.contentfull h3 {
+  @apply 
+  block
+  mb-3
+  font-bold
+  text-black
+  text-opacity-90
+  ;
+}
+
+.contentfull h2::before {
+  content: "##";
+  @apply
+  xl:text-3xl
+  md:text-2xl
+  text-xl
+  mr-2
+  text-primary
+}
+
+
+.contentfull p::after,
+.contentfull ul::after {
+  content: "";
+  @apply block mb-2;
+}
+
+.contentfull p,
+.contentfull li {
+  @apply text-xl;
+}
+
+.contentfull li {
+  list-style-type: circle;
+  @apply
+  ml-3
+  ;
+}
+
+.contentfull a {
+  @apply
+  p-1
+  text-red-500
+  bg-background
+  underline
+  font-bold
+  rounded-md
+}
+
+.contentfull hr {
+  @apply mt-14;
+}

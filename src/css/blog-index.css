@@ -1,0 +1,13 @@
+.blog-index li {
+  @apply
+  mb-2
+  ;
+}
+
+.blog-index a {
+  @apply
+  p-1
+  hover:text-secondary
+  transition-colors
+  ;
+}
