@@ -1,5 +1,6 @@
 import * as React from "react"
 import Layout from "../components/layout"
+import SEO from "../containers/seo"
 import MainVisual from "../components/main-visual"
 import AllBlogCards from "../containers/all-blog-cards"
 import ProfileCard from "../containers/profile-card"
@@ -11,6 +12,7 @@ import AllBlogTags from "../containers/all-blog-tags"
 const Index: React.VFC = () => {
   return (
     <Layout>
+      <SEO />
       <div className="w-full h-full">
         <MainVisual />
         <article className="px-1 py-5 bg-background">

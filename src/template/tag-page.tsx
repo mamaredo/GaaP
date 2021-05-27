@@ -1,5 +1,6 @@
 import React from "react"
 import Layout from "../components/layout"
+import SEO from "../containers/seo"
 import MainVisual from "../components/main-visual"
 import TagPageHeading, { TagPageHeadingProps } from "../containers/tag-page-heading"
 import { TagInfoType } from "../containers/blog-tag"
@@ -24,7 +25,8 @@ const TagPage: React.VFC<TagPageProps> = ({ pageContext }) => {
   const heading = { tag, svg, postCount }
   const { blogCardInfo } = pageContext
   return (
-    <Layout title={tag}>
+    <Layout>
+      <SEO title={tag} />
       <div className="w-full h-full">
         <MainVisual />
         <article className="pb-20 px-1 bg-background">
