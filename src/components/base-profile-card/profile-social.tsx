@@ -26,7 +26,7 @@ const ProfileSocial: React.VFC<SocialType> = ({ twitter, gitHub, contact }) => (
       className="flex items-center justify-center mt-2 w-full min-h-button bg-google-form text-white font-semibold rounded"
     >
       <span>
-        CONTACT FROM
+        CONTACT FORM
       </span>
     </a>
   </>
