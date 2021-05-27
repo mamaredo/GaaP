@@ -24,4 +24,4 @@ const BlogIndex: React.VFC<BlogIndexProps> = ({ postIndex }) => {
 }
 // ______________________________________________________
 //
-export default BlogIndex
+export default React.memo(BlogIndex)

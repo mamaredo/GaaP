@@ -3,14 +3,18 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      fontFamily: {
+        'balsamiq': ['"Balsamiq Sans"', 'cursive']
+      },
       colors: {
         'primary': '#60CAAD',
         'secondary': '#333333',
+        'header-text': '#2B2B2B',
         'background': '#FAFAFA',
         'tag-bg': '#FFFFFF',
         'twitter': '#1DA1F2',
         'git-hub': '#24292E',
-        'content-full': '#0E1E25',
+        'google-form': '#764BBE',
         'hr': '#DADADA'
       },
       opacity: {
@@ -26,7 +30,8 @@ module.exports = {
         '7': '56px',
         'index-size': "400px",
         'icon': '12px',
-        'button-icon': '24px'
+        'button-icon': '24px',
+        'main-visual': '25vw'
       },
       zIndex: {
         top: '9999'
@@ -42,6 +47,7 @@ module.exports = {
     },
     minWidth: {
       'blog-index-fixed': '410px',
+      'profile': '350px',
       'tag': '18px'
     },
     maxWidth: {

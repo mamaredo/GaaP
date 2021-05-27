@@ -17,6 +17,14 @@ export const useProfileQuery = () => {
           twitter
           gitHub
           contact
+          icon {
+            gatsbyImageData(
+              aspectRatio: 1
+              formats: AUTO
+              layout: CONSTRAINED
+              placeholder: BLURRED
+            )
+          }
         }
       }
     `

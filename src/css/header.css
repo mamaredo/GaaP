@@ -1,0 +1,15 @@
+#earth {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: 5s linear infinite earth-rotate;
+}
+
+
+@keyframes earth-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

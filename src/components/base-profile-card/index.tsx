@@ -3,23 +3,24 @@ import ProfileAvatar from "./profile-avatar"
 import ProfileName from "./profile-name"
 import ProfileBio from "./profile-bio"
 import ProfileSocial from "./profile-social"
+import { IGatsbyImageData } from "gatsby-plugin-image"
 
 
 // ______________________________________________________
 //
 export type ProfileType = {
-  avatar: string
+  avatar: IGatsbyImageData
   name: string
   bio: string
 }
-export type socialType = {
+export type SocialType = {
   twitter: string
   gitHub: string
   contact: string
 }
 type BaseProfileCardProps = {
   profile: ProfileType
-  social: socialType
+  social: SocialType
 }
 // ______________________________________________________
 //
@@ -31,11 +32,11 @@ const BaseProfileCard: React.FC<BaseProfileCardProps> = ({ profile, social }) =>
     <div className="shadow bg-white w-full p-2 rounded">
       <div className="flex">
         {/* img */}
-        <div className="mr-1 w-full">
-          <ProfileAvatar avatar={avatar} />
+        <div className="mr-2">
+          <ProfileAvatar avatar={avatar} alt={name} />
         </div>
         {/* img */}
-        <div className="ml-1 w-full">
+        <div className="w-full">
           <ProfileName name={name} />
         </div>
 
