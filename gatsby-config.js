@@ -87,6 +87,9 @@ module.exports = {
         ],
         display: 'swap'
       }
+    },
+    {
+      resolve: `gatsby-plugin-gatsby-cloud`
     }
   ],
 }
