@@ -14,7 +14,7 @@ module.exports = {
         'tag-bg': '#FFFFFF',
         'twitter': '#1DA1F2',
         'git-hub': '#24292E',
-        'content-full': '#0E1E25',
+        'google-form': '#764BBE',
         'hr': '#DADADA'
       },
       opacity: {
@@ -47,6 +47,7 @@ module.exports = {
     },
     minWidth: {
       'blog-index-fixed': '410px',
+      'profile': '350px',
       'tag': '18px'
     },
     maxWidth: {
