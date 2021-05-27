@@ -18,7 +18,7 @@ const SEO: React.VFC<MetadataType> = props => {
     description: description || site?.siteMetadata?.defaultDescription
   }
   return (
-    <BaseSEO title={meta.title} description={meta.description} />
+    <BaseSEO title={meta.title} description={meta.description} siteUrl={site?.siteMetadata?.siteUrl} />
   )
 }
 // ______________________________________________________
