@@ -77,7 +77,6 @@ module.exports = {
       options: {
         spaceId: process.env.SPACE_ID,
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-        // host: `preview.contentful.com`
       }
     },
     {
@@ -89,8 +88,5 @@ module.exports = {
         display: 'swap'
       }
     }
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
   ],
 }
