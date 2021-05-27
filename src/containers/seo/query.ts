@@ -11,6 +11,7 @@ export const useMetadataQuery = () => {
         siteMetadata {
           defaultTitle: title
           defaultDescription: description
+          siteUrl
         }
       }
     }

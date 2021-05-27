@@ -7,6 +7,7 @@ import { Helmet } from 'react-helmet'
 export type MetadataType = {
   title?: string
   description?: string
+  siteUrl?: string
 }
 // ______________________________________________________
 //
@@ -15,7 +16,8 @@ export type MetadataType = {
 const BaseSEO: React.VFC<MetadataType> = props => {
   const {
     title,
-    description
+    description,
+    siteUrl
   } = props
   return (
     <Helmet>
@@ -23,11 +25,12 @@ const BaseSEO: React.VFC<MetadataType> = props => {
       <meta charSet="utf-8" />
       <title>{title}</title>
       <meta name="description" content={description} />
+      <meta property="og:url" content={siteUrl} />
       <meta property="og:title" content={title} />
       <meta property="og:type" content="blog" />
       <meta property="og:description" content="Nishimuraの技術ブログ" />
       <meta property="og:site_name" content="GaaP" />
-      <meta property="og:image" content="../../../gaap-logo.svg" />
+      <meta property="og:image" content="../../../gaap-icon.png" />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
