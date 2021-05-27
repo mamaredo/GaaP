@@ -53,6 +53,23 @@
   @apply text-xl;
 }
 
+.contentfull li {
+  list-style-type: circle;
+  @apply
+  ml-3
+  ;
+}
+
+.contentfull a {
+  @apply
+  p-1
+  text-red-500
+  bg-background
+  underline
+  font-bold
+  rounded-md
+}
+
 .contentfull hr {
   @apply mt-14;
 }
