@@ -30,7 +30,7 @@ const BaseSEO: React.VFC<MetadataType> = props => {
       <meta property="og:type" content="blog" />
       <meta property="og:description" content="Nishimuraの技術ブログ" />
       <meta property="og:site_name" content="GaaP" />
-      <meta property="og:image" content="/gaap-icon.png" />
+      <meta property="og:image" content="https://gaap.gatsbyjs.io/gaap-icon.png" />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
