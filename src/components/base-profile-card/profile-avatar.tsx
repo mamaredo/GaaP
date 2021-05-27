@@ -15,7 +15,7 @@ type ProfileAvatarProps = {
 //
 const ProfileAvatar: React.FC<ProfileAvatarProps> = ({ avatar, alt }) => (
   <GatsbyImage
-    className="rounded-full"
+    className="w-7 h-7 rounded-full"
     image={avatar}
     alt={alt}
   >
