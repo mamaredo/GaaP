@@ -56,6 +56,7 @@ module.exports = {
       'md': '720px',
       'sm': '360px',
       'max': '100%',
+      'tag': '18px',
       'blog-index-fixed': '410px',
     },
     container: {
