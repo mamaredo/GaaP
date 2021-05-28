@@ -21,7 +21,7 @@ const BaseSEO: React.VFC<MetadataType> = props => {
   } = props
   return (
     <Helmet>
-      <html lang="jp" />
+      <html lang="ja" />
       <meta charSet="utf-8" />
       <title>{title}</title>
       <meta name="description" content={description} />
