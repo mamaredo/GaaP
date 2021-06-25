@@ -285,6 +285,7 @@ type SiteSiteMetadata = {
   readonly title: Maybe<Scalars['String']>;
   readonly description: Maybe<Scalars['String']>;
   readonly author: Maybe<Scalars['String']>;
+  readonly siteUrl: Maybe<Scalars['String']>;
 };
 
 type SiteFunction = Node & {
@@ -1213,6 +1214,10 @@ type SitePlugin = Node & {
 
 type SitePluginPluginOptions = {
   readonly plugins: Maybe<ReadonlyArray<Maybe<SitePluginPluginOptionsPlugins>>>;
+  readonly output: Maybe<Scalars['String']>;
+  readonly createLinkInHead: Maybe<Scalars['Boolean']>;
+  readonly entryLimit: Maybe<Scalars['Int']>;
+  readonly query: Maybe<Scalars['String']>;
   readonly name: Maybe<Scalars['String']>;
   readonly path: Maybe<Scalars['String']>;
   readonly base64Width: Maybe<Scalars['Int']>;
@@ -1250,6 +1255,10 @@ type SitePluginPluginOptions = {
   readonly assetDownloadWorkers: Maybe<Scalars['Int']>;
   readonly useNameForId: Maybe<Scalars['Boolean']>;
   readonly fonts: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
+  readonly siteUrl: Maybe<Scalars['String']>;
+  readonly stripQueryString: Maybe<Scalars['Boolean']>;
+  readonly trackingIds: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
+  readonly pluginConfig: Maybe<SitePluginPluginOptionsPluginConfig>;
   readonly pathCheck: Maybe<Scalars['Boolean']>;
 };
 
@@ -1280,6 +1289,10 @@ type SitePluginPluginOptionsEmitSchema = {
 
 type SitePluginPluginOptionsEmitPluginDocuments = {
   readonly src___generated___gatsby_plugin_documents_graphql: Maybe<Scalars['Boolean']>;
+};
+
+type SitePluginPluginOptionsPluginConfig = {
+  readonly head: Maybe<Scalars['Boolean']>;
 };
 
 type SitePluginPackageJson = {
@@ -2665,6 +2678,7 @@ type SiteSiteMetadataFilterInput = {
   readonly title: Maybe<StringQueryOperatorInput>;
   readonly description: Maybe<StringQueryOperatorInput>;
   readonly author: Maybe<StringQueryOperatorInput>;
+  readonly siteUrl: Maybe<StringQueryOperatorInput>;
 };
 
 type SiteFlagsFilterInput = {
@@ -2722,6 +2736,7 @@ type SiteFieldsEnum =
   | 'siteMetadata.title'
   | 'siteMetadata.description'
   | 'siteMetadata.author'
+  | 'siteMetadata.siteUrl'
   | 'port'
   | 'host'
   | 'flags.FAST_DEV'
@@ -3110,6 +3125,10 @@ type SitePluginFilterInput = {
 
 type SitePluginPluginOptionsFilterInput = {
   readonly plugins: Maybe<SitePluginPluginOptionsPluginsFilterListInput>;
+  readonly output: Maybe<StringQueryOperatorInput>;
+  readonly createLinkInHead: Maybe<BooleanQueryOperatorInput>;
+  readonly entryLimit: Maybe<IntQueryOperatorInput>;
+  readonly query: Maybe<StringQueryOperatorInput>;
   readonly name: Maybe<StringQueryOperatorInput>;
   readonly path: Maybe<StringQueryOperatorInput>;
   readonly base64Width: Maybe<IntQueryOperatorInput>;
@@ -3147,6 +3166,10 @@ type SitePluginPluginOptionsFilterInput = {
   readonly assetDownloadWorkers: Maybe<IntQueryOperatorInput>;
   readonly useNameForId: Maybe<BooleanQueryOperatorInput>;
   readonly fonts: Maybe<StringQueryOperatorInput>;
+  readonly siteUrl: Maybe<StringQueryOperatorInput>;
+  readonly stripQueryString: Maybe<BooleanQueryOperatorInput>;
+  readonly trackingIds: Maybe<StringQueryOperatorInput>;
+  readonly pluginConfig: Maybe<SitePluginPluginOptionsPluginConfigFilterInput>;
   readonly pathCheck: Maybe<BooleanQueryOperatorInput>;
 };
 
@@ -3181,6 +3204,10 @@ type SitePluginPluginOptionsEmitSchemaFilterInput = {
 
 type SitePluginPluginOptionsEmitPluginDocumentsFilterInput = {
   readonly src___generated___gatsby_plugin_documents_graphql: Maybe<BooleanQueryOperatorInput>;
+};
+
+type SitePluginPluginOptionsPluginConfigFilterInput = {
+  readonly head: Maybe<BooleanQueryOperatorInput>;
 };
 
 type SitePluginPackageJsonFilterInput = {
@@ -3434,6 +3461,10 @@ type SitePageFieldsEnum =
   | 'pluginCreator.pluginOptions.plugins.browserAPIs'
   | 'pluginCreator.pluginOptions.plugins.ssrAPIs'
   | 'pluginCreator.pluginOptions.plugins.pluginFilepath'
+  | 'pluginCreator.pluginOptions.output'
+  | 'pluginCreator.pluginOptions.createLinkInHead'
+  | 'pluginCreator.pluginOptions.entryLimit'
+  | 'pluginCreator.pluginOptions.query'
   | 'pluginCreator.pluginOptions.name'
   | 'pluginCreator.pluginOptions.path'
   | 'pluginCreator.pluginOptions.base64Width'
@@ -3471,6 +3502,10 @@ type SitePageFieldsEnum =
   | 'pluginCreator.pluginOptions.assetDownloadWorkers'
   | 'pluginCreator.pluginOptions.useNameForId'
   | 'pluginCreator.pluginOptions.fonts'
+  | 'pluginCreator.pluginOptions.siteUrl'
+  | 'pluginCreator.pluginOptions.stripQueryString'
+  | 'pluginCreator.pluginOptions.trackingIds'
+  | 'pluginCreator.pluginOptions.pluginConfig.head'
   | 'pluginCreator.pluginOptions.pathCheck'
   | 'pluginCreator.nodeAPIs'
   | 'pluginCreator.browserAPIs'
@@ -8739,7 +8774,10 @@ type ProfileQuery = { readonly contentfulProfile: Maybe<(
 type MetadataQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type MetadataQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<{ defaultTitle: SiteSiteMetadata['title'], defaultDescription: SiteSiteMetadata['description'] }> }> };
+type MetadataQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<(
+      Pick<SiteSiteMetadata, 'siteUrl'>
+      & { defaultTitle: SiteSiteMetadata['title'], defaultDescription: SiteSiteMetadata['description'] }
+    )> }> };
 
 type GatsbyContentfulFixedFragment = Pick<ContentfulFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 

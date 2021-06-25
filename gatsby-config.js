@@ -11,8 +11,10 @@ module.exports = {
     title: `GaaP`,
     description: `Nishimuraの技術ブログ。開発する上で役に立ったこと、注意したいこと、やってみたことを投稿します。`,
     author: `Nishimura`,
+    siteUrl: `https://gaap.gatsbyjs.io`
   },
   plugins: [
+    `gatsby-plugin-sitemap`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
     {
@@ -77,7 +79,6 @@ module.exports = {
       options: {
         spaceId: process.env.SPACE_ID,
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-        // host: `preview.contentful.com`
       }
     },
     {
@@ -88,9 +89,25 @@ module.exports = {
         ],
         display: 'swap'
       }
-    }
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    },
+    {
+      resolve: `gatsby-plugin-gatsby-cloud`
+    },
+    {
+      resolve: `gatsby-plugin-canonical-urls`,
+      options: {
+        siteUrl: `https://gaap.gatsbyjs.io`,
+        stripQueryString: true,
+      },
+    },
+    {
+      resolve: "gatsby-plugin-google-gtag",
+      options: {
+        trackingIds: ["UA-198042353-1"],
+        pluginConfig: {
+          head: true,
+        },
+      },
+    },
   ],
 }

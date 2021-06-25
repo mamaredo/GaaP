@@ -5,7 +5,7 @@ import "../../css/header.css"
 // ______________________________________________________
 //
 const HeaderLogo: React.VFC = () => (
-  <svg xlinkTitle="GaaP" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="96" height="96" viewBox="0 0 96 96">
+  <svg role="img" aria-label="GaaP" xlinkTitle="GaaP" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="96" height="96" viewBox="0 0 96 96">
     <defs>
       <clipPath id="clip-path">
         <rect id="長方形_92" data-name="長方形 92" width="96" height="96" transform="translate(2362 -107)" fill="#fff" stroke="#707070" strokeWidth="1" />
