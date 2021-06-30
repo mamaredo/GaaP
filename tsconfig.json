@@ -1,6 +1,12 @@
 {
   "include": ["./src/**/*"],
   "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "@components/*": ["components/*"],
+      "@containers/*": ["containers/*"],
+      "@template/*": ["template/*"]
+    },
     "target": "esnext",
     "module": "esnext",
     "lib": ["dom", "es2017"],
