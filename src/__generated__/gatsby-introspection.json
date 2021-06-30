@@ -10489,7 +10489,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "contentfulBlogPostTocTextNode",
+        "name": "contentfulBlogPostDescriptionTextNode",
         "description": null,
         "specifiedByUrl": null,
         "fields": [
@@ -10562,7 +10562,7 @@
             "deprecationReason": null
           },
           {
-            "name": "toc",
+            "name": "description",
             "description": null,
             "args": [],
             "type": {
@@ -10579,7 +10579,7 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "contentfulBlogPostTocTextNodeSys",
+              "name": "contentfulBlogPostDescriptionTextNodeSys",
               "ofType": null
             },
             "isDeprecated": false,
@@ -10627,7 +10627,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "contentfulBlogPostTocTextNodeSys",
+        "name": "contentfulBlogPostDescriptionTextNodeSys",
         "description": null,
         "specifiedByUrl": null,
         "fields": [
@@ -16633,7 +16633,7 @@
             "deprecationReason": null
           },
           {
-            "name": "contentfulBlogPostTocTextNode",
+            "name": "contentfulBlogPostDescriptionTextNode",
             "description": null,
             "args": [
               {
@@ -16685,7 +16685,7 @@
                 "deprecationReason": null
               },
               {
-                "name": "toc",
+                "name": "description",
                 "description": null,
                 "type": {
                   "kind": "INPUT_OBJECT",
@@ -16701,7 +16701,7 @@
                 "description": null,
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "contentfulBlogPostTocTextNodeSysFilterInput",
+                  "name": "contentfulBlogPostDescriptionTextNodeSysFilterInput",
                   "ofType": null
                 },
                 "defaultValue": null,
@@ -16735,14 +16735,14 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "contentfulBlogPostTocTextNode",
+              "name": "contentfulBlogPostDescriptionTextNode",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "allContentfulBlogPostTocTextNode",
+            "name": "allContentfulBlogPostDescriptionTextNode",
             "description": null,
             "args": [
               {
@@ -16750,7 +16750,7 @@
                 "description": null,
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "contentfulBlogPostTocTextNodeFilterInput",
+                  "name": "contentfulBlogPostDescriptionTextNodeFilterInput",
                   "ofType": null
                 },
                 "defaultValue": null,
@@ -16762,7 +16762,7 @@
                 "description": null,
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "contentfulBlogPostTocTextNodeSortInput",
+                  "name": "contentfulBlogPostDescriptionTextNodeSortInput",
                   "ofType": null
                 },
                 "defaultValue": null,
@@ -16799,7 +16799,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "contentfulBlogPostTocTextNodeConnection",
+                "name": "contentfulBlogPostDescriptionTextNodeConnection",
                 "ofType": null
               }
             },
@@ -61649,6 +61649,30 @@
             "deprecationReason": null
           },
           {
+            "name": "pluginOptions___output",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "pluginOptions___createLinkInHead",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "pluginOptions___entryLimit",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "pluginOptions___query",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "pluginOptions___name",
             "description": null,
             "isDeprecated": false,
@@ -61866,6 +61890,30 @@
           },
           {
             "name": "pluginOptions___fonts",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "pluginOptions___siteUrl",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "pluginOptions___stripQueryString",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "pluginOptions___trackingIds",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "pluginOptions___pluginConfig___head",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
