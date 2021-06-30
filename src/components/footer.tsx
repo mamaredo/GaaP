@@ -19,7 +19,7 @@ const Footer: React.FC = () => (
     >
       <div>
         <div className="mx-auto mb-2 w-6 h-6 md:w-7 md:h-7 flex items-center justify-center rounded-full bg-black bg-opacity-10">
-          <img className="w-5 h-5 md:w-6 md:h-6" src={`../../../gaap-logp.svg`} alt="GaaP" />
+          <img className="w-5 h-5 md:w-6 md:h-6" src={`../../gaap-icon.svg`} alt="GaaP" />
         </div>
         &copy;2021 Nishimura All Rights Reserved.
       </div>

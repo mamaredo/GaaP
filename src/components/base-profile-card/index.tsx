@@ -31,11 +31,9 @@ const BaseProfileCard: React.FC<BaseProfileCardProps> = ({ profile, social }) =>
   return(
     <div className="shadow bg-white w-full p-2 rounded">
       <div className="flex">
-        {/* img */}
         <div className="mr-2">
           <ProfileAvatar avatar={avatar} alt={name} />
         </div>
-        {/* img */}
         <div className="w-full">
           <ProfileName name={name} />
         </div>

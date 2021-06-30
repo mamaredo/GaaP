@@ -12,7 +12,7 @@ module.exports = {
         'header-text': '#2B2B2B',
         'background': '#FAFAFA',
         'tag-bg': '#FFFFFF',
-        'twitter': '#1DA1F2',
+        'twitter': '#55ACEE',
         'git-hub': '#24292E',
         'google-form': '#764BBE',
         'hr': '#DADADA'
@@ -56,6 +56,7 @@ module.exports = {
       'md': '720px',
       'sm': '360px',
       'max': '100%',
+      'tag': '18px',
       'blog-index-fixed': '410px',
     },
     container: {
