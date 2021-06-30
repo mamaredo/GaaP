@@ -1,16 +1,16 @@
-import React, { useMemo } from 'react'
-import SEO from '../containers/seo'
-import { FluidObject } from 'gatsby-image'
-import BaseNavigation from "../components/base-navigation"
-import BlogHead from "../containers/blog-head"
-import BlogHeroImage from "../containers/blog-hero-image"
-import BlogIndex from "../containers/blog-index/index"
-import BlogTag, { TagInfoType } from "../containers/blog-tag"
-import ProfileCard from '../containers/profile-card'
-import Layout from "../components/layout"
+import React, { useMemo } from "react"
+import SEO from "@containers/seo"
+import { FluidObject } from "gatsby-image"
+import BaseNavigation from "@components/base-navigation"
+import BlogHead from "@containers/blog-head"
+import BlogHeroImage from "@containers/blog-hero-image"
+import BlogIndex from "@containers/blog-index/index"
+import BlogTag, { TagInfoType } from "@containers/blog-tag"
+import ProfileCard from "@containers/profile-card"
+import Layout from "@components/layout"
 import "../css/blog-template.css"
-import Prism from 'prismjs'
-import 'prismjs/themes/prism-okaidia.css'
+import Prism from "prismjs"
+import "prismjs/themes/prism-okaidia.css"
 
 
 // ______________________________________________________

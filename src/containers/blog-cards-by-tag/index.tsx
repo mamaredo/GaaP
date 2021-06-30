@@ -1,6 +1,6 @@
 import * as React from "react"
-import { TagType } from "../../components/base-blog-tag"
-import BaseBlogCard, { BlogCardType } from "../../components/base-blog-card"
+import { TagType } from "@components/base-blog-tag"
+import BaseBlogCard, { BlogCardType } from "@components/base-blog-card"
 import { IGatsbyImageData } from "gatsby-plugin-image"
 
 

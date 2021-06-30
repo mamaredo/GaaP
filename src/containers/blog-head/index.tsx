@@ -1,6 +1,6 @@
 import * as React from "react"
-import { PostPageProps } from "../../template/post-page"
-import BaseBlogHead from "../../components/base-blog-head"
+import { PostPageProps } from "@template/post-page"
+import BaseBlogHead from "@components/base-blog-head"
 
 
 // ______________________________________________________

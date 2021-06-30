@@ -1,5 +1,5 @@
 import React from 'react'
-import BaseSEO, { MetadataType } from '../../components/base-seo'
+import BaseSEO, { MetadataType } from '@components/base-seo'
 import { useMetadataQuery } from './query'
 
 

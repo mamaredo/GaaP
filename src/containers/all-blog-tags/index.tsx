@@ -1,5 +1,5 @@
 import * as React from "react"
-import BaseBlogTag from "../../components/base-blog-tag"
+import BaseBlogTag from "@components/base-blog-tag"
 import { useAllBlogTagsQuery } from "./query"
 
 

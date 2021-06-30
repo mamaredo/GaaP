@@ -1,6 +1,6 @@
 import * as React from "react"
 import { useProfileQuery } from "./query"
-import BaseProfileCard, { ProfileType, SocialType} from "../../components/base-profile-card"
+import BaseProfileCard, { ProfileType, SocialType} from "@components/base-profile-card"
 import { IGatsbyImageData } from "gatsby-plugin-image"
 
 
