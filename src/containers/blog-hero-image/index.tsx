@@ -1,6 +1,6 @@
 import React from "react"
-import { PostPageProps } from "@template/post-page"
-import BaseBlogHeroImage from "@components/base-blog-hero-image"
+import { PostPageProps } from "../../template/post-page"
+import BaseBlogHeroImage from "../../components/base-blog-hero-image"
 
 
 // ______________________________________________________

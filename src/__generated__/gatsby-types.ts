@@ -68,6 +68,7 @@ type File = Node & {
   readonly birthtimeMs: Maybe<Scalars['Float']>;
   readonly blksize: Maybe<Scalars['Int']>;
   readonly blocks: Maybe<Scalars['Int']>;
+  readonly url: Maybe<Scalars['String']>;
   /** Copy file to static directory and return public url to it */
   readonly publicURL: Maybe<Scalars['String']>;
   /** Returns all children nodes filtered by type ImageSharp */
@@ -1433,6 +1434,7 @@ type Query_fileArgs = {
   birthtimeMs: Maybe<FloatQueryOperatorInput>;
   blksize: Maybe<IntQueryOperatorInput>;
   blocks: Maybe<IntQueryOperatorInput>;
+  url: Maybe<StringQueryOperatorInput>;
   publicURL: Maybe<StringQueryOperatorInput>;
   childrenImageSharp: Maybe<ImageSharpFilterListInput>;
   childImageSharp: Maybe<ImageSharpFilterInput>;
@@ -2164,6 +2166,7 @@ type FileFieldsEnum =
   | 'birthtimeMs'
   | 'blksize'
   | 'blocks'
+  | 'url'
   | 'publicURL'
   | 'childrenImageSharp'
   | 'childrenImageSharp.fixed.base64'
@@ -2436,6 +2439,7 @@ type FileFilterInput = {
   readonly birthtimeMs: Maybe<FloatQueryOperatorInput>;
   readonly blksize: Maybe<IntQueryOperatorInput>;
   readonly blocks: Maybe<IntQueryOperatorInput>;
+  readonly url: Maybe<StringQueryOperatorInput>;
   readonly publicURL: Maybe<StringQueryOperatorInput>;
   readonly childrenImageSharp: Maybe<ImageSharpFilterListInput>;
   readonly childImageSharp: Maybe<ImageSharpFilterInput>;

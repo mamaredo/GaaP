@@ -1,11 +1,11 @@
 {
   "include": ["./src/**/*"],
   "compilerOptions": {
-    "baseUrl": "src",
+    "baseUrl": "./",
     "paths": {
-      "@components/*": ["components/*"],
-      "@containers/*": ["containers/*"],
-      "@template/*": ["template/*"]
+      "@components/*": ["./src/components/*"],
+      "@containers/*": ["./src/containers/*"],
+      "@template/*": ["./src/template/*"]
     },
     "target": "esnext",
     "module": "esnext",

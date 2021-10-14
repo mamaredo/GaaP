@@ -25,7 +25,7 @@ const BaseBlogTag: React.FC<BaseBlogTagProps> = ({ svg, tag, style, link = true 
         <TagElement svg={svg} tag={tag} />
       </LinkTag>
       :
-      <NormalTag>
+      <NormalTag style={inherentStyle}>
         <TagElement svg={svg} tag={tag} />
       </NormalTag>
     }
@@ -45,9 +45,9 @@ const LinkTag: React.FC<{tag: string, style?:string}> = ({ tag, style = '', chil
     {children}
   </Link>
 )
-const NormalTag: React.FC = ({children}) => (
+const NormalTag: React.FC<{ style?: string }> = ({style = '' ,children}) => (
   <div
-    className={`flex justify-center items-center rounded min-h-button`}
+    className={`flex justify-center items-center rounded min-h-button ${style}`}
   >
     {children}
   </div>

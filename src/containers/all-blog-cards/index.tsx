@@ -1,6 +1,6 @@
 import * as React from "react"
 import { useAllBlogPostsQuery } from "./query"
-import BaseBlogCard from "@components/base-blog-card"
+import BaseBlogCard from "../../components/base-blog-card"
 import { IGatsbyImageData } from "gatsby-plugin-image"
 
 
