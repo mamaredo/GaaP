@@ -68,5 +68,5 @@ yarn-error.log
 # Yarn Integrity file
 .yarn-integrity
 
-__generated__/gatsby-introspection.json
-__generated__/gatsby-types.ts
+src/__generated__/gatsby-introspection.json
+src/__generated__/gatsby-types.ts
