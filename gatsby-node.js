@@ -26,14 +26,8 @@ exports.createPages = async ({ graphql, actions }) => {
               }
             }
             heroImage {
+              gatsbyImageData(formats: PNG, layout: FULL_WIDTH)
               title
-              fluid(maxWidth: 1200) {
-                base64
-                aspectRatio
-                src
-                srcSet
-                sizes
-              }
             }
             svgContent {
               svg {
@@ -58,8 +52,8 @@ exports.createPages = async ({ graphql, actions }) => {
             tag: node.tags?.[0],
             svg: node.svgContent?.svg.content,
           },
-          image: {
-            fluid: node.heroImage.fluid,
+          assets: {
+            image: node.heroImage.gatsbyImageData,
             alt: node.heroImage.title
           },
           body: node.body.childMarkdownRemark.html,
