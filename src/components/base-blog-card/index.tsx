@@ -20,7 +20,7 @@ type BaseBlogCardProps = & TagType & BlogCardType & BlogCardStyleType
 //
 const BaseBlogCard: React.VFC<BaseBlogCardProps> = props => {
   const cardStyle = props.style?.join(" ")
-  const tagStyle = ['bg-background']
+  const tagStyle = ['shadow-sm', 'bg-background']
   return (
     <div className="col-span-4">
       <Link to={`/post/${props.slug}`}>

@@ -10,14 +10,14 @@
 .blog-fab-index li {
   @apply
   inline-block
-  ;
-}
-
-.blog-fab-index li {
-  @apply
   mb-2
   ;
 }
+
+/* .blog-fab-index li {
+  @apply
+  ;
+} */
 
 .blog-fab-index a {
   @apply
