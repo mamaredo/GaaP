@@ -8,7 +8,6 @@
     "autoprefixer": "^10.4.2",
     "dotenv": "^16.0.0",
     "gatsby": "^4.6.1",
-    "gatsby-image": "^3.11.0",
     "gatsby-plugin-canonical-urls": "^4.6.0",
     "gatsby-plugin-gatsby-cloud": "^4.6.0",
     "gatsby-plugin-google-fonts": "^1.0.1",
