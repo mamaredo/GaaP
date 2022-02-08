@@ -67,3 +67,6 @@ yarn-error.log
 .pnp.js
 # Yarn Integrity file
 .yarn-integrity
+
+__generated__/gatsby-introspection.json
+__generated__/gatsby-types.ts
