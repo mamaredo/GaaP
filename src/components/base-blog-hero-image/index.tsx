@@ -1,24 +1,24 @@
-import * as React from "react"
-import Img, { FluidObject } from "gatsby-image"
+import React from "react"
+import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image"
 
 
 // ______________________________________________________
 //
 export type BaseBlogHeroImageProps = {
-  fluid: FluidObject
+  image: IGatsbyImageData
   alt?: string
 }
 // ______________________________________________________
 //
 // ______________________________________________________
 //
-const BaseBlogHeroImage: React.FC<BaseBlogHeroImageProps> = ({ fluid, alt }) => (
+const BaseBlogHeroImage: React.FC<BaseBlogHeroImageProps> = ({ image, alt }) => (
   <picture>
-    <Img
+    <GatsbyImage
       className="mt-2"
-      fluid={fluid}
-      title={alt}
-    ></Img>
+      image={image}
+      alt={alt!}
+    ></GatsbyImage>
   </picture>
 )
 // ______________________________________________________

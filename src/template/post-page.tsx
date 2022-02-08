@@ -1,6 +1,5 @@
 import React, { useMemo } from "react"
 import SEO from "../containers/seo"
-import { FluidObject } from "gatsby-image"
 import BaseNavigation from "../components/base-navigation"
 import BlogHead from "../containers/blog-head"
 import BlogHeroImage from "../containers/blog-hero-image"
@@ -11,6 +10,7 @@ import Layout from "../components/layout"
 import "../css/blog-template.css"
 import Prism from "prismjs"
 import "prismjs/themes/prism-okaidia.css"
+import { IGatsbyImageData } from "gatsby-plugin-image"
 
 
 // ______________________________________________________
@@ -21,8 +21,8 @@ export type PostPageProps = {
       title: string
       date: string
     }
-    image: {
-      fluid: FluidObject
+    assets: {
+      image: IGatsbyImageData
       alt?: string
     }
     body: string
@@ -40,7 +40,7 @@ const PostPage: React.VFC<PostPageProps> = ({ pageContext }) => {
   const {
     head,
     tagInfo,
-    image,
+    assets,
     body,
     postIndex
   } = pageContext
@@ -70,7 +70,7 @@ const PostPage: React.VFC<PostPageProps> = ({ pageContext }) => {
             <div className="w-full">
               <BlogHead head={head} />
               <div className="mb-2">
-                <BlogHeroImage image={image} />
+                <BlogHeroImage assets={assets} />
               </div>
             </div>
 
