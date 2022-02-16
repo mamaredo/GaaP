@@ -1,19 +1,21 @@
-import React from "react"
-import { BaseBlogIndexProps } from "../index"
-import "../../../css/blog-fab-index.css"
-
+import React from 'react'
+import { BaseBlogIndexProps } from '../index'
+import '@/css/blog-fab-index.css'
 
 // ______________________________________________________
 //
 type FabContentProps = {
-  postIndex: BaseBlogIndexProps["postIndex"]
-  handleIsShow: BaseBlogIndexProps["handleIsShow"]
+  postIndex: BaseBlogIndexProps['postIndex']
+  handleIsShow: BaseBlogIndexProps['handleIsShow']
 }
 // ______________________________________________________
 //
 // ______________________________________________________
 //
-const FabContent: React.VFC<FabContentProps> = ({ postIndex, handleIsShow }) => (
+const FabContent: React.VFC<FabContentProps> = ({
+  postIndex,
+  handleIsShow,
+}) => (
   <div
     className="flex flex-col fixed w-full h-full bottom-0 right-0 z-top"
     onClick={handleIsShow}

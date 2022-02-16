@@ -1,6 +1,7 @@
-import * as React from "react"
-import BaseTagPageHeading, { BaseTagPageHeadingProps } from "../../components/base-tag-page-heading"
-
+import React from 'react'
+import BaseTagPageHeading, {
+  BaseTagPageHeadingProps,
+} from '@/components/ui/base-tag-page-heading'
 
 // ______________________________________________________
 //

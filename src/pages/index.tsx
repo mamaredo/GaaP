@@ -1,11 +1,10 @@
-import * as React from "react"
-import Layout from "../components/layout"
-import SEO from "../containers/seo"
-import MainVisual from "../components/main-visual"
-import AllBlogCards from "../containers/all-blog-cards"
-import ProfileCard from "../containers/profile-card"
-import AllBlogTags from "../containers/all-blog-tags"
-
+import * as React from 'react'
+import Layout from '@/components/layout'
+import SEO from '@/containers/seo'
+import MainVisual from '@/components/main-visual'
+import AllBlogCards from '@/containers/all-blog-cards'
+import ProfileCard from '@/containers/profile-card'
+import AllBlogTags from '@/containers/all-blog-tags'
 
 // ______________________________________________________
 //
@@ -15,7 +14,7 @@ const Index: React.VFC = () => {
       <SEO />
       <div className="w-full h-full">
         <MainVisual />
-        <article className="px-1 py-5 bg-background">
+        <article className="mx-1 py-5 bg-background">
           <div
             className="
               2xl:max-w-2xl xl:max-w-xl md:max-w-md max-w-sm
@@ -47,14 +46,11 @@ const Index: React.VFC = () => {
 
               <hr className="w-full my-3 bg-hr" />
 
-              <div className="mb-2 text-xl font-bold opacity-70">
-                タグ一覧
-              </div>
+              <div className="mb-2 text-xl font-bold opacity-70">タグ一覧</div>
               <div className="flex">
                 <AllBlogTags />
               </div>
             </div>
-
           </div>
         </article>
       </div>

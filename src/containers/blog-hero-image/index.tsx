@@ -1,7 +1,6 @@
-import React from "react"
-import { PostPageProps } from "../../template/post-page"
-import BaseBlogHeroImage from "../../components/base-blog-hero-image"
-
+import React from 'react'
+import { PostPageProps } from '@/template/post-page'
+import BaseBlogHeroImage from '@/components/ui/base-blog-hero-image'
 
 // ______________________________________________________
 //
@@ -15,7 +14,7 @@ type BlogHeroImageProps = {
 const BlogHeroImage: React.VFC<BlogHeroImageProps> = ({ assets }) => {
   /* Logic */
   const { image, alt } = assets
-  return (<BaseBlogHeroImage image={image} alt={alt} />)
+  return <BaseBlogHeroImage image={image} alt={alt} />
 }
 // ______________________________________________________
 //

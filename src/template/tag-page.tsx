@@ -1,20 +1,22 @@
-import React from "react"
-import Layout from "../components/layout"
-import SEO from "../containers/seo"
-import MainVisual from "../components/main-visual"
-import TagPageHeading, { TagPageHeadingProps } from "../containers/tag-page-heading"
-import { TagInfoType } from "../containers/blog-tag"
-import BlogCardsByTag, { BlogCardsByTagType } from "../containers/blog-cards-by-tag"
-import AllBlogTags from "../containers/all-blog-tags"
-
+import React from 'react'
+import Layout from '@/components/layout'
+import SEO from '@/containers/seo'
+import MainVisual from '@/components/main-visual'
+import TagPageHeading, {
+  TagPageHeadingProps,
+} from '@/containers/tag-page-heading'
+import { TagInfoType } from '@/containers/blog-tag'
+import BlogCardsByTag, {
+  BlogCardsByTagType,
+} from '@/containers/blog-cards-by-tag'
+import AllBlogTags from '@/containers/all-blog-tags'
 
 // ______________________________________________________
 //
 type TagPageProps = {
-  pageContext: 
-  & TagInfoType['tagInfo']
-  & TagPageHeadingProps['heading']
-  & BlogCardsByTagType
+  pageContext: TagInfoType['tagInfo'] &
+    TagPageHeadingProps['heading'] &
+    BlogCardsByTagType
 }
 // ______________________________________________________
 //
@@ -41,7 +43,7 @@ const TagPage: React.VFC<TagPageProps> = ({ pageContext }) => {
             2xl:gap-3
             gap-2
             "
-            >
+          >
             <div className="md:col-span-8 col-span-4 w-full">
               <div className="text-center mt-3">
                 <TagPageHeading heading={heading} />
@@ -59,19 +61,20 @@ const TagPage: React.VFC<TagPageProps> = ({ pageContext }) => {
                 gap-2
                 "
               >
-                <BlogCardsByTag tag={tag} svg={svg} blogCardInfo={blogCardInfo} />
+                <BlogCardsByTag
+                  tag={tag}
+                  svg={svg}
+                  blogCardInfo={blogCardInfo}
+                />
               </div>
 
               <hr className="my-5 w-full bg-hr" />
 
-              <div className="mb-2 text-xl font-bold opacity-70">
-                タグ一覧
-              </div>
+              <div className="mb-2 text-xl font-bold opacity-70">タグ一覧</div>
               <div className="flex">
                 <AllBlogTags />
               </div>
             </div>
-
           </div>
         </article>
       </div>

@@ -1,7 +1,6 @@
-import React, { useState } from "react"
-import { PostPageProps } from "../../template/post-page"
-import BaseBlogIndex from "../../components/base-blog-index"
-
+import React, { useState } from 'react'
+import { PostPageProps } from '@/template/post-page'
+import BaseBlogIndex from '@/components/ui/base-blog-index'
 
 // ______________________________________________________
 //

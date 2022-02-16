@@ -1,8 +1,10 @@
-import * as React from "react"
-import { useProfileQuery } from "./query"
-import BaseProfileCard, { ProfileType, SocialType} from "../../components/base-profile-card"
-import { IGatsbyImageData } from "gatsby-plugin-image"
-
+import * as React from 'react'
+import { useProfileQuery } from './query'
+import BaseProfileCard, {
+  ProfileType,
+  SocialType,
+} from '@/components/ui/base-profile-card'
+import { IGatsbyImageData } from 'gatsby-plugin-image'
 
 // ______________________________________________________
 //
@@ -16,14 +18,9 @@ const ProfileCard: React.VFC = () => {
   const social: SocialType = {
     twitter: data?.twitter || '#',
     gitHub: data?.gitHub || '#',
-    contact: data?.contact || '#'
+    contact: data?.contact || '#',
   }
-  return (
-    <BaseProfileCard
-      profile={profile}
-      social={social}
-    />
-  )
+  return <BaseProfileCard profile={profile} social={social} />
 }
 // ______________________________________________________
 //

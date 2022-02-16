@@ -1,7 +1,6 @@
-import React from "react"
-import BaseBlogIndexFab from "./base-blog-index-fab"
-import "../../css/blog-index.css"
-
+import React from 'react'
+import BaseBlogIndexFab from './base-blog-index-fab'
+import '@/css/blog-index.css'
 
 // ______________________________________________________
 //

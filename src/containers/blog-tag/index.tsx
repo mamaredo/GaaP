@@ -1,6 +1,5 @@
-import React from "react"
-import BaseBlogTag, { TagType, StyleType } from "../../components/base-blog-tag"
-
+import React from 'react'
+import BaseBlogTag, { TagType, StyleType } from '@/components/ui/base-blog-tag'
 
 // ______________________________________________________
 //
@@ -15,9 +14,7 @@ type BlogTagProps = TagInfoType & StyleType
 const BlogTag: React.VFC<BlogTagProps> = ({ tagInfo, style }) => {
   /* logic */
   const { tag, svg } = tagInfo
-  return (
-    <BaseBlogTag svg={svg} tag={tag} style={style} />
-  )
+  return <BaseBlogTag svg={svg} tag={tag} style={style} />
 }
 // ______________________________________________________
 //
