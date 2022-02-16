@@ -1,10 +1,19 @@
 require('dotenv').config({
-  path: `.env.${process.env.NODE_ENV}`
+  path: `.env.${process.env.NODE_ENV}`,
 })
+const path = require('path')
 
-const isProd = process.env.NODE_ENV === "production"
+const isProd = process.env.NODE_ENV === 'production'
 
 const globalPlugins = [
+  {
+    resolve: `gatsby-plugin-alias-imports`,
+    options: {
+      alias: {
+        '@': path.resolve(__dirname, 'src'),
+      },
+    },
+  },
   `gatsby-plugin-sitemap`,
   `gatsby-plugin-react-helmet`,
   `gatsby-plugin-image`,
@@ -32,14 +41,14 @@ const globalPlugins = [
   `gatsby-plugin-postcss`,
   `gatsby-transformer-inline-svg`,
   {
-    resolve: "gatsby-transformer-remark",
+    resolve: 'gatsby-transformer-remark',
     options: {
       plugins: [
         {
           resolve: `gatsby-remark-external-links`,
           options: {
             rel: `noopener noreferrer`,
-          }
+          },
         },
         `gatsby-remark-table-of-contents`,
         {
@@ -47,7 +56,7 @@ const globalPlugins = [
           options: {
             elements: [`h2`],
             maintainCase: false,
-            icon: false
+            icon: false,
           },
         },
       ],
@@ -58,10 +67,10 @@ const globalPlugins = [
     resolve: `gatsby-plugin-typegen`,
     options: {
       emitSchema: {
-        "src/__generated__/gatsby-introspection.json": true,
+        'src/__generated__/gatsby-introspection.json': true,
       },
       emitPluginDocuments: {
-        "src/__generated__/gatsby-plugin-documents.graphql": true,
+        'src/__generated__/gatsby-plugin-documents.graphql': true,
       },
     },
   },
@@ -70,44 +79,48 @@ const globalPlugins = [
     options: {
       spaceId: process.env.SPACE_ID,
       accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-    }
+    },
   },
   {
     resolve: `gatsby-plugin-google-fonts`,
     options: {
       fonts: [
-        `balsamiq sans\:400i,700i,700` // you can also specify font weights and styles
+        `balsamiq sans\:400i,700i,700`, // you can also specify font weights and styles
       ],
-      display: 'swap'
-    }
-  },
-  {
-    resolve: `gatsby-plugin-gatsby-cloud`
-  }
-]
-
-const productionPlugins = [{
-  resolve: "gatsby-plugin-google-gtag",
-  options: {
-    trackingIds: ["UA-198042353-1"],
-    pluginConfig: {
-      head: true,
+      display: 'swap',
     },
   },
-}]
+  {
+    resolve: `gatsby-plugin-gatsby-cloud`,
+  },
+]
 
-const plugins = isProd ? [...globalPlugins, ...productionPlugins] : globalPlugins
+const productionPlugins = [
+  {
+    resolve: 'gatsby-plugin-google-gtag',
+    options: {
+      trackingIds: ['UA-198042353-1'],
+      pluginConfig: {
+        head: true,
+      },
+    },
+  },
+]
+
+const plugins = isProd
+  ? [...globalPlugins, ...productionPlugins]
+  : globalPlugins
 
 module.exports = {
   flags: {
     FAST_DEV: true,
-    DEV_SSR:false
+    DEV_SSR: false,
   },
   siteMetadata: {
     title: `GaaP`,
     description: `Nishimuraの技術ブログ。開発する上で役に立ったこと、注意したいこと、やってみたことを投稿します。`,
     author: `Nishimura`,
-    siteUrl: `https://gaap.gatsbyjs.io`
+    siteUrl: `https://gaap.gatsbyjs.io`,
   },
-  plugins
+  plugins,
 }
