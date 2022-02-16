@@ -1,14 +1,15 @@
-import * as React from 'react'
-import Footer from './footer'
+import React from 'react'
 
+import { HeaderNavigation } from '@/containers/header-navigation'
+
+import Footer from './footer'
 
 // ______________________________________________________
 //
-const Layout: React.FC = ({children}) => (
+const Layout: React.FC = ({ children }) => (
   <>
-    <main className="max-w-max h-full">
-      {children}
-    </main>
+    <HeaderNavigation />
+    <main className="max-w-max h-full">{children}</main>
     <Footer />
   </>
 )
