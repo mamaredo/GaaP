@@ -85,7 +85,7 @@ const globalPlugins = [
     resolve: `gatsby-source-microcms`,
     options: {
       apiKey: process.env.MICROCMS_API_KEY,
-      serviceId: 'gaap',
+      serviceId: process.env.MICROCMS_SERVICE_ID,
       apis: [
         {
           endpoint: 'test',
