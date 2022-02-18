@@ -82,6 +82,19 @@ const globalPlugins = [
     },
   },
   {
+    resolve: `gatsby-source-microcms`,
+    options: {
+      apiKey: process.env.MICROCMS_API_KEY,
+      serviceId: process.env.MICROCMS_SERVICE_ID,
+      apis: [
+        {
+          endpoint: 'test',
+          format: 'object'
+        }
+      ]
+    }
+  },
+  {
     resolve: `gatsby-plugin-google-fonts`,
     options: {
       fonts: [
